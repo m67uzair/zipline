@@ -100,7 +100,7 @@ class SignaturePadScreen extends GetView<SignaturePadController> {
                         if (isSignatureAdded) {
                           homeController.ordersList.refresh();
                           homeController.fetchRecentOrders();
-                          Get.toNamed(AppRoutes.navBar);
+                          Get.offAllNamed(AppRoutes.navBar);
                         }
                       },
                     ),

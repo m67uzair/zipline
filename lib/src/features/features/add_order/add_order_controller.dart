@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:courier_app/src/core/config/routes.dart';
 import 'package:courier_app/src/core/constants/user_constants.dart';
 import 'package:courier_app/src/features/auth/auth/preferences_service.dart';
 import 'package:courier_app/src/features/features/add_order/order_summary_model.dart';
@@ -121,18 +122,20 @@ class AddOrderController extends GetxController {
   }
 
   Future<bool> addItem() async {
-    bool itemAdded = true;
+    bool itemAdded = false;
     isLoading.value = true;
 
     try {
-      orderId = await addSenderDetails(senderName, '+$senderPhoneCode$senderPhoneNum', senderEmail,
-          senderDooFlatNo,
+      orderId = await addSenderDetails(senderName, '+$senderPhoneCode-$senderPhoneNum', senderEmail, senderDooFlatNo,
           senderStreet, senderCity, senderPincode);
-      await addReceiverDetails(orderId, receiverName, '+$receiverPhoneCode$receiverPhoneNum', receiverEmail,
-          receiverDooFlatNo, receiverStreet, receiverCity, receiverPincode);
-      await addPackageDetails(orderId, itemName, '${itemLength}x${itemWidth}x$itemHeight', itemWeight, itemType,
-          itemCategory, deliveryRequired, itemImageUrl, itemCharges);
-      itemAdded = await updateSenderSignature(signatureFileName);
+
+      if (orderId.isNotEmpty) {
+        await addReceiverDetails(orderId, receiverName, '+$receiverPhoneCode-$receiverPhoneNum', receiverEmail,
+            receiverDooFlatNo, receiverStreet, receiverCity, receiverPincode);
+        await addPackageDetails(orderId, itemName, '${itemLength}x${itemWidth}x$itemHeight', itemWeight, itemType,
+            itemCategory, deliveryRequired, itemImageUrl, itemCharges);
+        itemAdded = await updateSenderSignature(signatureFileName);
+      }
       print('Order id  $orderId');
     } on Exception catch (e) {
       print('error occured ${e.toString}');
@@ -152,6 +155,7 @@ class AddOrderController extends GetxController {
 
   Future<String> addSenderDetails(String senderName, String contactNum, String emailAddress, String doorFlatNum,
       String streetAreaName, String cityTown, String pincode) async {
+    String orderId = '';
     // isLoading.value = true;
     bool isOrderAdded = false;
 
@@ -184,9 +188,11 @@ class AddOrderController extends GetxController {
       } else {
         isOrderAdded = false;
         Fluttertoast.showToast(msg: jsonData['error']);
+        Get.offNamed(AppRoutes.addOrderOne);
       }
     } on Exception catch (e) {
       Fluttertoast.showToast(msg: 'Error: ${e.toString()}');
+      Get.offNamed(AppRoutes.addOrderOne);
     }
     // isLoading.value = false;
     return orderId;
@@ -200,7 +206,7 @@ class AddOrderController extends GetxController {
     final url = Uri.parse('https://courier.hnktrecruitment.in/add-receiver-details');
     final body = jsonEncode({
       'order_id': orderId,
-      'name': senderName,
+      'name': receiverName,
       'contact_no': contactNum,
       'email_address': emailAddress,
       'door_flat_no': doorFlatNum,
@@ -226,9 +232,11 @@ class AddOrderController extends GetxController {
       } else {
         isReceiverAdded = false;
         Fluttertoast.showToast(msg: jsonData['error'], timeInSecForIosWeb: 20);
+        Get.offNamed(AppRoutes.addOrderOne);
       }
     } on Exception catch (e) {
       Fluttertoast.showToast(msg: 'Error: ${e.toString()}', timeInSecForIosWeb: 20);
+      Get.offNamed(AppRoutes.addOrderOne);
     }
     // isLoading.value = false;
     return orderId;
@@ -263,9 +271,11 @@ class AddOrderController extends GetxController {
         // Fluttertoast.showToast(msg: jsonData['message']);
       } else {
         Fluttertoast.showToast(msg: jsonData['error']);
+        Get.offNamed(AppRoutes.addOrderOne);
       }
     } on Exception catch (e) {
       Fluttertoast.showToast(msg: 'Error: ${e.toString()}');
+      Get.offNamed(AppRoutes.addOrderOne);
     }
 
     // isLoading.value = false;
@@ -310,7 +320,7 @@ class AddOrderController extends GetxController {
 
       if (response.statusCode == 200) {
         isSignatureUpdated = true;
-        // Fluttertoast.showToast(msg: jsonData['message']);
+        Fluttertoast.showToast(msg: "Order Added Successfully");
       } else {
         Fluttertoast.showToast(msg: jsonData['error']);
       }
