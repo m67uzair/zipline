@@ -22,7 +22,7 @@ class AllItemController extends GetxController {
 
   final List<String> statuses = ['All', 'Completed', 'Delivered', 'Pickup Pending', 'Delivery Pending'];
 
-  RxBool isLoading = false.obs;
+  final RxBool isLoading = false.obs;
   RxList<AllOrdersModel> ordersList = RxList<AllOrdersModel>([]);
   SharedPreferences prefs = PreferencesService.instance;
 
@@ -131,7 +131,7 @@ class AllItemController extends GetxController {
   Future<void> fetchOrdersByStatus(String status) async {
     print('status == $status');
       isLoading.value = true;
-    // try {
+    try {
       final userId = prefs.getInt(UserContants.userId) ?? -1;
 
       final baseUrl = 'https://courier.hnktrecruitment.in/fetch-user-orders/$userId/$status';
@@ -164,10 +164,10 @@ class AllItemController extends GetxController {
         print('Failed to load delivered orders: ${response.statusCode}');
         ordersList.clear();
       }
-    // } on Exception catch (e) {
-    //   Fluttertoast.showToast(msg: "Failed to load orders, Error: ${e.toString()}", timeInSecForIosWeb: 20);
-    //   ordersList.clear();
-    // }
+    } on Exception catch (e) {
+      Fluttertoast.showToast(msg: "Failed to load orders, Error: ${e.toString()}", timeInSecForIosWeb: 20);
+      ordersList.clear();
+    }
       isLoading.value = false;
   }
 

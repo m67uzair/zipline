@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e9500985-5b7a-4689-b9ef-218494176159" name="Changes" comment="splash">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/core/config/navigation_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/core/config/navigation_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/register/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/auth/register/register_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order1_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order1_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order2_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order2_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order3_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order3_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order4_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order4_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

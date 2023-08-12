@@ -41,16 +41,19 @@ class _AllItemScreenState extends State<AllItemScreen> {
 
   @override
   void initState() {
-    allItemsController.selectedStatus = widget.selectedStatus;
-    widget.initialIndex = allItemsController.statuses.indexOf(widget.selectedStatus);
-    print('init called');
-    if (allItemsController.selectedStatus == 'All') {
-      allItemsController.fetchAllOrders();
-    } else {
-      print('else called');
-      allItemsController.fetchOrdersByStatus(widget.selectedStatus);
-    }
+
     super.initState();
+      widget.initialIndex = allItemsController.statuses.indexOf(widget.selectedStatus);
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      allItemsController.selectedStatus = widget.selectedStatus;
+      print('init called');
+      if (allItemsController.selectedStatus == 'All') {
+        allItemsController.fetchAllOrders();
+      } else {
+        print('else called');
+        allItemsController.fetchOrdersByStatus(widget.selectedStatus);
+      }
+    });
   }
 
   @override
