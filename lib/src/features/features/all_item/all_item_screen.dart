@@ -61,230 +61,202 @@ class _AllItemScreenState extends State<AllItemScreen> {
         text: '',
         color: AppColors.transparent,
       ),
-      body: WillPopScope(
-        onWillPop: () {
-          Get.off(() => HomeScreen());
-          return Future(() => true);
-        },
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: margin_10),
-          children: [
-            DefaultTabController(
-              length: 5,
-              initialIndex: widget.initialIndex,
-              child: Column(
-                children: <Widget>[
-                  ButtonsTabBar(
-                    contentPadding: EdgeInsets.symmetric(horizontal: margin_10),
-                    backgroundColor: AppColors.orange,
-                    borderColor: AppColors.orange,
-                    borderWidth: 2,
-                    unselectedBackgroundColor: AppColors.white,
-                    unselectedBorderColor: AppColors.orange,
-                    unselectedLabelStyle: const TextStyle(color: AppColors.orange),
-                    labelStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                    onTap: (index) {
-                      searchController.clear();
-                      // Fetch orders based on the selected tab
-                      allItemsController.selectedStatus = allItemsController.statuses[index];
-                      if (allItemsController.selectedStatus == 'All' && allItemsController.selectedDate.isEmpty) {
-                        allItemsController.fetchAllOrders();
-                      } else if (allItemsController.selectedStatus == 'All' &&
-                          allItemsController.selectedDate.isNotEmpty) {
-                        allItemsController.fetchOrdersByDate(allItemsController.selectedDate.value);
-                      } else if (allItemsController.selectedStatus != 'All' &&
-                          allItemsController.selectedDate.isNotEmpty) {
-                        allItemsController.fetchOrdersByStatusAndDate(
-                            allItemsController.selectedStatus, allItemsController.selectedDate.value);
-                      } else {
-                        allItemsController.fetchOrdersByStatus(allItemsController.selectedStatus);
-                      }
-                    },
-                    tabs: const [
-                      Tab(
-                        text: strAll,
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: margin_10),
+        children: [
+          DefaultTabController(
+            length: 5,
+            initialIndex: widget.initialIndex,
+            child: Column(
+              children: <Widget>[
+                ButtonsTabBar(
+                  contentPadding: EdgeInsets.symmetric(horizontal: margin_10),
+                  backgroundColor: AppColors.orange,
+                  borderColor: AppColors.orange,
+                  borderWidth: 2,
+                  unselectedBackgroundColor: AppColors.white,
+                  unselectedBorderColor: AppColors.orange,
+                  unselectedLabelStyle: const TextStyle(color: AppColors.orange),
+                  labelStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  onTap: (index) {
+                    searchController.clear();
+                    // Fetch orders based on the selected tab
+                    allItemsController.selectedStatus = allItemsController.statuses[index];
+                    allItemsController.callFunctions();
+                  },
+                  tabs: const [
+                    Tab(
+                      text: strAll,
+                    ),
+                    Tab(
+                      text: strComplete,
+                    ),
+                    Tab(
+                      text: strDelivered,
+                    ),
+                    Tab(
+                      text: strPickupPending,
+                    ),
+                    Tab(
+                      text: 'Delivery Pending',
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: height_10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 65,
+                        width: width_200,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: AppColors.greyColor.withOpacity(.5),
+                            ),
+                            borderRadius: BorderRadius.circular(radius_10)),
+                        child: searchF(
+                            suffix: ImgAssets.searchIcon,
+                            controller: searchController,
+                            onTap: () async {
+                              await allItemsController.searchByOrderToken(searchController.text);
+                              searchController.clear();
+                            }),
                       ),
-                      Tab(
-                        text: strComplete,
-                      ),
-                      Tab(
-                        text: strDelivered,
-                      ),
-                      Tab(
-                        text: strPickupPending,
-                      ),
-                      Tab(
-                        text: 'Delivery Pending',
-                      ),
+                      Container(
+                        height: 70,
+                        width: width_130,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: AppColors.transparent,
+                            ),
+                            borderRadius: BorderRadius.circular(radius_10)),
+                        child: CustomDropdown(
+                          name: 'item type',
+                          // labelText: strSelectItemType,
+                          labelColor: AppColors.greyColor,
+                          fontSize: font_13,
+                          fontWeight: fontWeight400,
+                          radius: radius_10,
+                          inputType: TextInputType.name,
+                          textColor: AppColors.greyColor,
+                          fillColor: AppColors.greyColor.withOpacity(.3),
+                          borderColor: AppColors.transparent,
+                          suffixIcon: Image(
+                            image: const AssetImage(ImgAssets.drop),
+                            height: height_10,
+                          ),
+                          // prefixIcon: Image(image: AssetImage(ImgAssets.transparent), height: height_10,),
+                          options: allItemsController.dropdownItems,
+                          onChanged: (String? newValue) async {
+                            if (newValue == 'Clear Filter') {
+                              allItemsController.setSelectedDate = '';
+                            } else if (newValue == 'Duration') {
+                            } else if (newValue == 'Custom Day') {
+                              await _showDatePickerDialog();
+                              final dateStart = _getValueText(CalendarDatePicker2Type.range, startEndDateList, true);
+                              final dateEnd = _getValueText(CalendarDatePicker2Type.range, startEndDateList, false);
+                              print("${dateStart.trim()}:${dateEnd.trim()}");
+                              allItemsController.setSelectedDate = "${dateStart.trim()}:${dateEnd.trim()}";
+                            } else {
+                              allItemsController.setSelectedDate = newValue!;
+                            }
+                            print('pado');
+                            allItemsController.callFunctions();
+                          },
+                        ),
+                      )
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: height_10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                ),
+                SizedBox(
+                  height: height_520,
+                  width: width_340,
+                  child: TabBarView(
+                    children: <Widget>[
+                      for (int i = 0; i < 5; i++)
                         Container(
-                          height: 65,
-                          width: width_200,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: AppColors.greyColor.withOpacity(.5),
-                              ),
-                              borderRadius: BorderRadius.circular(radius_10)),
-                          child: searchF(
-                              suffix: ImgAssets.searchIcon,
-                              controller: searchController,
-                              onTap: () async {
-                                await allItemsController.searchByOrderToken(searchController.text);
-                                searchController.clear();
-                              }),
-                        ),
-                        Container(
-                          height: 70,
-                          width: width_130,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: AppColors.transparent,
-                              ),
-                              borderRadius: BorderRadius.circular(radius_10)),
-                          child: CustomDropdown(
-                            name: 'item type',
-                            // labelText: strSelectItemType,
-                            labelColor: AppColors.greyColor,
-                            fontSize: font_13,
-                            fontWeight: fontWeight400,
-                            radius: radius_10,
-                            inputType: TextInputType.name,
-                            textColor: AppColors.greyColor,
-                            fillColor: AppColors.greyColor.withOpacity(.3),
-                            borderColor: AppColors.transparent,
-                            suffixIcon: Image(
-                              image: const AssetImage(ImgAssets.drop),
-                              height: height_10,
-                            ),
-                            // prefixIcon: Image(image: AssetImage(ImgAssets.transparent), height: height_10,),
-                            options: allItemsController.dropdownItems,
-                            onChanged: (String? newValue) async {
-                              if (newValue == 'Clear Filter') {
-                                allItemsController.setSelectedDate = '';
-                              } else if (newValue == 'Duration') {
-                              } else if (newValue == 'Custom Day') {
-                                await _showDatePickerDialog();
-                                final dateStart = _getValueText(CalendarDatePicker2Type.range, startEndDateList, true);
-                                final dateEnd = _getValueText(CalendarDatePicker2Type.range, startEndDateList, false);
-                                print("${dateStart.trim()}:${dateEnd.trim()}");
-                                allItemsController.setSelectedDate = "${dateStart.trim()}:${dateEnd.trim()}";
-                              } else {
-                                allItemsController.setSelectedDate = newValue!;
-                              }
+                          height: 20,
+                          width: 20,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(radius_10)),
+                          child: Obx(() {
+                            print('built');
+                            final List<AllOrdersModel> orders = allItemsController.ordersList;
+                            final value = allItemsController.isUpdated.value;
+                            return allItemsController.isLoading.isTrue
+                                ? const Center(
+                                    child: CircularProgressIndicator(
+                                    color: AppColors.orange,
+                                  ))
+                                : ListView.builder(
+                                    itemCount: orders.length,
+                                    itemBuilder: (context, index) {
+                                      AllOrdersModel order = orders[index];
+                                      String orderToken = order.orderToken.toString();
+                                      String senderName = order.senderName.toString();
+                                      String receiverName = order.receiverName.toString();
+                                      String productName = order.itemName.toString();
+                                      String dateAndTime = order.date.toString();
+                                      String status = order.status.toString();
+                                      String productImageUrl = order.itemImageUrl.toString();
+                                      Color buttonColor;
+                                      Color bgColor = AppColors.white;
 
-                              if (allItemsController.selectedStatus == 'All' &&
-                                  allItemsController.selectedDate.isEmpty) {
-                                allItemsController.fetchAllOrders();
-                              } else if (allItemsController.selectedStatus == 'All' &&
-                                  allItemsController.selectedDate.isNotEmpty) {
-                                allItemsController.fetchOrdersByDate(allItemsController.selectedDate.value);
-                              } else if (allItemsController.selectedStatus != 'All' &&
-                                  allItemsController.selectedDate.isNotEmpty) {
-                                allItemsController.fetchOrdersByStatusAndDate(
-                                    allItemsController.selectedStatus, allItemsController.selectedDate.value);
-                              } else {
-                                allItemsController.fetchOrdersByStatus(allItemsController.selectedStatus);
-                              }
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: height_520,
-                    width: width_340,
-                    child: TabBarView(
-                      children: <Widget>[
-                        for (int i = 0; i < 5; i++)
-                          Container(
-                            height: 20,
-                            width: 20,
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(radius_10)),
-                            child: Obx(() {
-                              final List<AllOrdersModel> orders = allItemsController.ordersList;
-                              final value = allItemsController.isUpdated.value;
-                              return allItemsController.isLoading.isTrue
-                                  ? const Center(
-                                      child: CircularProgressIndicator(
-                                      color: AppColors.orange,
-                                    ))
-                                  : ListView.builder(
-                                      itemCount: orders.length,
-                                      itemBuilder: (context, index) {
-                                        AllOrdersModel order = orders[index];
-                                        String orderToken = order.orderToken.toString();
-                                        String senderName = order.senderName.toString();
-                                        String receiverName = order.receiverName.toString();
-                                        String productName = order.itemName.toString();
-                                        String dateAndTime = order.date.toString();
-                                        String status = order.status.toString();
-                                        String productImageUrl = order.itemImageUrl.toString();
-                                        Color buttonColor;
-                                        Color bgColor = AppColors.white;
+                                      if (status.toLowerCase() == 'pickup pending') {
+                                        buttonColor = AppColors.yellow;
+                                      } else if (status.toLowerCase() == 'completed') {
+                                        buttonColor = AppColors.orange;
+                                      } else if (status.toLowerCase() == 'delivered') {
+                                        buttonColor = AppColors.blue;
+                                      } else {
+                                        buttonColor = AppColors.redColor;
+                                      }
 
-                                        if (status.toLowerCase() == 'pickup pending') {
-                                          buttonColor = AppColors.yellow;
-                                        } else if (status.toLowerCase() == 'completed') {
-                                          buttonColor = AppColors.orange;
-                                        } else if (status.toLowerCase() == 'delivered') {
-                                          buttonColor = AppColors.blue;
-                                        } else {
-                                          buttonColor = AppColors.redColor;
-                                        }
-
-                                        return Padding(
-                                          padding: const EdgeInsets.all(8),
-                                          child: InkWell(
-                                            onTap: () {
-                                              if (status.toLowerCase() == 'completed') {
-                                                Get.to(() => CompleteOrdersScreen(
-                                                      orderToken: orderToken,
-                                                    ));
-                                              } else if (status.toLowerCase() == 'delivered') {
-                                                Get.to(() => DeliveredOrdersScreen(
-                                                      orderToken: orderToken,
-                                                    ));
-                                              } else if (status.toLowerCase() == 'pickup pending') {
-                                                Get.to(() => PendingDetailsScreen(
-                                                      orderToken: orderToken,
-                                                    ));
-                                              } else if (status.toLowerCase() == 'delivery pending') {
-                                                Get.to(() => DeliveryPendingScreen(orderToken: orderToken));
-                                              }
-                                            },
-                                            child: ShippingChip(
-                                              orderUidNo: orderToken,
-                                              senderName: senderName,
-                                              recieverName: receiverName,
-                                              productName: productName,
-                                              time: dateAndTime,
-                                              buttonColor: buttonColor,
-                                              buttonName: status,
-                                              bgColor: bgColor,
-                                              productImageUrl: productImageUrl,
-                                            ),
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: InkWell(
+                                          onTap: () {
+                                            if (status.toLowerCase() == 'completed') {
+                                              Get.to(() => CompleteOrdersScreen(
+                                                    orderToken: orderToken,
+                                                  ));
+                                            } else if (status.toLowerCase() == 'delivered') {
+                                              Get.to(() => DeliveredOrdersScreen(
+                                                    orderToken: orderToken,
+                                                  ));
+                                            } else if (status.toLowerCase() == 'pickup pending') {
+                                              Get.to(() => PendingDetailsScreen(
+                                                    orderToken: orderToken,
+                                                  ));
+                                            } else if (status.toLowerCase() == 'delivery pending') {
+                                              Get.to(() => DeliveryPendingScreen(orderToken: orderToken));
+                                            }
+                                          },
+                                          child: ShippingChip(
+                                            orderUidNo: orderToken,
+                                            senderName: senderName,
+                                            recieverName: receiverName,
+                                            productName: productName,
+                                            time: dateAndTime,
+                                            buttonColor: buttonColor,
+                                            buttonName: status,
+                                            bgColor: bgColor,
+                                            productImageUrl: productImageUrl,
                                           ),
-                                        );
-                                      },
-                                    );
-                            }),
-                          ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                          }),
+                        ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

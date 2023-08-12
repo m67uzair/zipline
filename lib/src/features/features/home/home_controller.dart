@@ -74,12 +74,12 @@ class HomeController extends GetxController {
 
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
-        print('All Orders Fetched');
+        print('Recent Fetched');
         final dynamic responseData = jsonDecode(response.body.toString());
         if (responseData is List) {
           final jsonData = jsonDecode(response.body.toString()) as List;
           final List<AllOrdersModel> orders = jsonData.map((item) => AllOrdersModel.fromJson(item)).toList();
-          Fluttertoast.showToast(msg: "Fetched Recent Orders", timeInSecForIosWeb: 20);
+          // Fluttertoast.showToast(msg: "Fetched Recent Orders", timeInSecForIosWeb: 20);
           ordersList.assignAll(orders);
         } else if (responseData is Map && responseData.containsKey('message')) {
           print('No data available: ${responseData['message']}');

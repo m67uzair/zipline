@@ -35,6 +35,18 @@ class AllItemController extends GetxController {
     update(); // This triggers UI update
   }
 
+  void callFunctions() {
+    if (selectedStatus == 'All' && selectedDate.isEmpty) {
+      fetchAllOrders();
+    } else if (selectedStatus == 'All' && selectedDate.isNotEmpty) {
+      fetchOrdersByDate(selectedDate.value);
+    } else if (selectedStatus != 'All' && selectedDate.isNotEmpty) {
+      fetchOrdersByStatusAndDate(selectedStatus, selectedDate.value);
+    } else {
+      fetchOrdersByStatus(selectedStatus);
+    }
+  }
+
   Future<void> searchByOrderToken(String orderToken) async {
     try {
       if (_validateOrderToken(orderToken)) {
@@ -91,7 +103,7 @@ class AllItemController extends GetxController {
         if (responseData is List) {
           final jsonData = jsonDecode(response.body.toString()) as List;
           final List<AllOrdersModel> orders = jsonData.map((item) => AllOrdersModel.fromJson(item)).toList();
-          Fluttertoast.showToast(msg: "All Orders Fetched", timeInSecForIosWeb: 20);
+          // Fluttertoast.showToast(msg: "All Orders Fetched", timeInSecForIosWeb: 20);
           ordersList.assignAll(orders);
         } else if (responseData is Map && responseData.containsKey('message')) {
           print('No data available: ${responseData['message']}');
@@ -133,7 +145,7 @@ class AllItemController extends GetxController {
             return AllOrdersModel.fromJson(item);
           }).toList();
           ordersList.assignAll(orders);
-          Fluttertoast.showToast(msg: "$status Orders Fetched Successfully", timeInSecForIosWeb: 20);
+          // Fluttertoast.showToast(msg: "$status Orders Fetched Successfully", timeInSecForIosWeb: 20);
         } else if (responseData is Map && responseData.containsKey('message')) {
           Fluttertoast.showToast(msg: responseData['message']);
           ordersList.clear();
@@ -165,7 +177,7 @@ class AllItemController extends GetxController {
       if (response.statusCode == 200) {
         final dynamic responseData = jsonDecode(response.body.toString());
         if (responseData is List) {
-          Fluttertoast.showToast(msg: ' Orders for $date Fetched');
+          // Fluttertoast.showToast(msg: ' Orders for $date Fetched');
           print('date Orders for $date Fetched');
 
           final jsonData = jsonDecode(response.body.toString()) as List;
@@ -206,7 +218,7 @@ class AllItemController extends GetxController {
           print('$status orders for $date fetched');
           final jsonData = jsonDecode(response.body.toString()) as List;
           final List<AllOrdersModel> orders = jsonData.map((item) => AllOrdersModel.fromJson(item)).toList();
-          Fluttertoast.showToast(msg: "$status Orders for $date Fetched Successfully", timeInSecForIosWeb: 20);
+          // Fluttertoast.showToast(msg: "$status Orders for $date Fetched Successfully", timeInSecForIosWeb: 20);
           ordersList.assignAll(orders);
         } else if (responseData is Map && responseData.containsKey('message')) {
           Fluttertoast.showToast(msg: responseData['message']);

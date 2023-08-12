@@ -24,15 +24,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../components/custom_text.dart';
 import '../../../core/constants/font_weight.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   HomeController homeController = Get.put(HomeController());
+
   TextEditingController orderSearchController = TextEditingController();
+
   SharedPreferences prefs = PreferencesService.instance;
 
   @override
+  void initState() {
+    homeController.fetchRecentOrders();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('built');
     return Scaffold(
       body: SafeArea(
           child: ListView(
@@ -129,7 +143,87 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          FutureBuilder<List<AllOrdersModel>>(
+          Obx(() {
+            final List<AllOrdersModel> orders = homeController.ordersList;
+            return homeController.isLoading.isTrue
+                ? SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.30,
+                    child: const Center(
+                        child: CircularProgressIndicator(
+                      color: AppColors.orange,
+                    )),
+                  )
+                : orders.isEmpty
+                    ? const Center(
+                        child: Text('No Recent Orders'),
+                      )
+                    : Column(
+                        children: orders.map((order) {
+                          // return AllOrdersModel order = orders[index];
+                          String orderToken = order.orderToken.toString();
+                          String senderName = order.senderName.toString();
+                          String receiverName = order.receiverName.toString();
+                          String productName = order.itemName.toString();
+                          String dateAndTime = order.date.toString();
+                          String status = order.status.toString();
+                          String productImageUrl = order.itemImageUrl.toString();
+                          Color buttonColor;
+                          Color bgColor = AppColors.white;
+
+                          if (status.toLowerCase() == 'pickup pending') {
+                            buttonColor = AppColors.yellow;
+                          } else if (status.toLowerCase() == 'completed') {
+                            buttonColor = AppColors.orange;
+                          } else if (status.toLowerCase() == 'delivered') {
+                            buttonColor = AppColors.blue;
+                          } else {
+                            buttonColor = AppColors.redColor;
+                          }
+
+                          return Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: InkWell(
+                              onTap: () {
+                                if (status.toLowerCase() == 'completed') {
+                                  Get.to(() => CompleteOrdersScreen(
+                                        orderToken: orderToken,
+                                      ));
+                                } else if (status.toLowerCase() == 'delivered') {
+                                  Get.to(() => DeliveredOrdersScreen(
+                                        orderToken: orderToken,
+                                      ));
+                                } else if (status.toLowerCase() == 'pickup pending') {
+                                  Get.to(() => PendingDetailsScreen(
+                                        orderToken: orderToken,
+                                      ));
+                                } else if (status.toLowerCase() == 'delivery pending') {
+                                  Get.to(() => DeliveryPendingScreen(orderToken: orderToken));
+                                }
+                              },
+                              child: ShippingChip(
+                                orderUidNo: orderToken,
+                                senderName: senderName,
+                                recieverName: receiverName,
+                                productName: productName,
+                                time: dateAndTime,
+                                buttonColor: buttonColor,
+                                buttonName: status,
+                                bgColor: bgColor,
+                                productImageUrl: productImageUrl,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      );
+          })
+        ],
+      )),
+    );
+  }
+}
+
+/*
+FutureBuilder<List<AllOrdersModel>>(
               future: homeController.fetchRecentOrders(),
               builder: (BuildContext context, AsyncSnapshot<List<AllOrdersModel>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -206,11 +300,7 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
               }),
-        ],
-      )),
-    );
-  }
-}
+* */
 
 /*
  return ListView.builder(

@@ -9,6 +9,7 @@ import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 import 'package:http/http.dart' as http;
 
 class SignaturePadController extends GetxController {
+
   RxBool isLoading = false.obs;
   RxBool isReceiverSignatureAdded = false.obs;
   GlobalKey<SfSignaturePadState> signaturePadKey = GlobalKey<SfSignaturePadState>();

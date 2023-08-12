@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:courier_app/src/core/config/routes.dart';
 import 'package:courier_app/src/features/features/all_item/all_item_controller.dart';
 import 'package:courier_app/src/features/features/all_item/all_item_screen.dart';
+import 'package:courier_app/src/features/features/home/home_controller.dart';
 import 'package:courier_app/src/features/features/home/home_screen.dart';
 import 'package:courier_app/src/features/features/signature_pad/signature_pad_controller.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class SignatureRecieverScreen extends GetView<SignaturePadController> {
 
   SignaturePadController signatureController = Get.put(SignaturePadController());
   AllItemController allItemsController = Get.put(AllItemController());
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +93,10 @@ class SignatureRecieverScreen extends GetView<SignaturePadController> {
                 await File(fileName).writeAsBytes(imageBytes);
                 bool isSignatureAdded = await signatureController.updateReceiverSignature(fileName, orderId);
                 if (isSignatureAdded) {
+                  allItemsController.callFunctions();
+                  homeController.fetchRecentOrders();
+                  allItemsController.ordersList.refresh();
+                  homeController.ordersList.refresh();
                   Get.back();
                   Get.back();
                 }
