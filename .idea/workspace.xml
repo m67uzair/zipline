@@ -18,16 +18,18 @@
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/kernel_blob.bin.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/kernel_blob.bin.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/cacheable/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/local-state/build-history.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk.sha1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/auth/auth.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/auth/auth/auth.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order3_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order3_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/home/home_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/home/home_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/home/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/home/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/signature_pad/signature_pad_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/signature_pad/signature_pad_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/signature_pad/signature_reciever_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/signature_pad/signature_reciever_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/signature_pad/signature_pad_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/signature_pad/signature_pad_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,16 +144,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="splash" />
     <option name="LAST_COMMIT_MESSAGE" value="splash" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/src/features/auth/register/register_screen.dart</url>
-          <line>41</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

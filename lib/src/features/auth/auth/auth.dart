@@ -110,7 +110,7 @@ class AuthController extends GetxController {
         await prefs.setInt(UserContants.userId, userId);
         Fluttertoast.showToast(msg: "Registration Successful", timeInSecForIosWeb: 20);
         registerStatus.value = 'success';
-        Get.offAllNamed(AppRoutes.home);
+        Get.offAllNamed(AppRoutes.navBar);
       } else if (response.statusCode == 500) {
         String error = jsonData['error'];
         Fluttertoast.showToast(msg: '$error Try Again', timeInSecForIosWeb: 20, toastLength: Toast.LENGTH_LONG);
@@ -156,7 +156,7 @@ class AuthController extends GetxController {
         await prefs.setString(UserContants.userProfilePhoto, userProfileUrl);
 
         Fluttertoast.showToast(msg: "Login Successful");
-        Get.offNamed(AppRoutes.home);
+        Get.offNamed(AppRoutes.navBar);
       } else {
         Fluttertoast.showToast(msg: jsonData['error']);
       }
@@ -227,6 +227,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> sendPhoneOTP(String phoneNumber) async {
+    print('pppppp$phoneNumber');
     isLoading.value = true;
     try {
       await _auth.verifyPhoneNumber(

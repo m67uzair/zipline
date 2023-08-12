@@ -53,8 +53,6 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
     itemNameController.text = addOrderController.itemName;
     itemImageController.text = addOrderController.itemImageUrl;
     itemWeightController.text = addOrderController.itemWeight;
-    itemTypeController.text = addOrderController.itemType;
-    itemCategoryController.text = addOrderController.itemCategory;
     itemDeliveryRequiredController.text = addOrderController.deliveryRequired;
     itemChargesController.text = addOrderController.itemCharges;
     lengthController.text = addOrderController.itemLength;

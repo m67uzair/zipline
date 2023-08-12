@@ -8,6 +8,7 @@ import 'package:courier_app/src/core/constants/dimensions.dart';
 import 'package:courier_app/src/core/constants/font_weight.dart';
 import 'package:courier_app/src/core/constants/strings.dart';
 import 'package:courier_app/src/features/features/add_order/add_order_controller.dart';
+import 'package:courier_app/src/features/features/home/home_controller.dart';
 import 'package:courier_app/src/features/features/home/home_screen.dart';
 import 'package:courier_app/src/features/features/signature_pad/signature_pad_controller.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class SignaturePadScreen extends GetView<SignaturePadController> {
 
   SignaturePadController controller = SignaturePadController();
   AddOrderController addOrderController = Get.put(AddOrderController());
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +98,9 @@ class SignaturePadScreen extends GetView<SignaturePadController> {
                         addOrderController.setSignatureFileName(fileName);
                         bool isSignatureAdded = await addOrderController.addItem();
                         if (isSignatureAdded) {
-                          Get.toNamed(AppRoutes.home);
+                          homeController.ordersList.refresh();
+                          homeController.fetchRecentOrders();
+                          Get.toNamed(AppRoutes.navBar);
                         }
                       },
                     ),

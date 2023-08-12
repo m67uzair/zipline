@@ -93,7 +93,7 @@ class AllItemController extends GetxController {
     try {
       isLoading.value = true;
       final userId = prefs.getInt(UserContants.userId) ?? -1;
-      final url = 'https://courier.hnktrecruitment.in/fetch-user-orders/4';
+      final url = 'https://courier.hnktrecruitment.in/fetch-user-orders/$userId';
 
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -132,7 +132,7 @@ class AllItemController extends GetxController {
     try {
       isLoading.value = true;
       final userId = prefs.getInt('userId') ?? 0;
-      final baseUrl = 'https://courier.hnktrecruitment.in/fetch-user-orders/4/$status';
+      final baseUrl = 'https://courier.hnktrecruitment.in/fetch-user-orders/$userId/$status';
       final response = await http.get(Uri.parse(baseUrl));
       if (response.statusCode == 200) {
         print('$status Orders Fetched');
@@ -171,7 +171,7 @@ class AllItemController extends GetxController {
     try {
       isLoading.value = true;
       final userId = prefs.getInt(UserContants.userId) ?? -1;
-      final baseUrl = 'https://courier.hnktrecruitment.in/fetch-user-orders/4/date/$date';
+      final baseUrl = 'https://courier.hnktrecruitment.in/fetch-user-orders/$userId/date/$date';
       final response = await http.get(Uri.parse(baseUrl));
 
       if (response.statusCode == 200) {
@@ -209,7 +209,7 @@ class AllItemController extends GetxController {
     try {
       isLoading.value = true;
       final userId = prefs.getInt(UserContants.userId) ?? -1;
-      String url = 'https://courier.hnktrecruitment.in/fetch-user-orders/4/status/$status/date/$date';
+      String url = 'https://courier.hnktrecruitment.in/fetch-user-orders/$userId/status/$status/date/$date';
 
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {

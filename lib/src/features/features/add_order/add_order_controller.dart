@@ -78,9 +78,9 @@ class AddOrderController extends GetxController {
   void setSenderDetails(String senderName, String contactCode, String contactNum, String emailAddress,
       String doorFlatNum, String streetAreaName, String cityTown, String pincode) {
     this.senderName = senderName;
-    senderEmail = emailAddress;
     senderPhoneCode = contactCode;
     senderPhoneNum = contactNum;
+    senderEmail = emailAddress;
     senderDooFlatNo = doorFlatNum;
     senderStreet = streetAreaName;
     senderCity = cityTown;
@@ -125,16 +125,18 @@ class AddOrderController extends GetxController {
     isLoading.value = true;
 
     try {
-      orderId = await addSenderDetails(senderName, '+$senderPhoneCode$senderPhoneNum', senderEmail, senderDooFlatNo,
+      orderId = await addSenderDetails(senderName, '+$senderPhoneCode$senderPhoneNum', senderEmail,
+          senderDooFlatNo,
           senderStreet, senderCity, senderPincode);
       await addReceiverDetails(orderId, receiverName, '+$receiverPhoneCode$receiverPhoneNum', receiverEmail,
           receiverDooFlatNo, receiverStreet, receiverCity, receiverPincode);
       await addPackageDetails(orderId, itemName, '${itemLength}x${itemWidth}x$itemHeight', itemWeight, itemType,
           itemCategory, deliveryRequired, itemImageUrl, itemCharges);
       itemAdded = await updateSenderSignature(signatureFileName);
-      print(orderId);
-      Fluttertoast.showToast(msg: "Item Added Successfully", toastLength: Toast.LENGTH_LONG);
-    } on Exception catch (e) {}
+      print('Order id  $orderId');
+    } on Exception catch (e) {
+      print('error occured ${e.toString}');
+    }
 
     isLoading.value = false;
     return itemAdded;
