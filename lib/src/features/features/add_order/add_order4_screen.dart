@@ -30,7 +30,7 @@ class _AddOrderFourScreenState extends State<AddOrderFourScreen> {
   final AddOrderController addOrderController = Get.put(AddOrderController());
   TextEditingController itemCategoryController = TextEditingController();
 
-  int _currentStep = 0;
+  int _currentStep = 3;
 
   bool isOpen = false;
 

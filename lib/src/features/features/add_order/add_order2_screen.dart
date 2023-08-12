@@ -41,7 +41,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
 
   final AddOrderController addOrderController = Get.put(AddOrderController());
 
-  int _currentStep = 0;
+  int _currentStep = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +53,13 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
     pincodeController.text = addOrderController.receiverPincode;
 
     return Scaffold(
-      appBar: CustomAppbar(
-        appBar: AppBar(),
-        title: strItemDetail,
-        containerColor: AppColors.transparent,
-        text: '',
-        color: AppColors.transparent,
-      ),
+      // appBar: CustomAppbar(
+      //   appBar: AppBar(),
+      //   title: strItemDetail,
+      //   containerColor: AppColors.transparent,
+      //   text: '',
+      //   color: AppColors.transparent,
+      // ),
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -154,7 +154,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
                   return null;
                 },
                 onCountryChanged: (phone) {
-                  countryCode = phone.code;
+                  countryCode = phone.dialCode;
                 },
                 onChanged: (phone) {
                   number = phone.number;

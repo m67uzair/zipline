@@ -64,6 +64,15 @@ class AddOrderController extends GetxController {
 
   RxString imagePath = ''.obs;
 
+  var currentStep = 0.obs;
+
+  void goToNextStep() {
+    if (currentStep.value < 3) {
+      currentStep.value++;
+    }
+  }
+
+
   void setReceiverDetails(String receiverName, String contactCode, String contactNum, String emailAddress,
       String doorFlatNum, String streetAreaName, String cityTown, String pincode) {
     this.receiverName = receiverName;

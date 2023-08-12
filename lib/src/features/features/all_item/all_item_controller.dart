@@ -43,6 +43,7 @@ class AllItemController extends GetxController {
     } else if (selectedStatus != 'All' && selectedDate.isNotEmpty) {
       fetchOrdersByStatusAndDate(selectedStatus, selectedDate.value);
     } else {
+      print('Selected Status : $selectedStatus');
       fetchOrdersByStatus(selectedStatus);
     }
   }
@@ -106,7 +107,7 @@ class AllItemController extends GetxController {
           // Fluttertoast.showToast(msg: "All Orders Fetched", timeInSecForIosWeb: 20);
           ordersList.assignAll(orders);
         } else if (responseData is Map && responseData.containsKey('message')) {
-          print('No data available: ${responseData['message']}');
+          // print('No data available: ${responseData['message']}');
           ordersList.clear();
         } else {
           print('Invalid response format.');
@@ -129,25 +130,30 @@ class AllItemController extends GetxController {
 
   Future<void> fetchOrdersByStatus(String status) async {
     print('status == $status');
-    try {
       isLoading.value = true;
-      final userId = prefs.getInt('userId') ?? 0;
+    // try {
+      final userId = prefs.getInt(UserContants.userId) ?? -1;
+
       final baseUrl = 'https://courier.hnktrecruitment.in/fetch-user-orders/$userId/$status';
+      print('base url $baseUrl');
       final response = await http.get(Uri.parse(baseUrl));
       if (response.statusCode == 200) {
-        print('$status Orders Fetched');
 
         final dynamic responseData = jsonDecode(response.body.toString());
+        print('true');
         if (responseData is List) {
+          print('true');
           final jsonData = jsonDecode(response.body.toString()) as List;
           final List<AllOrdersModel> orders = jsonData.map((item) {
-            print(AllOrdersModel.fromJson(item).date);
+            print(' uzair ${AllOrdersModel.fromJson(item).status}');
             return AllOrdersModel.fromJson(item);
           }).toList();
           ordersList.assignAll(orders);
+          print('ashter ${ordersList.length}');
+          ordersList.refresh();
           // Fluttertoast.showToast(msg: "$status Orders Fetched Successfully", timeInSecForIosWeb: 20);
         } else if (responseData is Map && responseData.containsKey('message')) {
-          Fluttertoast.showToast(msg: responseData['message']);
+          // Fluttertoast.showToast(msg: responseData['message']);
           ordersList.clear();
         } else {
           print('Invalid response format.');
@@ -158,12 +164,11 @@ class AllItemController extends GetxController {
         print('Failed to load delivered orders: ${response.statusCode}');
         ordersList.clear();
       }
-    } on Exception catch (e) {
-      Fluttertoast.showToast(msg: "Failed to load orders, Error: ${e.toString()}", timeInSecForIosWeb: 20);
-      ordersList.clear();
-    } finally {
+    // } on Exception catch (e) {
+    //   Fluttertoast.showToast(msg: "Failed to load orders, Error: ${e.toString()}", timeInSecForIosWeb: 20);
+    //   ordersList.clear();
+    // }
       isLoading.value = false;
-    }
   }
 
   Future<void> fetchOrdersByDate(String date) async {

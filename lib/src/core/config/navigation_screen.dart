@@ -36,24 +36,24 @@ class _CustomNavBarState extends State<CustomNavBar> {
 
   static List<Widget> navigationWidgets = [
     HomeScreen(),
-    ProfileScreen(),
-    EditProfileScreen(),
+    AllItemScreen(selectedStatus: 'Pickup Pending',),
     AllItemScreen(),
+    ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        Get.to(AddOrderOneScreen());
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Get.to(const AddOrderOneScreen());
         print('object');
       },
         backgroundColor: AppColors.white,
-      child: CircleAvatar(
-        backgroundColor: AppColors.orange,
-        child: Icon(Icons.add),
-      ),
+        child: const CircleAvatar(
+          backgroundColor: AppColors.orange,
+          child: Icon(Icons.add),
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         elevation: 2,
@@ -63,17 +63,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
             IconButton(
                 onPressed: () {
                   setState(() {
-                    click = !click;
-                    if (click2 =false) {
-                      click = true;
-                    } else if (click3 = false) {
-                      click = true;
-                    } else if (click4 = false) {
-                      click = true;
-                    }
+                    _selectedIndex = 0;
                   });
-                  Get.to(AllItemScreen());
-                  print('object');
                 },
                 icon: Image.asset(
                   ImgAssets.homeNav,
@@ -84,17 +75,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
             IconButton(
                 onPressed: () {
                   setState(() {
-                    click2 = !click2;
-                    if (click = false) {
-                      click2 = true;
-                    } else if (click3 = false) {
-                      click2 = true;
-                    } else if (click4 = false) {
-                      click2 = true;
-                    }
+                    _selectedIndex = 1;
                   });
-                  Get.to(AllItemScreen());
-                  print('object');
                 },
                 icon: Image.asset(
                   ImgAssets.boxTimeNav,
@@ -111,17 +93,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
             IconButton(
                 onPressed: () {
                   setState(() {
-                    click3 = !click3;
-                    if (click = false) {
-                      click3 = true;
-                    } else if (click2 = false) {
-                      click3 = true;
-                    } else if (click4 = false) {
-                      click3 = true;
-                    }
+                    _selectedIndex = 2;
                   });
-                  Get.to(AllItemScreen());
-                  print('object');
                 },
                 icon: Image.asset(
                   ImgAssets.itemNav,
@@ -132,17 +105,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
             IconButton(
                 onPressed: () {
                   setState(() {
-                    click4 = !click4;
-                    if (click = false) {
-                      click4 = true;
-                    } else if (click2 = false) {
-                      click4 = true;
-                    } else if (click3 = false) {
-                      click4 = true;
-                    }
+                    _selectedIndex = 3;
                   });
-                  Get.to(AllItemScreen());
-                  print('object');
                 },
                 icon: Image.asset(
                   ImgAssets.userNav,

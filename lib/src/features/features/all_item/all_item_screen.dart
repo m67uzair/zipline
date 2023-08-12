@@ -43,9 +43,11 @@ class _AllItemScreenState extends State<AllItemScreen> {
   void initState() {
     allItemsController.selectedStatus = widget.selectedStatus;
     widget.initialIndex = allItemsController.statuses.indexOf(widget.selectedStatus);
+    print('init called');
     if (allItemsController.selectedStatus == 'All') {
       allItemsController.fetchAllOrders();
     } else {
+      print('else called');
       allItemsController.fetchOrdersByStatus(widget.selectedStatus);
     }
     super.initState();
@@ -190,64 +192,64 @@ class _AllItemScreenState extends State<AllItemScreen> {
                                     color: AppColors.orange,
                                   ))
                                 : ListView.builder(
-                                    itemCount: orders.length,
-                                    itemBuilder: (context, index) {
-                                      AllOrdersModel order = orders[index];
-                                      String orderToken = order.orderToken.toString();
-                                      String senderName = order.senderName.toString();
-                                      String receiverName = order.receiverName.toString();
-                                      String productName = order.itemName.toString();
-                                      String dateAndTime = order.date.toString();
-                                      String status = order.status.toString();
-                                      String productImageUrl = order.itemImageUrl.toString();
-                                      Color buttonColor;
-                                      Color bgColor = AppColors.white;
+                                        itemCount: orders.length,
+                                        itemBuilder: (context, index) {
+                                          AllOrdersModel order = orders[index];
+                                          String orderToken = order.orderToken.toString();
+                                          String senderName = order.senderName.toString();
+                                          String receiverName = order.receiverName.toString();
+                                          String productName = order.itemName.toString();
+                                          String dateAndTime = order.date.toString();
+                                          String status = order.status.toString();
+                                          String productImageUrl = order.itemImageUrl.toString();
+                                          Color buttonColor;
+                                          Color bgColor = AppColors.white;
 
-                                      if (status.toLowerCase() == 'pickup pending') {
-                                        buttonColor = AppColors.yellow;
-                                      } else if (status.toLowerCase() == 'completed') {
-                                        buttonColor = AppColors.orange;
-                                      } else if (status.toLowerCase() == 'delivered') {
-                                        buttonColor = AppColors.blue;
-                                      } else {
-                                        buttonColor = AppColors.redColor;
-                                      }
+                                          if (status.toLowerCase() == 'pickup pending') {
+                                            buttonColor = AppColors.yellow;
+                                          } else if (status.toLowerCase() == 'completed') {
+                                            buttonColor = AppColors.orange;
+                                          } else if (status.toLowerCase() == 'delivered') {
+                                            buttonColor = AppColors.blue;
+                                          } else {
+                                            buttonColor = AppColors.redColor;
+                                          }
 
-                                      return Padding(
-                                        padding: const EdgeInsets.all(8),
-                                        child: InkWell(
-                                          onTap: () {
-                                            if (status.toLowerCase() == 'completed') {
-                                              Get.to(() => CompleteOrdersScreen(
-                                                    orderToken: orderToken,
-                                                  ));
-                                            } else if (status.toLowerCase() == 'delivered') {
-                                              Get.to(() => DeliveredOrdersScreen(
-                                                    orderToken: orderToken,
-                                                  ));
-                                            } else if (status.toLowerCase() == 'pickup pending') {
-                                              Get.to(() => PendingDetailsScreen(
-                                                    orderToken: orderToken,
-                                                  ));
-                                            } else if (status.toLowerCase() == 'delivery pending') {
-                                              Get.to(() => DeliveryPendingScreen(orderToken: orderToken));
-                                            }
-                                          },
-                                          child: ShippingChip(
-                                            orderUidNo: orderToken,
-                                            senderName: senderName,
-                                            recieverName: receiverName,
-                                            productName: productName,
-                                            time: dateAndTime,
-                                            buttonColor: buttonColor,
-                                            buttonName: status,
-                                            bgColor: bgColor,
-                                            productImageUrl: productImageUrl,
-                                          ),
-                                        ),
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8),
+                                            child: InkWell(
+                                              onTap: () {
+                                                if (status.toLowerCase() == 'completed') {
+                                                  Get.to(() => CompleteOrdersScreen(
+                                                        orderToken: orderToken,
+                                                      ));
+                                                } else if (status.toLowerCase() == 'delivered') {
+                                                  Get.to(() => DeliveredOrdersScreen(
+                                                        orderToken: orderToken,
+                                                      ));
+                                                } else if (status.toLowerCase() == 'pickup pending') {
+                                                  Get.to(() => PendingDetailsScreen(
+                                                        orderToken: orderToken,
+                                                      ));
+                                                } else if (status.toLowerCase() == 'delivery pending') {
+                                                  Get.to(() => DeliveryPendingScreen(orderToken: orderToken));
+                                                }
+                                              },
+                                              child: ShippingChip(
+                                                orderUidNo: orderToken,
+                                                senderName: senderName,
+                                                recieverName: receiverName,
+                                                productName: productName,
+                                                time: dateAndTime,
+                                                buttonColor: buttonColor,
+                                                buttonName: status,
+                                                bgColor: bgColor,
+                                                productImageUrl: productImageUrl,
+                                              ),
+                                            ),
+                                          );
+                                        },
                                       );
-                                    },
-                                  );
                           }),
                         ),
                     ],

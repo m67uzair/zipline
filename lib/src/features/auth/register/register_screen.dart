@@ -115,7 +115,7 @@ class RegisterScreen extends GetView<AuthController> {
                   return null;
                 },
                 onCountryChanged: (phone) {
-                  countryCode = phone.code;
+                  countryCode = phone.dialCode;
                 },
                 onChanged: (phone) {
                   number = phone.number;

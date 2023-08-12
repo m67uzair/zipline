@@ -44,7 +44,7 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
 
   final AddOrderController addOrderController = Get.put(AddOrderController());
 
-  int _currentStep = 3;
+  int _currentStep = 2;
 
   bool isOpen = false;
 

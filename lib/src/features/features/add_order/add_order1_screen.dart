@@ -40,7 +40,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
 
   final AddOrderController addOrderController = Get.put(AddOrderController());
 
-  int _currentStep = 1;
+  int _currentStep = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +152,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                   return null;
                 },
                 onCountryChanged: (phone) {
-                  countryCode = phone.code;
+                  countryCode = phone.dialCode;
                 },
                 onChanged: (phone) {
                   number = phone.number;
