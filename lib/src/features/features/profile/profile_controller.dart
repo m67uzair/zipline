@@ -20,7 +20,7 @@ class ProfileController extends GetxController {
     isLoading.value = true;
     UserProfileModel? userProfile;
     String userId = prefs.getInt(UserContants.userId).toString();
-    final url = Uri.parse("https://courier.hnktrecruitment.in/fetch-user-profile/3");
+    final url = Uri.parse("https://courier.hnktrecruitment.in/fetch-user-profile/$userId");
 
     try {
       final response = await http.get(url);

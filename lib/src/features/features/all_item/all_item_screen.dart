@@ -42,6 +42,8 @@ class _AllItemScreenState extends State<AllItemScreen> {
   @override
   void initState() {
 
+    print('state intialised');
+
     super.initState();
       widget.initialIndex = allItemsController.statuses.indexOf(widget.selectedStatus);
     WidgetsBinding.instance.addPostFrameCallback((_){

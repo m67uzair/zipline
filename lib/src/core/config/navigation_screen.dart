@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../constants/palette.dart';
 
-
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({Key? key}) : super(key: key);
 
@@ -34,9 +33,11 @@ class _CustomNavBarState extends State<CustomNavBar> {
   bool click3 = false;
   bool click4 = false;
 
-  static List<Widget> navigationWidgets = [
+  List<Widget> navigationWidgets = [
     HomeScreen(),
-    AllItemScreen(selectedStatus: 'Pickup Pending',),
+    AllItemScreen(
+      selectedStatus: 'Pickup Pending',
+    ),
     AllItemScreen(),
     ProfileScreen(),
   ];
@@ -45,10 +46,11 @@ class _CustomNavBarState extends State<CustomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Get.to(const AddOrderOneScreen());
-        print('object');
-      },
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(const AddOrderOneScreen());
+          print('object');
+        },
         backgroundColor: AppColors.white,
         child: const CircleAvatar(
           backgroundColor: AppColors.orange,
@@ -69,8 +71,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 icon: Image.asset(
                   ImgAssets.homeNav,
                   color: AppColors.orange,
-                  colorBlendMode:
-                  click == false ? BlendMode.modulate : BlendMode.srcIn,
+                  colorBlendMode: click == false ? BlendMode.modulate : BlendMode.srcIn,
                 )),
             IconButton(
                 onPressed: () {
@@ -81,15 +82,11 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 icon: Image.asset(
                   ImgAssets.boxTimeNav,
                   color: AppColors.orange,
-                  colorBlendMode:
-                  click2 == false ? BlendMode.modulate : BlendMode.srcIn,
+                  colorBlendMode: click2 == false ? BlendMode.modulate : BlendMode.srcIn,
                 )),
-
             SizedBox(
               width: width_14,
             ),
-
-
             IconButton(
                 onPressed: () {
                   setState(() {
@@ -99,8 +96,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 icon: Image.asset(
                   ImgAssets.itemNav,
                   color: AppColors.orange,
-                  colorBlendMode:
-                  click3 == false ? BlendMode.modulate : BlendMode.srcIn,
+                  colorBlendMode: click3 == false ? BlendMode.modulate : BlendMode.srcIn,
                 )),
             IconButton(
                 onPressed: () {
@@ -111,13 +107,12 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 icon: Image.asset(
                   ImgAssets.userNav,
                   color: AppColors.orange,
-                  colorBlendMode:
-                  click4 == false ? BlendMode.modulate : BlendMode.srcIn,
+                  colorBlendMode: click4 == false ? BlendMode.modulate : BlendMode.srcIn,
                 )),
           ],
         ),
       ),
-      body: IndexedStack(index: _selectedIndex, children: navigationWidgets),
+      body: navigationWidgets.elementAt(_selectedIndex),
     );
   }
 }
