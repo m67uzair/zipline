@@ -41,7 +41,7 @@ class OTPMobScreen extends GetView<AuthController> {
         Align(
           alignment: Alignment.topLeft,
           child: CustomText(
-              text: '$strOtpMo${Get.parameters['phone']}',
+              text: '$strOtpMo ${Get.parameters['phone']}',
               color1: AppColors.greyColor,
               fontWeight: fontWeight400,
               fontSize: font_13),

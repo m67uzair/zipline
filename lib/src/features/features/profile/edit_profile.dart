@@ -49,8 +49,8 @@ class EditProfileScreen extends GetView<ProfileController> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                     child: CircularProgressIndicator(
-                      color: AppColors.orange,
-                    ));
+                  color: AppColors.orange,
+                ));
               } else if (snapshot.hasData) {
                 profilePicUrl = snapshot.data!.profilePictureUrl.toString();
                 nameController.text = snapshot.data!.name.toString();
@@ -75,29 +75,29 @@ class EditProfileScreen extends GetView<ProfileController> {
                             updatedProfilePic = profileController.imagePath.value;
                           },
                           child: Obx(
-                                () => profileController.imagePath.value.isNotEmpty
+                            () => profileController.imagePath.value.isNotEmpty
                                 ? CircleAvatar(
-                              backgroundImage: FileImage(File(profileController.imagePath.value)),
-                              radius: radius_40,
-                              child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Image(image: const AssetImage(ImgAssets.camera), height: height_22)),
-                            )
+                                    backgroundImage: FileImage(File(profileController.imagePath.value)),
+                                    radius: radius_40,
+                                    child: Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Image(image: const AssetImage(ImgAssets.camera), height: height_22)),
+                                  )
                                 : profilePicUrl.isNotEmpty
-                                ? CircleAvatar(
-                              backgroundImage: NetworkImage(profilePicUrl),
-                              radius: radius_40,
-                              child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Image(image: const AssetImage(ImgAssets.camera), height: height_22)),
-                            )
-                                : CircleAvatar(
-                              backgroundImage: const AssetImage(ImgAssets.badge),
-                              radius: radius_40,
-                              child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Image(image: const AssetImage(ImgAssets.camera), height: height_22)),
-                            ),
+                                    ? CircleAvatar(
+                                        backgroundImage: NetworkImage(profilePicUrl),
+                                        radius: radius_40,
+                                        child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Image(image: const AssetImage(ImgAssets.camera), height: height_22)),
+                                      )
+                                    : CircleAvatar(
+                                        backgroundImage: const AssetImage(ImgAssets.badge),
+                                        radius: radius_40,
+                                        child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Image(image: const AssetImage(ImgAssets.camera), height: height_22)),
+                                      ),
                           ),
                         ),
                       ],
@@ -179,7 +179,7 @@ class EditProfileScreen extends GetView<ProfileController> {
                       textInputType: TextInputType.text,
                     ),
                     Obx(
-                          () => Row(
+                      () => Row(
                         children: [
                           Row(
                             children: [
@@ -228,30 +228,31 @@ class EditProfileScreen extends GetView<ProfileController> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: margin_120),
                       child: Obx(
-                            () => profileController.isLoading.isTrue
+                        () => profileController.isLoading.isTrue
                             ? const Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.orange,
-                            ))
+                                child: CircularProgressIndicator(
+                                color: AppColors.orange,
+                              ))
                             : CustomButton(
-                          text: strSave,
-                          color: AppColors.white,
-                          fontWeight: fontWeight600,
-                          font: font_15,
-                          onPress: () async {
-                            print(updatedProfilePic);
-                            print(companyController.text);
-                            print(genderController.text);
-                            print(addressController.text);
-                            bool isUpdated = await profileController.updateUserProfile(
-                                companyController.text,
-                                addressController.text,
-                                genderController.text,
-                                updatedProfilePic,
-                                govIdFrontController.text,
-                                govIdBackController.text);
-                          },
-                        ),
+                                text: strSave,
+                                color: AppColors.white,
+                                fontWeight: fontWeight600,
+                                font: font_15,
+                                onPress: () async {
+                                  print('file image $updatedProfilePic');
+                                  print('api image ${profileController.imagePath.value}');
+                                  bool isUpdated = await profileController.updateUserProfile(
+                                      companyController.text,
+                                      addressController.text,
+                                      genderController.text,
+                                      profileController.imagePath.value,
+                                      govIdFrontController.text,
+                                      govIdBackController.text);
+                                  // if (profileController.imagePath.value.isNotEmpty) {
+                                  //   profileController.imagePath.value = '';
+                                  // }
+                                },
+                              ),
                       ),
                     ),
                     CustomDivider(

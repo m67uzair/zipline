@@ -14,7 +14,6 @@ class SplashOneScreen extends StatefulWidget {
 }
 
 class _SplashOneScreenState extends State<SplashOneScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -23,10 +22,6 @@ class _SplashOneScreenState extends State<SplashOneScreen> {
 
   _navigateToNextScreen() async {
     await Future.delayed(Duration(seconds: 2)); // Delay of 2 seconds
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => SplashTwoScreen()),
-    );
   }
 
   @override
@@ -34,12 +29,10 @@ class _SplashOneScreenState extends State<SplashOneScreen> {
     return Scaffold(
       backgroundColor: AppColors.orange,
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: margin_15),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(image: AssetImage(ImgAssets.splashOne)),
-            ]),
+        padding: EdgeInsets.symmetric(horizontal: margin_15),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Image(image: AssetImage(ImgAssets.splashOne)),
+        ]),
       ),
     );
   }

@@ -23,8 +23,8 @@ const String strUploadPhoto = "Upload Profile Photo";
 const String strEnterEmailOtp = "Enter Email OTP Code";
 const String strEnterPhoneOtp = "Enter Phone OTP Code";
 
-const String strOtpMo = "OTP code has benn send to";
-const String strOtpEmail = "OTP code has benn send to";
+const String strOtpMo = "OTP Code Has Been Sent To";
+const String strOtpEmail = "OTP Code Has Been Sent To";
 const String strResendCode = "Resend Code";
 const String strVefiry = "Verify";
 const String strNewPass = "New Password";

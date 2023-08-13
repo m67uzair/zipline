@@ -37,9 +37,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
     HomeScreen(),
     AllItemScreen(
       selectedStatus: 'Pickup Pending',
+      navigatedFromNavBar: true,
     ),
-    AllItemScreen(),
-    ProfileScreen(),
+    AllItemScreen(selectedStatus: 'All', navigatedFromNavBar: true),
+    ProfileScreen(navigatedFromNavBar: true),
   ];
 
   @override
@@ -112,7 +113,12 @@ class _CustomNavBarState extends State<CustomNavBar> {
           ],
         ),
       ),
-      body: navigationWidgets.elementAt(_selectedIndex),
+      body: _selectedIndex == 1 || _selectedIndex == 2
+          ? navigationWidgets.elementAt(_selectedIndex)
+          : IndexedStack(
+        index: _selectedIndex,
+              children: navigationWidgets,
+            ),
     );
   }
 }

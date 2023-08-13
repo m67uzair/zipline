@@ -17,6 +17,9 @@ class ProfileController extends GetxController {
   SharedPreferences prefs = PreferencesService.instance;
 
   Future<UserProfileModel?> fetchUserProfile() async {
+
+    RxString userProfilePic = ''.obs;
+
     isLoading.value = true;
     UserProfileModel? userProfile;
     String userId = prefs.getInt(UserContants.userId).toString();

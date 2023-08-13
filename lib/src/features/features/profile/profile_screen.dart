@@ -4,6 +4,7 @@ import 'package:courier_app/src/core/constants/assets.dart';
 import 'package:courier_app/src/core/constants/dimensions.dart';
 import 'package:courier_app/src/core/constants/user_constants.dart';
 import 'package:courier_app/src/features/auth/auth/preferences_service.dart';
+import 'package:courier_app/src/features/auth/login/login_screen.dart';
 import 'package:courier_app/src/features/features/profile/edit_profile.dart';
 import 'package:courier_app/src/features/features/profile/profile_controller.dart';
 import 'package:courier_app/src/features/features/profile/user_profile_model.dart';
@@ -21,17 +22,19 @@ import '../../../core/constants/palette.dart';
 import '../../../core/constants/strings.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+  ProfileScreen({super.key, this.navigatedFromNavBar = false});
 
   SharedPreferences prefs = PreferencesService.instance;
   ProfileController profileController = Get.put(ProfileController());
   String galleryImagePath = '';
+  bool navigatedFromNavBar;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(
         appBar: AppBar(),
+        dontShowBackButton: navigatedFromNavBar,
         title: strProfile,
         containerColor: AppColors.transparent,
         text: '',
@@ -131,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                             font: font_16,
                             onPress: () {
                               prefs.remove(UserContants.userId);
-                              Get.offAll(AppRoutes.login);
+                              Get.offAll(LoginScreen());
                             })
                       ],
                     )
