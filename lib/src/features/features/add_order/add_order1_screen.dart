@@ -168,6 +168,9 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                 height: height_15,
                 textInputType: TextInputType.text,
                 controller: emailController,
+                onChanged: (value){
+                  emailController.text.trim();
+                },
                 validator: ValidationBuilder().required().build(),
               ), //email text-field
 
@@ -234,6 +237,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                         fontWeight: fontWeight800,
                         font: font_16,
                         onPress: () async {
+                          emailController.text.trim();
                           if (formKey.currentState!.validate()) {
                             addOrderController.setSenderDetails(
                                 nameController.text,

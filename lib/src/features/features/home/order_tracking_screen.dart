@@ -50,7 +50,9 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                 ? AppColors.blue
                 : status == 'pickup pending'
                     ? AppColors.yellow
-                    : AppColors.yellow,
+                    : status == 'delivery pending'
+                        ? AppColors.yellow
+                        : AppColors.yellow,
         text: status == 'completed'
             ? strComplete
             : status == 'delivered'
@@ -105,19 +107,27 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
               height: height_55,
               isDivider: false,
             ),
-            widget.order.status.toString().toLowerCase() == 'pickup pending'
+            widget.order.status.toString().toLowerCase() == 'pickup pending' ||
+                    widget.order.status.toString().toLowerCase() ==
+                        'delivery pending'
                 ? Align(
                     heightFactor: 1.5,
                     alignment: Alignment.topLeft,
                     child: CustomText(
-                        text: strTakeRecSign, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_15),
+                        text: strTakeRecSign,
+                        color1: AppColors.black,
+                        fontWeight: fontWeight600,
+                        fontSize: font_15),
                   )
                 : const SizedBox.shrink(),
-            widget.order.status.toString().toLowerCase() == 'pickup pending'
+            widget.order.status.toString().toLowerCase() == 'pickup pending' ||
+                    widget.order.status.toString().toLowerCase() ==
+                        'delivery pending'
                 ? InkWell(
                     onTap: () {
                       Get.to(
-                        () => SignatureRecieverScreen(orderId: widget.order.orderId.toString()),
+                        () => SignatureRecieverScreen(
+                            orderId: widget.order.orderId.toString()),
                       );
                     },
                     child: const CustomContainer(
@@ -126,24 +136,31 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                     ),
                   )
                 : const SizedBox.shrink(),
-            widget.order.status.toString().toLowerCase() == 'pickup pending'
+            widget.order.status.toString().toLowerCase() == 'pickup pending' ||
+                    widget.order.status.toString().toLowerCase() ==
+                        'delivery pending'
                 ? CustomDivider(
                     height: height_25,
                     isDivider: false,
                   )
                 : const SizedBox.shrink(),
-            widget.order.status.toString().toLowerCase() == 'pickup pending'
+            widget.order.status.toString().toLowerCase() == 'pickup pending' ||
+                    widget.order.status.toString().toLowerCase() ==
+                        'delivery pending'
                 ? CustomButton(
                     text: strMarkAsComp,
                     color: AppColors.white,
                     fontWeight: fontWeight800,
                     font: font_16,
                     onPress: () {
-                      Get.to(() => SignatureRecieverScreen(orderId: widget.order.orderId.toString()));
+                      Get.to(() => SignatureRecieverScreen(
+                          orderId: widget.order.orderId.toString()));
                     },
                   )
                 : const SizedBox.shrink(),
-            widget.order.status.toString().toLowerCase() == 'pickup pending'
+            widget.order.status.toString().toLowerCase() == 'pickup pending' ||
+                    widget.order.status.toString().toLowerCase() ==
+                        'delivery pending'
                 ? CustomDivider(
                     height: height_65,
                     isDivider: false,

@@ -17,14 +17,15 @@ import 'package:http/http.dart' as http;
 import '../../../core/constants/user_constants.dart';
 
 class HomeController extends GetxController {
+  RxBool isSearchOrderLoading = false.obs;
   RxBool isLoading = false.obs;
   SharedPreferences prefs = PreferencesService.instance;
   RxList<AllOrdersModel> ordersList = RxList<AllOrdersModel>([]);
 
   Future<void> searchByOrderToken(String orderToken) async {
+    isSearchOrderLoading.value = true;
     try {
       if (_validateOrderToken(orderToken)) {
-        isLoading.value = true;
         showProgressDialog();
         final url = Uri.parse('https://courier.hnktrecruitment.in/fetch-order-details/$orderToken');
         final response = await http.get(url);
@@ -33,12 +34,12 @@ class HomeController extends GetxController {
         if (response.statusCode == 200) {
           OrderDetailsModel order = OrderDetailsModel.fromJson(jsonData);
           String status = order.status.toString().toLowerCase();
-          isLoading.value == false;
+          isSearchOrderLoading.value == false;
           Get.back();
           Get.to(() => OrderTrackingScreen(order: order));
         } else {
-          isLoading.value == false;
           Get.back();
+          isSearchOrderLoading.value == false;
           Fluttertoast.showToast(msg: "Order with $orderToken token doesn't exist");
         }
       } else {
@@ -46,8 +47,10 @@ class HomeController extends GetxController {
       }
     } on Exception catch (e) {
       Get.back();
+      isSearchOrderLoading.value == false;
       Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
     }
+    isSearchOrderLoading.value == false;
   }
 
   bool _validateOrderToken(String value) {

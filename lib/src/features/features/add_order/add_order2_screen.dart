@@ -171,6 +171,9 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
                 height: height_15,
                 textInputType: TextInputType.text,
                 controller: emailController,
+                onChanged: (value) {
+                  emailController.text.trim();
+                },
                 validator: ValidationBuilder().required().email().build(),
               ), //email text-field
 
@@ -237,6 +240,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
                         fontWeight: fontWeight800,
                         font: font_16,
                         onPress: () async {
+                          emailController.text.trim();
                           if (formKey.currentState!.validate()) {
                             // print('order id  2${addOrderController.orderId}');
                             addOrderController.setReceiverDetails(
