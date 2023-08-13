@@ -183,6 +183,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
                   height: height_520,
                   width: width_340,
                   child: TabBarView(
+                    physics: const NeverScrollableScrollPhysics(),
                     children: <Widget>[
                       for (int i = 0; i < 5; i++)
                         Container(
