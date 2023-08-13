@@ -17,6 +17,7 @@ import 'package:courier_app/src/features/features/item_details/complete_details.
 import 'package:courier_app/src/features/features/item_details/delivered%20_details.dart';
 import 'package:courier_app/src/features/features/item_details/delivery_pending.dart';
 import 'package:courier_app/src/features/features/item_details/pending_details_screen.dart';
+import 'package:courier_app/src/features/features/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -35,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   HomeController homeController = Get.put(HomeController());
 
   TextEditingController orderSearchController = TextEditingController();
+  ProfileController profileController = Get.put(ProfileController());
 
   SharedPreferences prefs = PreferencesService.instance;
 
@@ -59,19 +61,27 @@ class _HomeScreenState extends State<HomeScreen> {
           //     image: const AssetImage(ImgAssets.forgotArt),
           //     title: '$strHello Mizan,',
           //     subtitle: strWelcomeBack),
+
           ListTile(
             shape: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(radius_15), borderSide: BorderSide(color: AppColors.transparent)),
-            leading: prefs.getString(UserContants.userProfilePhoto).toString().isNotEmpty &&
-                    prefs.getString(UserContants.userProfilePhoto) != null
-                ? CircleAvatar(
-                    backgroundImage: NetworkImage(prefs.getString(UserContants.userProfilePhoto)!),
-                    radius: radius_20,
-                  )
-                : CircleAvatar(
-                    backgroundImage: const AssetImage(ImgAssets.camera),
-                    radius: radius_20,
-                  ),
+            leading: Obx(() {
+              return profileController.profilePic.isNotEmpty
+                  ? CircleAvatar(
+                      backgroundImage: NetworkImage(profileController.profilePic.value),
+                      radius: radius_20,
+                    )
+                  : prefs.getString(UserContants.userProfilePhoto).toString().isNotEmpty &&
+                          prefs.getString(UserContants.userProfilePhoto) != null
+                      ? CircleAvatar(
+                          backgroundImage: NetworkImage(prefs.getString(UserContants.userProfilePhoto)!),
+                          radius: radius_20,
+                        )
+                      : CircleAvatar(
+                          backgroundImage: const AssetImage(ImgAssets.camera),
+                          radius: radius_20,
+                        );
+            }),
             title: CustomText(
                 text: prefs.getString(UserContants.userName) ?? 'Hey!',
                 color1: AppColors.greyColor,

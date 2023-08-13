@@ -14,14 +14,20 @@ class ProfileController extends GetxController {
   RxString imagePath = ''.obs;
   RxBool isLoading = false.obs;
   RxString userGender = ''.obs;
+  RxInt updatedProfileCount = 0.obs;
+  RxString profilePic = ''.obs;
+  RxString userName = ''.obs;
+  RxString userEmail = ''.obs;
+  RxString userPhone = ''.obs;
+  RxString userAddress = ''.obs;
+  RxString userCompany = ''.obs;
+
+
+  UserProfileModel userProfile = UserProfileModel();
   SharedPreferences prefs = PreferencesService.instance;
 
   Future<UserProfileModel?> fetchUserProfile() async {
-
-    RxString userProfilePic = ''.obs;
-
     isLoading.value = true;
-    UserProfileModel? userProfile;
     String userId = prefs.getInt(UserContants.userId).toString();
     final url = Uri.parse("https://courier.hnktrecruitment.in/fetch-user-profile/$userId");
 
@@ -31,6 +37,16 @@ class ProfileController extends GetxController {
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body.toString());
         userProfile = UserProfileModel.fromJson(jsonData);
+
+        profilePic.value = userProfile.profilePictureUrl.toString();
+        userName.value = userProfile.name.toString();
+        userEmail.value = userProfile.email.toString();
+        userPhone.value = userProfile.mobileNumber.toString();
+        userAddress.value = userProfile.address.toString();
+        userCompany.value = userProfile.companyName.toString();
+
+        print('fetched profile + ${profilePic.value}');
+
       } else {
         Fluttertoast.showToast(
           msg: "Failed to fetch user profile",
@@ -82,6 +98,8 @@ class ProfileController extends GetxController {
       if (response.statusCode == 200) {
         isProfileUpdated = true;
         Fluttertoast.showToast(msg: jsonData['message'], timeInSecForIosWeb: 20);
+        updatedProfileCount.value++;
+        await fetchUserProfile();
       } else {
         String error = jsonData['error'];
         Fluttertoast.showToast(msg: '$error Try Again', timeInSecForIosWeb: 20, toastLength: Toast.LENGTH_LONG);
@@ -99,7 +117,7 @@ class ProfileController extends GetxController {
     final ImagePicker picker = ImagePicker();
     final image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
-      imagePath.value = image.path??'';
+      imagePath.value = image.path ?? '';
       if (kDebugMode) {
         print('File');
         print(imagePath.value);
@@ -107,7 +125,5 @@ class ProfileController extends GetxController {
     }
   }
 }
-
-
 
 // final url = Uri.parse("https://courier.hnktrecruitment.in/fetch-user-profile/$userId");
