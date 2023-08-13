@@ -51,7 +51,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                 : status == 'pickup pending'
                     ? AppColors.yellow
                     : status == 'delivery pending'
-                        ? AppColors.yellow
+                        ? AppColors.redColor
                         : AppColors.yellow,
         text: status == 'completed'
             ? strComplete

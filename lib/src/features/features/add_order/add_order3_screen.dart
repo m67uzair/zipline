@@ -478,7 +478,7 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
                             itemWeightController.text,
                             itemTypeController.text,
                             itemCategoryController.text,
-                            deliveryRequired,
+                            itemDeliveryRequiredController.text,
                             itemChargesController.text);
                         // if (orderId.isNotEmpty) {
                         Get.toNamed(AppRoutes.addOrderFour);

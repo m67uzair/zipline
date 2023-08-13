@@ -77,30 +77,38 @@ class SignatureRecieverScreen extends GetView<SignaturePadController> {
               height: height_30,
               isDivider: false,
             ),
-            CustomButton(
-              text: strAddSign,
-              color: AppColors.white,
-              fontWeight: fontWeight800,
-              font: font_16,
-              onPress: () async {
-                ui.Image image = await controller.signaturePadKey.currentState!.toImage();
-                final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-                final Uint8List imageBytes =
-                    byteData!.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
-                final String path = (await getApplicationSupportDirectory()).path;
-                final String fileName = '$path/output.png';
+            Obx(
+              () => signatureController.isLoading.isTrue
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.orange,
+                      ),
+                    )
+                  : CustomButton(
+                      text: strAddSign,
+                      color: AppColors.white,
+                      fontWeight: fontWeight800,
+                      font: font_16,
+                      onPress: () async {
+                        ui.Image image = await controller.signaturePadKey.currentState!.toImage();
+                        final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+                        final Uint8List imageBytes =
+                            byteData!.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
+                        final String path = (await getApplicationSupportDirectory()).path;
+                        final String fileName = '$path/output.png';
 
-                await File(fileName).writeAsBytes(imageBytes);
-                bool isSignatureAdded = await signatureController.updateReceiverSignature(fileName, orderId);
-                if (isSignatureAdded) {
-                  allItemsController.callFunctions();
-                  homeController.fetchRecentOrders();
-                  allItemsController.ordersList.refresh();
-                  homeController.ordersList.refresh();
-                  Get.back();
-                  Get.back();
-                }
-              },
+                        await File(fileName).writeAsBytes(imageBytes);
+                        bool isSignatureAdded = await signatureController.updateReceiverSignature(fileName, orderId);
+                        if (isSignatureAdded) {
+                          allItemsController.callFunctions();
+                          homeController.fetchRecentOrders();
+                          allItemsController.ordersList.refresh();
+                          homeController.ordersList.refresh();
+                          Get.back();
+                          Get.back();
+                        }
+                      },
+                    ),
             ),
             CustomDivider(
               height: height_55,
