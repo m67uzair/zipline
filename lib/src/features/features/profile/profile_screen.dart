@@ -44,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    profileController.fetchUserProfile();
+    // profileController.fetchUserProfile();
   }
 
   @override

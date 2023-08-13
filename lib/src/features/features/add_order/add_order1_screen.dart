@@ -143,7 +143,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                       borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
                 ),
                 initialCountryCode:
-                    addOrderController.senderPhoneNum.isEmpty ? 'IN' : addOrderController.senderPhoneNum,
+                    addOrderController.senderPhoneCode.isEmpty ? 'IN' : addOrderController.senderPhoneCode,
                 initialValue: addOrderController.senderPhoneNum,
                 validator: (phone) {
                   if (phone == null || phone.number.isEmpty) {

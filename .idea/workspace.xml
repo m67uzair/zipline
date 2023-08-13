@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9500985-5b7a-4689-b9ef-218494176159" name="Changes" comment="splash">
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/item_details/delivery_pending.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/item_details/delivery_pending.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/item_details/pending_details_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/item_details/pending_details_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/a05e2a8f25836254c1198f936fbda38e.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/a05e2a8f25836254c1198f936fbda38e.cache.dill.track.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order1_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order1_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_screen_2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/all_item/all_item_screen_2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/profile/profile_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/profile/profile_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/profile/profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/profile/profile_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,22 +41,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.android.tools.idea.devicemanager.tab&quot;: &quot;Physical&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/m67uz/Downloads/Compressed/zipline-flutter (2)/zipline-flutter&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "com.android.tools.idea.devicemanager.tab": "Physical",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/Users/m67uz/Downloads/Compressed/zipline-flutter (2)/zipline-flutter",
+    "settings.editor.selected.configurable": "editing.templates",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mizan\StudioProjects\zipline-flutter\lib\src\features\auth" />

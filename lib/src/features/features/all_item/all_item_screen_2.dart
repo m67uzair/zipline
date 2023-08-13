@@ -152,6 +152,7 @@ class _AllItemScreen2State extends State<AllItemScreen2> {
                           textColor: AppColors.greyColor,
                           fillColor: AppColors.greyColor.withOpacity(.3),
                           borderColor: AppColors.transparent,
+                          initialValue: 'Duration',
                           suffixIcon: Image(
                             image: const AssetImage(ImgAssets.drop),
                             height: height_10,

@@ -158,6 +158,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
                           ),
                           // prefixIcon: Image(image: AssetImage(ImgAssets.transparent), height: height_10,),
                           options: allItemsController.dropdownItems,
+                          initialValue: 'Duration',
                           onChanged: (String? newValue) async {
                             if (newValue == 'Clear Filter') {
                               allItemsController.setSelectedDate = '';

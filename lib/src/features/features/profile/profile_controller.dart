@@ -29,6 +29,7 @@ class ProfileController extends GetxController {
   Future<UserProfileModel?> fetchUserProfile() async {
     isLoading.value = true;
     String userId = prefs.getInt(UserContants.userId).toString();
+    print("user id $userId");
     final url = Uri.parse("https://courier.hnktrecruitment.in/fetch-user-profile/$userId");
 
     try {

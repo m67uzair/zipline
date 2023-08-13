@@ -130,7 +130,10 @@ class AddOrderController extends GetxController {
   }
 
   Future<bool> addItem() async {
-    bool itemAdded = false;
+    bool signatureAdded = false;
+    bool receiverAdded = false;
+    bool packageDetailsAdded = false;
+
     isLoading.value = true;
 
     try {
@@ -138,19 +141,24 @@ class AddOrderController extends GetxController {
           senderStreet, senderCity, senderPincode);
 
       if (orderId.isNotEmpty) {
-        await addReceiverDetails(orderId, receiverName, '+$receiverPhoneCode-$receiverPhoneNum', receiverEmail,
-            receiverDooFlatNo, receiverStreet, receiverCity, receiverPincode);
-        await addPackageDetails(orderId, itemName, '${itemLength}x${itemWidth}x$itemHeight', itemWeight, itemType,
-            itemCategory, deliveryRequired, itemImageUrl, itemCharges);
-        itemAdded = await updateSenderSignature(signatureFileName);
+        receiverAdded = await addReceiverDetails(orderId, receiverName, '+$receiverPhoneCode-$receiverPhoneNum',
+            receiverEmail, receiverDooFlatNo, receiverStreet, receiverCity, receiverPincode);
       }
+      if (receiverAdded) {
+        packageDetailsAdded = await addPackageDetails(orderId, itemName, '${itemLength}x${itemWidth}x$itemHeight',
+            itemWeight, itemType, itemCategory, deliveryRequired, itemImageUrl, itemCharges);
+      }
+      if (packageDetailsAdded) {
+        signatureAdded = await updateSenderSignature(signatureFileName);
+      }
+
       print('Order id  $orderId');
     } on Exception catch (e) {
       print('error occured ${e.toString}');
     }
 
     isLoading.value = false;
-    return itemAdded;
+    return signatureAdded;
   }
 
   // Future<void> getImage() async {
@@ -216,7 +224,7 @@ class AddOrderController extends GetxController {
     return orderId;
   }
 
-  Future<String> addReceiverDetails(String orderId, String receiverName, String contactNum, String emailAddress,
+  Future<bool> addReceiverDetails(String orderId, String receiverName, String contactNum, String emailAddress,
       String doorFlatNum, String streetAreaName, String cityTown, String pincode) async {
     // isLoading.value = true;
     bool isReceiverAdded = false;
@@ -257,10 +265,10 @@ class AddOrderController extends GetxController {
       Get.offNamed(AppRoutes.addOrderOne);
     }
     // isLoading.value = false;
-    return orderId;
+    return isReceiverAdded;
   }
 
-  Future<String> addPackageDetails(String orderId, String itemName, String itemSize, String itemWeight, String itemType,
+  Future<bool> addPackageDetails(String orderId, String itemName, String itemSize, String itemWeight, String itemType,
       String itemCategory, String deliveryRequired, String itemImage, String charges) async {
     // isLoading.value = true;
     bool isPackageAdded = false;
@@ -297,7 +305,7 @@ class AddOrderController extends GetxController {
     }
 
     // isLoading.value = false;
-    return orderId;
+    return isPackageAdded;
   }
 
   Future<OrderSummaryModel?> getOrderSummary(String orderId) async {
@@ -328,7 +336,7 @@ class AddOrderController extends GetxController {
 
     try {
       var request = http.MultipartRequest('POST', url);
-      request.fields['order_id'] = '4';
+      request.fields['order_id'] = orderId;
 
       request.files.add(await http.MultipartFile.fromPath('sender_signature', signatureImagePath));
 
