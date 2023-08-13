@@ -73,7 +73,7 @@ class _PendingDetailsScreenState extends State<PendingDetailsScreen> {
               String itemWeight = snapshot.data!.itemWeight.toString();
               String itemType = snapshot.data!.itemType.toString();
               String itemCategory = snapshot.data!.itemCategory.toString();
-              String itemDeliveryRequired = snapshot.data!.deliveryRequired.toString() == '1' ? 'Yes' : 'No';
+              String itemDeliveryRequired = snapshot.data!.deliveryRequired.toString();
               String itemCharges = snapshot.data!.charges.toString();
 
               return ListView(

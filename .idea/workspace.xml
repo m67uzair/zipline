@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9500985-5b7a-4689-b9ef-218494176159" name="Changes" comment="splash">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/a05e2a8f25836254c1198f936fbda38e.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/a05e2a8f25836254c1198f936fbda38e.cache.dill.track.dill" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order3_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order3_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order4_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/add_order/add_order4_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/home/order_tracking_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/home/order_tracking_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/features/features/signature_pad/signature_reciever_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/signature_pad/signature_reciever_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/item_details/delivery_pending.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/item_details/delivery_pending.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/features/item_details/pending_details_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/features/features/item_details/pending_details_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
