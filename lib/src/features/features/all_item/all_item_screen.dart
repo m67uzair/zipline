@@ -26,7 +26,7 @@ List<DateTime?> startEndDateList = [];
 
 class AllItemScreen extends StatefulWidget {
   final String selectedStatus;
-  late var initialIndex = 0;
+  late var initialIndex;
   bool navigatedFromNavBar;
 
   AllItemScreen({Key? key, this.selectedStatus = 'All', this.navigatedFromNavBar = false}) : super(key: key);
@@ -42,17 +42,18 @@ class _AllItemScreenState extends State<AllItemScreen> {
 
   @override
   void initState() {
-    print('state intialised');
-
     widget.initialIndex = allItemsController.statuses.indexOf(widget.selectedStatus);
+    print('initial 1');
+
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       allItemsController.selectedStatus = widget.selectedStatus;
-      print('init called');
+      print('initial 1 init');
       if (allItemsController.selectedStatus == 'All') {
+        print('initial 1 if');
         allItemsController.fetchAllOrders();
       } else {
-        print('else called');
+        print('initial 1 else');
         allItemsController.fetchOrdersByStatus(widget.selectedStatus);
       }
     });

@@ -4,7 +4,7 @@ import 'package:courier_app/src/core/constants/palette.dart';
 import 'package:courier_app/src/features/auth/splash/splash_controller.dart';
 import 'package:courier_app/src/features/auth/splash/splash_screen_two.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:get/get.dart';
 
 class SplashOneScreen extends StatefulWidget {
   const SplashOneScreen({super.key});
@@ -21,7 +21,8 @@ class _SplashOneScreenState extends State<SplashOneScreen> {
   }
 
   _navigateToNextScreen() async {
-    await Future.delayed(Duration(seconds: 2)); // Delay of 2 seconds
+    await Future.delayed(const Duration(seconds: 2)); // Delay of 2 seconds
+    Get.off(const SplashTwoScreen());
   }
 
   @override

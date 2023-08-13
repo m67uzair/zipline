@@ -3,6 +3,7 @@ import 'package:courier_app/src/core/constants/assets.dart';
 import 'package:courier_app/src/core/constants/dimensions.dart';
 import 'package:courier_app/src/features/features/add_order/add_order1_screen.dart';
 import 'package:courier_app/src/features/features/all_item/all_item_screen.dart';
+import 'package:courier_app/src/features/features/all_item/all_item_screen_2.dart';
 import 'package:courier_app/src/features/features/home/home_screen.dart';
 import 'package:courier_app/src/features/features/profile/edit_profile.dart';
 import 'package:courier_app/src/features/features/profile/profile_screen.dart';
@@ -39,87 +40,83 @@ class _CustomNavBarState extends State<CustomNavBar> {
       selectedStatus: 'Pickup Pending',
       navigatedFromNavBar: true,
     ),
-    AllItemScreen(selectedStatus: 'All', navigatedFromNavBar: true),
+    AllItemScreen2(selectedStatus: 'All', navigatedFromNavBar: true),
     ProfileScreen(navigatedFromNavBar: true),
   ];
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(const AddOrderOneScreen());
-          print('object');
-        },
-        backgroundColor: AppColors.white,
-        child: const CircleAvatar(
-          backgroundColor: AppColors.orange,
-          child: Icon(Icons.add),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.to(const AddOrderOneScreen());
+            print('object');
+          },
+          backgroundColor: AppColors.white,
+          child: const CircleAvatar(
+            backgroundColor: AppColors.orange,
+            child: Icon(Icons.add),
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 2,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    _selectedIndex = 0;
-                  });
-                },
-                icon: Image.asset(
-                  ImgAssets.homeNav,
-                  color: AppColors.orange,
-                  colorBlendMode: click == false ? BlendMode.modulate : BlendMode.srcIn,
-                )),
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    _selectedIndex = 1;
-                  });
-                },
-                icon: Image.asset(
-                  ImgAssets.boxTimeNav,
-                  color: AppColors.orange,
-                  colorBlendMode: click2 == false ? BlendMode.modulate : BlendMode.srcIn,
-                )),
-            SizedBox(
-              width: width_14,
-            ),
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    _selectedIndex = 2;
-                  });
-                },
-                icon: Image.asset(
-                  ImgAssets.itemNav,
-                  color: AppColors.orange,
-                  colorBlendMode: click3 == false ? BlendMode.modulate : BlendMode.srcIn,
-                )),
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    _selectedIndex = 3;
-                  });
-                },
-                icon: Image.asset(
-                  ImgAssets.userNav,
-                  color: AppColors.orange,
-                  colorBlendMode: click4 == false ? BlendMode.modulate : BlendMode.srcIn,
-                )),
-          ],
+        bottomNavigationBar: BottomAppBar(
+          elevation: 2,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 0;
+                    });
+                  },
+                  icon: Image.asset(
+                    ImgAssets.homeNav,
+                    color: AppColors.orange,
+                    colorBlendMode: click == false ? BlendMode.modulate : BlendMode.srcIn,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                  },
+                  icon: Image.asset(
+                    ImgAssets.boxTimeNav,
+                    color: AppColors.orange,
+                    colorBlendMode: click2 == false ? BlendMode.modulate : BlendMode.srcIn,
+                  )),
+              SizedBox(
+                width: width_14,
+              ),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 2;
+                    });
+                  },
+                  icon: Image.asset(
+                    ImgAssets.itemNav,
+                    color: AppColors.orange,
+                    colorBlendMode: click3 == false ? BlendMode.modulate : BlendMode.srcIn,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 3;
+                    });
+                  },
+                  icon: Image.asset(
+                    ImgAssets.userNav,
+                    color: AppColors.orange,
+                    colorBlendMode: click4 == false ? BlendMode.modulate : BlendMode.srcIn,
+                  )),
+            ],
+          ),
         ),
-      ),
-      body: _selectedIndex == 1 || _selectedIndex == 2
-          ? navigationWidgets.elementAt(_selectedIndex)
-          : IndexedStack(
-        index: _selectedIndex,
-              children: navigationWidgets,
-            ),
-    );
+        body: navigationWidgets.elementAt(_selectedIndex));
   }
 }
 

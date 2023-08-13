@@ -42,8 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    homeController.fetchRecentOrders();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      homeController.fetchRecentOrders();
+      profileController.fetchUserProfile();
+    });
   }
 
   @override

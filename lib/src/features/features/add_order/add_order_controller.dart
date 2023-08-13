@@ -72,7 +72,6 @@ class AddOrderController extends GetxController {
     }
   }
 
-
   void setReceiverDetails(String receiverName, String contactCode, String contactNum, String emailAddress,
       String doorFlatNum, String streetAreaName, String cityTown, String pincode) {
     this.receiverName = receiverName;
@@ -154,11 +153,21 @@ class AddOrderController extends GetxController {
     return itemAdded;
   }
 
-  Future<void> getImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final image = await _picker.pickImage(source: ImageSource.gallery);
+  // Future<void> getImage() async {
+  //   final ImagePicker _picker = ImagePicker();
+  //   final image = await _picker.pickImage(source: ImageSource.gallery);
+  //   if (image != null) {
+  //     imagePath.value = image.path.toString();
+  //   }
+  // }
+
+  Future getImage(ImageSource source) async {
+    final ImagePicker picker = ImagePicker();
+    final image = await picker.pickImage(source: source);
+
     if (image != null) {
-      imagePath.value = image.path.toString();
+      imagePath.value = image.path ?? '';
+      print(imagePath.value);
     }
   }
 

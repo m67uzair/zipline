@@ -84,7 +84,7 @@ class _SplashTwoScreenState extends State<SplashTwoScreen> {
                       fontWeight: fontWeight600,
                       font: font_16,
                       onPress: (){
-                        Get.to(LoginScreen());
+                        Get.off(LoginScreen());
                       }),
 
                 ],

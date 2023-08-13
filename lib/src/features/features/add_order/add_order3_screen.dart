@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../components/custom_appbar.dart';
@@ -145,7 +146,36 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
             readOnly: true,
             validator: ValidationBuilder().required().build(),
             onTap: () async {
-              await addOrderController.getImage();
+              final choice = await showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Choose Image Source'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, 'gallery');
+                        },
+                        child: Text('Gallery'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, 'camera');
+                        },
+                        child: Text('Camera'),
+                      ),
+                    ],
+                  );
+                },
+              );
+
+              if (choice == 'gallery') {
+                await addOrderController.getImage(ImageSource.gallery);
+              } else if (choice == 'camera') {
+                await addOrderController.getImage(ImageSource.camera);
+              }
+
               itemImageController.text = addOrderController.imagePath.value;
             },
             suffixIcon: Obx(() {

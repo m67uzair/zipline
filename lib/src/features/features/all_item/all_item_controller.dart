@@ -98,7 +98,7 @@ class AllItemController extends GetxController {
 
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
-        print('All Orders Fetched');
+        print('All Orders Fetched testing');
 
         final dynamic responseData = jsonDecode(response.body.toString());
         if (responseData is List) {
@@ -129,13 +129,13 @@ class AllItemController extends GetxController {
   }
 
   Future<void> fetchOrdersByStatus(String status) async {
-    print('status == $status');
       isLoading.value = true;
     try {
       final userId = prefs.getInt(UserContants.userId) ?? -1;
 
       final baseUrl = 'https://courier.hnktrecruitment.in/fetch-user-orders/$userId/$status';
       print('base url $baseUrl');
+    print('status testing == $status');
       final response = await http.get(Uri.parse(baseUrl));
       if (response.statusCode == 200) {
 
