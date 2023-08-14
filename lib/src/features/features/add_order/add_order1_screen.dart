@@ -51,6 +51,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
     cityTownController.text = addOrderController.senderCity;
     pincodeController.text = addOrderController.senderPincode;
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         title: strItemDetail,
@@ -107,12 +108,12 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strSenderDetails, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                    text: strSenderDetails, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strEnterDetBelow, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                    text: strEnterDetBelow, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
               ),
 
               CustomDivider(
@@ -121,9 +122,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
               ),
               CustomTextField(
                 labelText: strEnterName,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.userIcon),
-                ),
+                prefixIcon: ImgAssets.userIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -133,15 +132,20 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
 
               IntlPhoneField(
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: AppColors.white.withOpacity(.1),
                   labelText: "Enter Phone Number",
-                  labelStyle: TextStyle(fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                  labelStyle: TextStyle(color:AppColors.white,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                      borderSide: BorderSide(color: AppColors.white)),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                      borderSide: BorderSide(color: AppColors.white)),
                 ),
+                dropdownIcon: Icon(Icons.arrow_drop_down,color: AppColors.white,),
+                dropdownTextStyle: TextStyle(color: AppColors.white),
+                style: TextStyle(color: AppColors.orange),
                 initialCountryCode:
                     addOrderController.senderPhoneCode.isEmpty ? 'IN' : addOrderController.senderPhoneCode,
                 initialValue: addOrderController.senderPhoneNum,
@@ -161,9 +165,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
               ),
               CustomTextField(
                 labelText: strEnterEmail,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.emailIcon),
-                ),
+                prefixIcon:  ImgAssets.emailIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -175,7 +177,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
               ), //email text-field
 
               CustomText(
-                  text: strSenderAddress, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                  text: strSenderAddress, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
 
               CustomDivider(
                 height: height_10,
@@ -184,9 +186,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
 
               CustomTextField(
                 labelText: strDoorFlat,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.locationIcon),
-                ),
+                prefixIcon: ImgAssets.locationIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -199,7 +199,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
-                prefixIcon: null,
+                prefixIcon: ImgAssets.locationIcon,
                 controller: streetAreaController,
                 validator: ValidationBuilder().required().build(),
               ),
@@ -208,7 +208,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
-                prefixIcon: null,
+                prefixIcon: ImgAssets.locationIcon,
                 controller: cityTownController,
                 validator: ValidationBuilder().required().build(),
               ),
@@ -217,7 +217,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.number,
-                prefixIcon: null,
+                prefixIcon: ImgAssets.locationIcon,
                 controller: pincodeController,
                 validator: ValidationBuilder().required().build(),
               ),

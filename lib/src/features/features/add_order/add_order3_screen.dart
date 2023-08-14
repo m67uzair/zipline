@@ -61,6 +61,7 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
     heightController.text = addOrderController.itemHeight;
 
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         title: strItemDetail,
@@ -115,19 +116,21 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
           Align(
             alignment: Alignment.topLeft,
             child: CustomText(
-                text: strPackageDetails, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                text: strPackageDetails, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
           ),
           Align(
             alignment: Alignment.topLeft,
             child: CustomText(
-                text: strEnterDetBelow, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                text: strEnterDetBelow, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
+          ),
+
+          CustomDivider(
+            height: height_10,
           ),
 
           CustomTextField(
             labelText: strEnterItemName,
-            prefixIcon: const Image(
-              image: AssetImage(ImgAssets.boxItem),
-            ),
+            prefixIcon: ImgAssets.boxItem,
             obscure: false,
             height: height_15,
             textInputType: TextInputType.text,
@@ -136,9 +139,7 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
           ), //user text-field
           CustomTextField(
             labelText: strUploadItemImg,
-            prefixIcon: const Image(
-              image: AssetImage(ImgAssets.image),
-            ),
+            prefixIcon: ImgAssets.image,
             obscure: false,
             height: height_15,
             textInputType: TextInputType.text,
@@ -192,19 +193,20 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
             }),
           ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
                 width: width_150,
                 child: Column(
                   children: [
-                    const Text(
+                     Text(
                       'Size (LxWxH)',
-                      style: TextStyle(fontSize: 12),
+                      style: TextStyle(color: AppColors.white, fontSize: font_12),
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.greyColor.withOpacity(.3)),
+                        border: Border.all(color: AppColors.white),
                         borderRadius: BorderRadius.circular(radius_10),
                       ),
                       child: Row(
@@ -217,19 +219,19 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
                               decoration: InputDecoration(
                                 labelText: 'L',
                                 labelStyle:
-                                    TextStyle(fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                                    TextStyle(color: AppColors.white ,fontSize: font_15, fontFamily: 'Mukta', fontWeight: fontWeight400),
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(radius_10),
-                                    borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                                    borderSide: BorderSide(color: AppColors.white)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(radius_10),
-                                    borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                                    borderSide: BorderSide(color: AppColors.white)),
                               ),
                               validator: ValidationBuilder().required().build(),
                             ),
                           ),
                           const SizedBox(width: 2), // Add spacing between text fields
-                          const Text('x'),
+                           Text('x', style: TextStyle(color: AppColors.white, fontSize: font_15),),
                           const SizedBox(width: 2), // Add spacing between 'x' and text fields
                           Expanded(
                             child: TextFormField(
@@ -238,19 +240,19 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
                               decoration: InputDecoration(
                                 labelText: 'W',
                                 labelStyle:
-                                    TextStyle(fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                                    TextStyle(color: AppColors.white,fontSize: font_15, fontFamily: 'Mukta', fontWeight: fontWeight400),
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(radius_10),
-                                    borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                                    borderSide: BorderSide(color: AppColors.white)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(radius_10),
-                                    borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                                    borderSide: BorderSide(color: AppColors.white)),
                               ),
                               validator: ValidationBuilder().required().build(),
                             ),
                           ),
                           const SizedBox(width: 2), // Add spacing between text fields
-                          Text('x'),
+                          Text('x', style: TextStyle(color: AppColors.white, fontSize: font_15),),
                           SizedBox(width: 2), // Add spacing between 'x' and text fields
                           Expanded(
                             child: TextFormField(
@@ -259,7 +261,7 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
                               decoration: InputDecoration(
                                 labelText: 'H',
                                 labelStyle:
-                                    TextStyle(fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                                    TextStyle(color: AppColors.white,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(radius_10),
                                     borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
@@ -276,27 +278,28 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
                   ],
                 ),
               ),
-              Column(
-                children: [
-                  CustomDivider(
-                    height: height_15,
-                  ),
-                  SizedBox(
-                    width: width_150,
-                    //height: height_80,
-                    child: CustomTextField(
-                      labelText: strItemWeight,
-                      prefixIcon: const Image(
-                        image: AssetImage(ImgAssets.itemWeight),
-                      ),
-                      obscure: false,
+              Padding(
+                padding:  EdgeInsets.only(top: 13.0),
+                child: Column(
+                  children: [
+                    CustomDivider(
                       height: height_15,
-                      textInputType: TextInputType.number,
-                      controller: itemWeightController,
-                      validator: ValidationBuilder().required().build(),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      width: width_150,
+                      //height: height_80,
+                      child: CustomTextField(
+                        labelText: strItemWeight,
+                        prefixIcon: ImgAssets.itemWeight,
+                        obscure: false,
+                        height: height_15,
+                        textInputType: TextInputType.number,
+                        controller: itemWeightController,
+                        validator: ValidationBuilder().required().build(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -304,14 +307,14 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
           CustomDropdown(
             name: 'item type',
             labelText: strSelectItemType,
-            labelColor: AppColors.greyColor,
+            labelColor: AppColors.white,
             fontSize: font_12,
             fontWeight: fontWeight400,
             radius: radius_10,
             inputType: TextInputType.name,
             textColor: AppColors.orange,
-            fillColor: AppColors.white,
-            borderColor: AppColors.greyColor,
+            fillColor: AppColors.white.withOpacity(.1),
+            borderColor: AppColors.white,
             suffixIcon: Image(
               image: AssetImage(ImgAssets.scroll),
               height: height_10,
@@ -335,14 +338,14 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
           CustomDropdown(
             name: 'item category',
             labelText: strSelectItemCateg,
-            labelColor: AppColors.greyColor,
+            labelColor: AppColors.white,
             fontSize: font_12,
             fontWeight: fontWeight400,
             radius: radius_10,
             inputType: TextInputType.name,
             textColor: AppColors.orange,
-            fillColor: AppColors.white,
-            borderColor: AppColors.greyColor,
+            fillColor: AppColors.white.withOpacity(.1),
+            borderColor: AppColors.white,
             suffixIcon: Image(
               image: AssetImage(ImgAssets.scroll),
               height: height_10,
@@ -366,8 +369,9 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
           Align(
             alignment: Alignment.topLeft,
             child: CustomText(
-                text: strDeliveryRequired, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                text: strDeliveryRequired, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
           ),
+
           CustomDivider(
             height: height_5,
             isDivider: false,
@@ -376,9 +380,9 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
           Container(
             height: height_45,
             decoration: BoxDecoration(
-                color: AppColors.transparent,
+                color: AppColors.white.withOpacity(.1),
                 borderRadius: BorderRadius.circular(radius_10),
-                border: Border.all(color: AppColors.greyColor.withOpacity(.3))),
+                border: Border.all(color: AppColors.white)),
             child: Row(
               children: [
                 Row(
@@ -394,7 +398,7 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
                         },
                       ),
                     ),
-                    CustomText(text: 'Yes', color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                    CustomText(text: 'Yes', color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
                   ],
                 ),
                 Row(
@@ -410,7 +414,7 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
                         },
                       ),
                     ),
-                    CustomText(text: 'No', color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                    CustomText(text: 'No', color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
                   ],
                 )
               ],
@@ -423,9 +427,7 @@ class _AddOrderThreeScreenState extends State<AddOrderThreeScreen> {
           ),
           CustomTextField(
             labelText: strCharges,
-            prefixIcon: const Image(
-              image: AssetImage(ImgAssets.charges),
-            ),
+            prefixIcon: ImgAssets.charges,
             obscure: false,
             height: height_15,
             textInputType: TextInputType.number,

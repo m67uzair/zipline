@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
   CustomTextField({
     Key? key,
     required this.labelText,
-    required this.prefixIcon,
+     this.prefixIcon,
     this.suffixIcon,
     required this.obscure,
     required this.height,
@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
   }) : super(key: key);
 
   final String labelText;
-  final Image? prefixIcon;
+  final String? prefixIcon;
   final dynamic suffixIcon;
   final double height;
   final TextInputType textInputType;
@@ -54,16 +54,26 @@ class CustomTextField extends StatelessWidget {
           validator: validator,
           style: TextStyle(color: AppColors.orange, fontSize: font_13, fontWeight: fontWeight400),
           decoration: InputDecoration(
+            filled: true,
+            fillColor: AppColors.white.withOpacity(.1),
             labelText: labelText,
-            labelStyle: TextStyle(fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
-            prefixIcon: prefixIcon,
+            labelStyle: TextStyle(color: AppColors.textWhite,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+            prefixIcon: Container(
+              alignment: Alignment.center,
+              height: 10, // Change this to your desired image height
+              width: 10,
+              child: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  alignment: WrapAlignment.spaceAround,
+                  children: [Image.asset(prefixIcon!, height: 20,)]), // Replace with your image path
+            ),
             suffixIcon: suffixIcon,
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(radius_10),
-                borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                borderSide: BorderSide(color: AppColors.white)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(radius_10),
-                borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                borderSide: BorderSide(color: AppColors.white)),
           ),
           onTap: onTap,
           readOnly: readOnly,

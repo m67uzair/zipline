@@ -23,7 +23,7 @@ class _SplashTwoScreenState extends State<SplashTwoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightOrg,
+      backgroundColor: AppColors.darkBlue,
       body: ListView(
         //    mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -59,7 +59,7 @@ class _SplashTwoScreenState extends State<SplashTwoScreen> {
             Container(
               height: height_270,
               decoration: BoxDecoration(
-                  color: AppColors.white,
+                  color: AppColors.white.withOpacity(.2),
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(radius_30), topRight: Radius.circular(radius_30))
               ),
               child: Column(
@@ -67,12 +67,12 @@ class _SplashTwoScreenState extends State<SplashTwoScreen> {
                 children: [
                   CustomText(
                       text: 'Welcome To Ziplinez',
-                      color1: AppColors.black,
+                      color1: AppColors.white,
                       fontWeight: fontWeight700,
                       fontSize: font_25),
                   CustomText(
                     text: "Lorem Ipsum is simply dummy text of the printing and\ntypesetting industry. Lorem Ipsum has been the\nindustry's standard dummy text ever since the 1500s",
-                    color1: AppColors.greyColor,
+                    color1: AppColors.white,
                     fontWeight: fontWeight700,
                     fontSize: font_12,
                     textAlign: TextAlign.center,

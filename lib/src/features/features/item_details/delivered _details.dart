@@ -32,6 +32,7 @@ class _DeliveredOrdersScreenState extends State<DeliveredOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         title: strItemDetail,

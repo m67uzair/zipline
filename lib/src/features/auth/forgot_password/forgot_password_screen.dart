@@ -28,6 +28,7 @@ class ForgotPasswordScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -41,12 +42,12 @@ class ForgotPasswordScreen extends GetView<AuthController> {
               Align(
                 alignment: Alignment.topLeft,
                 child:
-                    CustomText(text: strForget, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                    CustomText(text: strForget, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strForgotPass, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_11),
+                    text: strForgotPass, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_11),
               ),
               CustomDivider(
                 height: height_30,
@@ -59,9 +60,7 @@ class ForgotPasswordScreen extends GetView<AuthController> {
               ),
               CustomTextField(
                 labelText: strEnterEmail,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.emailIcon),
-                ),
+                prefixIcon: ImgAssets.emailIcon,
                 obscure: false,
                 height: height_15,
                 controller: emailController,
@@ -70,15 +69,20 @@ class ForgotPasswordScreen extends GetView<AuthController> {
               ),
               IntlPhoneField(
                 decoration: InputDecoration(
+                  fillColor: AppColors.white.withOpacity(.1),
+                  filled: true,
                   labelText: "Enter Phone Number",
-                  labelStyle: TextStyle(fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                  labelStyle: TextStyle(color:AppColors.white,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                      borderSide: BorderSide(color: AppColors.white)),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                      borderSide: BorderSide(color: AppColors.white)),
                 ),
+                dropdownIcon: Icon(Icons.arrow_drop_down,color: AppColors.white,),
+                dropdownTextStyle: TextStyle(color: AppColors.white),
+                style: TextStyle(color: AppColors.orange),
                 initialCountryCode: 'IN',
                 onCountryChanged: (phone) {
                   countryCode = phone.dialCode;

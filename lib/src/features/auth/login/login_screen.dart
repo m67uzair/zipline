@@ -48,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -61,12 +62,12 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child:
-                    CustomText(text: strLetName, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                    CustomText(text: strLetName, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strInfoBelow, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                    text: strInfoBelow, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
               ),
               CustomDivider(
                 height: height_30,
@@ -79,9 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               CustomTextField(
                 labelText: strEnterEmail,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.emailIcon),
-                ),
+                prefixIcon: ImgAssets.emailIcon,
                 obscure: false,
                 height: height_15,
                 controller: emailController,
@@ -92,9 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Obx(
                 () => CustomTextField(
                   labelText: strEnterPass,
-                  prefixIcon: const Image(
-                    image: AssetImage(ImgAssets.passIcon),
-                  ),
+                  prefixIcon: ImgAssets.passIcon,
                   suffixIcon: IconButton(
                     icon: loginController.isPassVisible.value
                         ? const Icon(Icons.visibility)
@@ -117,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 alignment: Alignment.topRight,
                 child: CustomTextButton(
                   text: strForget,
-                  color: AppColors.orange,
+                  color: AppColors.textBlue,
                   fontWeight: fontWeight400,
                   font: font_14,
                   onPress: () {
@@ -155,13 +152,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   CustomText(
                     text: strNotOurMember,
-                    color1: AppColors.black,
+                    color1: AppColors.white,
                     fontWeight: fontWeight500,
                     fontSize: font_13,
                   ),
                   CustomTextButton(
                     text: strRegisterNow,
-                    color: AppColors.orange,
+                    color: AppColors.textBlue,
                     fontWeight: fontWeight600,
                     font: font_13,
                     onPress: () {

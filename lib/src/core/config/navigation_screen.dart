@@ -55,65 +55,80 @@ class _CustomNavBarState extends State<CustomNavBar> {
             Get.to(const AddOrderOneScreen());
             print('object');
           },
-          backgroundColor: AppColors.white,
+          backgroundColor: AppColors.darkBlue,
           child: const CircleAvatar(
             backgroundColor: AppColors.orange,
-            child: Icon(Icons.add),
+            child: Icon(Icons.add, color: AppColors.white),
           ),
         ),
         bottomNavigationBar: BottomAppBar(
           elevation: 2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = 0;
-                    });
-                  },
-                  icon: Image.asset(
-                    ImgAssets.homeNav,
-                    color: AppColors.orange,
-                    colorBlendMode: click == false ? BlendMode.modulate : BlendMode.srcIn,
-                  )),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = 1;
-                    });
-                  },
-                  icon: Image.asset(
-                    ImgAssets.boxTimeNav,
-                    color: AppColors.orange,
-                    colorBlendMode: click2 == false ? BlendMode.modulate : BlendMode.srcIn,
-                  )),
-              SizedBox(
-                width: width_14,
-              ),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = 2;
-                    });
-                  },
-                  icon: Image.asset(
-                    ImgAssets.itemNav,
-                    color: AppColors.orange,
-                    colorBlendMode: click3 == false ? BlendMode.modulate : BlendMode.srcIn,
-                  )),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = 3;
-                    });
-                  },
-                  icon: Image.asset(
-                    ImgAssets.userNav,
-                    color: AppColors.orange,
-                    colorBlendMode: click4 == false ? BlendMode.modulate : BlendMode.srcIn,
-                  )),
-            ],
+          child: Container(
+            color: AppColors.darkBlue,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 0;
+                      });
+                    },
+                    icon: SizedBox(
+                      height: 25,
+                      child: Image.asset(
+                        ImgAssets.homeNav,
+                        color: AppColors.blue,
+                        colorBlendMode:  _selectedIndex == 0 ? BlendMode.modulate : BlendMode.dstIn,
+                      ),
+                    )),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 1;
+                      });
+                    },
+                    icon: SizedBox(
+                      height: 25,
+                      child: Image.asset(
+                        ImgAssets.boxTimeNav,
+                        color: AppColors.blue,
+                        colorBlendMode: _selectedIndex == 1 ? BlendMode.modulate : BlendMode.dstIn,
+                      ),
+                    )),
+                SizedBox(
+                  width: width_14,
+                ),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 2;
+                      });
+                    },
+                    icon: SizedBox(
+                      height: 25,
+                      child: Image.asset(
+                        ImgAssets.itemNav,
+                        color: AppColors.blue,
+                        colorBlendMode: _selectedIndex == 2 ? BlendMode.modulate : BlendMode.dstIn,
+                      ),
+                    )),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 3;
+                      });
+                    },
+                    icon: SizedBox(
+                      height: 25,
+                      child: Image.asset(
+                        ImgAssets.userNav,
+                        color: AppColors.blue,
+                        colorBlendMode: _selectedIndex == 3 ? BlendMode.modulate : BlendMode.dstIn,
+                      ),
+                    )),
+              ],
+            ),
           ),
         ),
         body: navigationWidgets.elementAt(_selectedIndex));

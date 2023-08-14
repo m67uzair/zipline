@@ -50,6 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         dontShowBackButton: widget.navigatedFromNavBar,
@@ -85,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         radius: radius_40,
                         child: Align(
                             alignment: Alignment.bottomRight,
-                            child: Image(image: const AssetImage(ImgAssets.camera), height: height_22)),
+                            child: Image(image:  AssetImage(ImgAssets.badge), height: height_22)),
                       )
                           : CircleAvatar(
                         backgroundImage: const AssetImage(ImgAssets.badge),
@@ -100,16 +101,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     alignment: Alignment.center,
                     // heightFactor: 1.5,
                     child: CustomText(
-                        text: userName, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                        text: userName, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
                   ),
                   Align(
                     alignment: Alignment.center,
                     //heightFactor: .1,
                     child: CustomText(
-                        text: userEmail, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                        text: userEmail, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
                   ),
                   CustomDivider(
                     height: height_25,
+                    color: AppColors.white,
                     isDivider: false,
                   ),
                   Padding(

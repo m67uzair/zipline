@@ -37,6 +37,7 @@ class _DeliveryPendingScreenState extends State<DeliveryPendingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         title: strItemDetail,
@@ -117,19 +118,21 @@ class _DeliveryPendingScreenState extends State<DeliveryPendingScreen> {
                     height: height_55,
                     isDivider: false,
                   ),
+
                   Align(
                     heightFactor: 1.5,
                     alignment: Alignment.topLeft,
                     child: CustomText(
-                        text: strTakeRecSign, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_15),
+                        text: strTakeRecSign, color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_15),
                   ),
+
                   InkWell(
                     onTap: () {
                       Get.to(
                         () => SignatureRecieverScreen(orderId: orderId),
                       );
                     },
-                    child: const CustomContainer(
+                    child:  CustomContainer(
                       title: strAddSign,
                       assetImage: AssetImage(ImgAssets.plus),
                     ),

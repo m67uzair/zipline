@@ -34,7 +34,7 @@ class CustomAboutPack extends StatelessWidget {
       height: height_330,
       //width: width_60,
       decoration: BoxDecoration(
-          color: AppColors.white,
+          color: AppColors.transparent,
           borderRadius: BorderRadius.circular(radius_20),
           border: Border.all(color: AppColors.greyColor.withOpacity(.3))),
       child: Column(
@@ -55,7 +55,7 @@ class CustomAboutPack extends StatelessWidget {
 
 Widget line({required String text, required String text2}) {
   return Padding(
-    padding: EdgeInsets.symmetric(horizontal: margin_30),
+    padding: EdgeInsets.symmetric(horizontal: margin_20),
     child: Column(
       children: [
         CustomDivider(
@@ -64,17 +64,19 @@ Widget line({required String text, required String text2}) {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(text: text, color1: AppColors.greyColor, fontWeight: fontWeight500, fontSize: font_12),
+            CustomText(text: text, color1: AppColors.textWhite, fontWeight: fontWeight500, fontSize: font_12),
             Container(
               alignment: Alignment.centerRight,
               width: width_150,
-              child: CustomText(text: text2, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_15),
+              child: CustomText(
+                  textAlign: TextAlign.end,
+                  text: text2, color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_15),
             ),
           ],
         ),
         Divider(
           height: height_10,
-          color: AppColors.greyColor.withOpacity(.4),
+          color: AppColors.textWhite,
         ),
       ],
     ),

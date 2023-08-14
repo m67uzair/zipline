@@ -31,17 +31,20 @@ class CustomItems extends StatelessWidget {
               height: 80,
               width: 100,
               decoration: BoxDecoration(
-                color: AppColors.lightOrange,
+                color: AppColors.white.withOpacity(.1),
                 borderRadius: BorderRadius.circular(radius_8),
               ),
-              child: Image(image: image,),
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Image(image: image,),
+              ),
             ),
             Container(
               alignment: Alignment.center,
               width: 80,
               child: CustomText(
                   text: text,
-                  color1: AppColors.greyColor,
+                  color1: AppColors.textWhite,
                   fontWeight: fontWeight600,
                   fontSize: font_16,
               textAlign: TextAlign.center

@@ -32,20 +32,21 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: AppColors.transparent,
       leading: dontShowBackButton
           ? const SizedBox(width: 5,)
           : IconButton(
               onPressed: () => Get.back(),
               icon: const Icon(
                 Icons.arrow_back_ios_new,
-                color: AppColors.black,
+                color: AppColors.white,
               ),
             ),
       titleSpacing: width_1,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CustomText(text: title, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+          CustomText(text: title, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
           Padding(
             padding: EdgeInsets.only(right: margin_10),
             child: Container(

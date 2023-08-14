@@ -40,6 +40,7 @@ class RegisterScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -53,12 +54,12 @@ class RegisterScreen extends GetView<AuthController> {
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strRegisterNewAc, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                    text: strRegisterNewAc, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strInfoBelow, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                    text: strInfoBelow, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
               ),
               CustomDivider(
                 height: height_30,
@@ -66,9 +67,7 @@ class RegisterScreen extends GetView<AuthController> {
               ),
               CustomTextField(
                 labelText: strEnterName,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.userIcon),
-                ),
+                prefixIcon: ImgAssets.userIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -77,9 +76,7 @@ class RegisterScreen extends GetView<AuthController> {
               ), //email text-field
               CustomTextField(
                 labelText: strEnterEmail,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.emailIcon),
-                ),
+                prefixIcon: ImgAssets.emailIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -88,9 +85,7 @@ class RegisterScreen extends GetView<AuthController> {
               ), //
               CustomTextField(
                   labelText: strEnterCompany,
-                  prefixIcon: const Image(
-                    image: AssetImage(ImgAssets.companyIcon),
-                  ),
+                  prefixIcon: ImgAssets.companyIcon,
                   obscure: false,
                   height: height_15,
                   textInputType: TextInputType.text,
@@ -98,15 +93,20 @@ class RegisterScreen extends GetView<AuthController> {
                   validator: ValidationBuilder().required('Company Name is Required').build()), //
               IntlPhoneField(
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: AppColors.white.withOpacity(.1),
                   labelText: "Enter Phone Number",
-                  labelStyle: TextStyle(fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                  labelStyle: TextStyle(color:AppColors.white,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                      borderSide: BorderSide(color: AppColors.white)),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                      borderSide: BorderSide(color: AppColors.white)),
                 ),
+                dropdownIcon: Icon(Icons.arrow_drop_down,color: AppColors.white,),
+                dropdownTextStyle: TextStyle(color: AppColors.white),
+                style: TextStyle(color: AppColors.orange),
                 initialCountryCode: 'IN',
                 validator: (phone) {
                   if (phone == null || phone.number.isEmpty) {
@@ -125,9 +125,7 @@ class RegisterScreen extends GetView<AuthController> {
               Obx(
                 () => CustomTextField(
                   labelText: strEnterPass,
-                  prefixIcon: const Image(
-                    image: AssetImage(ImgAssets.passIcon),
-                  ),
+                  prefixIcon: ImgAssets.passIcon,
                   height: height_15,
                   textInputType: TextInputType.text,
                   controller: passWordController,
@@ -147,9 +145,7 @@ class RegisterScreen extends GetView<AuthController> {
               Obx(
                 () => CustomTextField(
                   labelText: strConfirmPass,
-                  prefixIcon: const Image(
-                    image: AssetImage(ImgAssets.passIcon),
-                  ),
+                  prefixIcon: ImgAssets.passIcon,
                   suffixIcon: IconButton(
                     icon: registerController.isConfirmPasswordVisible.value
                         ? const Icon(Icons.visibility)
@@ -179,9 +175,7 @@ class RegisterScreen extends GetView<AuthController> {
 
               CustomTextField(
                 labelText: strEnterAddress,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.locationIcon),
-                ),
+                prefixIcon: ImgAssets.locationIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -197,9 +191,7 @@ class RegisterScreen extends GetView<AuthController> {
 
               CustomTextField(
                 labelText: strIdFront,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.docIcon),
-                ),
+                prefixIcon: ImgAssets.docIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -225,9 +217,7 @@ class RegisterScreen extends GetView<AuthController> {
               ), //
               CustomTextField(
                 labelText: strIdBack,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.docIcon),
-                ),
+                prefixIcon: ImgAssets.docIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -254,9 +244,7 @@ class RegisterScreen extends GetView<AuthController> {
 
               CustomTextField(
                 labelText: strUploadPhoto,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.uploadIcon),
-                ),
+                prefixIcon: ImgAssets.uploadIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,

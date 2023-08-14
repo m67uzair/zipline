@@ -18,9 +18,9 @@ class CustomRadioButton extends StatelessWidget {
       Container(
       height: height_45,
       decoration: BoxDecoration(
-          color: AppColors.transparent,
+          color: AppColors.white.withOpacity(.1),
           borderRadius: BorderRadius.circular(radius_10),
-          border: Border.all(color: AppColors.greyColor.withOpacity(.3))),
+          border: Border.all(color: AppColors.white)),
       child: Obx(
         () => Form(
           child: Row(
@@ -28,6 +28,8 @@ class CustomRadioButton extends StatelessWidget {
               Row(
                 children: [
                   Radio<String>(
+                    fillColor: MaterialStatePropertyAll(AppColors.orange),
+                    focusColor: Colors.amber,
                     activeColor: AppColors.orange,
                     value: strMale,
                     groupValue: authController.userGender.value,
@@ -35,12 +37,13 @@ class CustomRadioButton extends StatelessWidget {
                       authController.setUserGender(value.toString());
                     },
                   ),
-                  CustomText(text: strMale, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                  CustomText(text: strMale, color1: AppColors.white, fontWeight: fontWeight400, fontSize: font_13),
                 ],
               ),
               Row(
                 children: [
                   Radio<String>(
+                    fillColor: MaterialStatePropertyAll(AppColors.orange),
                     activeColor: AppColors.orange,
                     value: strFemale,
                     groupValue: authController.userGender.value,
@@ -48,7 +51,7 @@ class CustomRadioButton extends StatelessWidget {
                       authController.setUserGender(value.toString());
                     },
                   ),
-                  CustomText(text: strFemale, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                  CustomText(text: strFemale, color1: AppColors.white, fontWeight: fontWeight400, fontSize: font_13),
                 ],
               )
             ],

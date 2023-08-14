@@ -23,6 +23,7 @@ class ForgotPassword2Screen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: margin_15),
@@ -33,12 +34,12 @@ class ForgotPassword2Screen extends GetView<AuthController> {
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: CustomText(text: strForget, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+              child: CustomText(text: strForget, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
             ),
             Align(
               alignment: Alignment.topLeft,
               child: CustomText(
-                  text: strForgotPass, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_11),
+                  text: strForgotPass, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_11),
             ),
             CustomDivider(
               height: height_30,
@@ -54,14 +55,15 @@ class ForgotPassword2Screen extends GetView<AuthController> {
                 border: AppColors.orange,
                 icon: ImgAssets.msgIcon,
                 title: strSendCodeSmS,
-                subtitle: '+${Get.parameters['phone'].toString().trim()}'),
+                subtitle: '+${Get.parameters['phone'].toString().trim()}',
+            ),
             CustomDivider(
               height: height_16,
               isDivider: false,
             ),
             CustomListTile(
                 colorBackCircle: AppColors.greyColor.withOpacity(.2),
-                border: AppColors.greyColor,
+                border: AppColors.white,
                 icon: ImgAssets.emailIcon,
                 title: strSendCodeEmail,
                 subtitle: Get.parameters['email'].toString().trim()),

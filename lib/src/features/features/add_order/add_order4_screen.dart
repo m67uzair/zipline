@@ -64,6 +64,7 @@ class _AddOrderFourScreenState extends State<AddOrderFourScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         title: strItemDetail,
@@ -120,12 +121,12 @@ class _AddOrderFourScreenState extends State<AddOrderFourScreen> {
             Align(
               alignment: Alignment.topLeft,
               child: CustomText(
-                  text: strPackageDetails, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                  text: strPackageDetails, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
             ),
             Align(
               alignment: Alignment.topLeft,
               child: CustomText(
-                  text: strEnterDetBelow, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                  text: strEnterDetBelow, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
             ),
             CustomDivider(
               height: height_15,
@@ -135,7 +136,7 @@ class _AddOrderFourScreenState extends State<AddOrderFourScreen> {
               alignment: Alignment.topLeft,
               heightFactor: 1.5,
               child:
-                  CustomText(text: strAboutPack, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_18),
+                  CustomText(text: strAboutPack, color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_18),
             ),
             CustomAboutPack(
                 senderName: senderName,
@@ -153,7 +154,7 @@ class _AddOrderFourScreenState extends State<AddOrderFourScreen> {
               heightFactor: 1.5,
               alignment: Alignment.topLeft,
               child:
-                  CustomText(text: strItemCateg, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_18),
+                  CustomText(text: strItemCateg, color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_18),
             ),
             CustomContainer(
               title: itemCategory,

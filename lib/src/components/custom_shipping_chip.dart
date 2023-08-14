@@ -46,7 +46,7 @@ class ShippingChip extends StatelessWidget {
           height: height_220,
           // width: width_100,
           decoration: BoxDecoration(
-              color: bgColor ?? AppColors.lightOrange,
+              color: bgColor ?? AppColors.white.withOpacity(.1),
               borderRadius: BorderRadius.circular(radius_8),
               boxShadow: [
                 BoxShadow(
@@ -58,13 +58,13 @@ class ShippingChip extends StatelessWidget {
               ListTile(
                 title: CustomText(
                   text: strOrderUid,
-                  color1: AppColors.greyColor,
+                  color1: AppColors.textWhite,
                   fontWeight: fontWeight600,
                   fontSize: font_12,
                 ),
                 subtitle: CustomText(
                   text: orderUidNo,
-                  color1: AppColors.black,
+                  color1: AppColors.white,
                   fontWeight: fontWeight600,
                   fontSize: font_18,
                 ),
@@ -95,13 +95,13 @@ class ShippingChip extends StatelessWidget {
                       children: [
                         CustomText(
                           text: strSenderName,
-                          color1: AppColors.greyColor,
+                          color1: AppColors.textWhite,
                           fontWeight: fontWeight600,
                           fontSize: font_12,
                         ),
                         CustomText(
                           text: senderName,
-                          color1: AppColors.black,
+                          color1: AppColors.white,
                           fontWeight: fontWeight600,
                           fontSize: font_18,
                         ),
@@ -112,13 +112,13 @@ class ShippingChip extends StatelessWidget {
                       children: [
                         CustomText(
                           text: strRecieverName,
-                          color1: AppColors.greyColor,
+                          color1: AppColors.textWhite,
                           fontWeight: fontWeight600,
                           fontSize: font_12,
                         ),
                         CustomText(
                           text: recieverName,
-                          color1: AppColors.black,
+                          color1: AppColors.white,
                           fontWeight: fontWeight600,
                           fontSize: font_18,
                         ),
@@ -146,13 +146,13 @@ class ShippingChip extends StatelessWidget {
                     children: [
                       CustomText(
                         text: productName,
-                        color1: AppColors.black,
+                        color1: AppColors.white,
                         fontWeight: fontWeight600,
                         fontSize: font_18,
                       ),
                       CustomText(
                         text: time,
-                        color1: AppColors.greyColor,
+                        color1: AppColors.textWhite,
                         fontWeight: fontWeight600,
                         fontSize: font_12,
                       ),
@@ -160,7 +160,7 @@ class ShippingChip extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.error_outline, size: height_30),
+                    icon: Icon(Icons.arrow_forward_ios_outlined, size: height_20, color: AppColors.white,),
                   ),
                 ],
               ),

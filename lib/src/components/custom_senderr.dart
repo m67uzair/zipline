@@ -40,15 +40,15 @@ class CustomSender extends StatelessWidget {
         Align(
           heightFactor: height_1,
           alignment: Alignment.topLeft,
-          child: CustomText(text: heading, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_15),
+          child: CustomText(text: heading, color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_15),
         ),
         Container(
           // height: height_300,
           //width: width_60,
           decoration: BoxDecoration(
-              color: AppColors.white,
+              color: AppColors.white.withOpacity(.1),
               borderRadius: BorderRadius.circular(radius_20),
-              border: Border.all(color: AppColors.greyColor.withOpacity(.3))),
+              border: Border.all(color: AppColors.white.withOpacity(.3))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -69,7 +69,7 @@ class CustomSender extends StatelessWidget {
 
   Widget lineImage({required String text, required String text2}) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: margin_30),
+      padding: EdgeInsets.symmetric(horizontal: margin_20),
       child: Column(
         children: [
           CustomDivider(
@@ -78,7 +78,7 @@ class CustomSender extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomText(text: text, color1: AppColors.greyColor, fontWeight: fontWeight500, fontSize: font_12),
+              CustomText(text: text, color1: AppColors.white, fontWeight: fontWeight500, fontSize: font_12),
               Container(
                 height: 40,
                 width: 40,
@@ -88,12 +88,12 @@ class CustomSender extends StatelessWidget {
                     image: NetworkImage(text2),
                   ),
                 ),
-              )
+              ),
             ],
           ),
           Divider(
             height: height_10,
-            color: AppColors.greyColor.withOpacity(.4),
+            color: AppColors.white,
           ),
         ],
       ),

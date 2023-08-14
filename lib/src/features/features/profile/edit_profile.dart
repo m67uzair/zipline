@@ -60,6 +60,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         title: strEditProfile,
@@ -137,9 +138,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   CustomTextField(
                     labelText: strEnterName,
-                    prefixIcon: const Image(
-                      image: AssetImage(ImgAssets.userIcon),
-                    ),
+                    prefixIcon: ImgAssets.userIcon,
                     obscure: false,
                     height: height_15,
                     textInputType: TextInputType.text,
@@ -153,9 +152,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   // ),
                   CustomTextField(
                     labelText: strEnterEmail,
-                    prefixIcon: const Image(
-                      image: AssetImage(ImgAssets.emailIcon),
-                    ),
+                    prefixIcon: ImgAssets.emailIcon,
                     obscure: false,
                     height: height_15,
                     textInputType: TextInputType.text,
@@ -169,9 +166,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   // ),
                   CustomTextField(
                     labelText: strMobNo,
-                    prefixIcon: const Image(
-                      image: AssetImage(ImgAssets.phoneIcon),
-                    ),
+                    prefixIcon: ImgAssets.phoneIcon,
                     obscure: false,
                     height: height_15,
                     textInputType: TextInputType.phone,
@@ -188,9 +183,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   // ),
                   CustomTextField(
                     labelText: strEnterCompany,
-                    prefixIcon: const Image(
-                      image: AssetImage(ImgAssets.companyIcon),
-                    ),
+                    prefixIcon: ImgAssets.companyIcon,
                     obscure: false,
                     controller: companyController,
                     height: height_15,
@@ -198,9 +191,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   CustomTextField(
                     labelText: 'Lucknow, Uttar Pradesh',
-                    prefixIcon: const Image(
-                      image: AssetImage(ImgAssets.locationIcon),
-                    ),
+                    prefixIcon: ImgAssets.locationIcon,
                     obscure: false,
                     height: height_15,
                     controller: addressController,
@@ -212,6 +203,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         Row(
                           children: [
                             Radio<String>(
+                              fillColor: MaterialStatePropertyAll(AppColors.orange),
                               activeColor: AppColors.orange,
                               value: 'Male',
                               groupValue: profileController.userGender.value,
@@ -222,7 +214,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             CustomText(
                                 text: 'Male',
-                                color1: AppColors.greyColor,
+                                color1: AppColors.textWhite,
                                 fontWeight: fontWeight400,
                                 fontSize: font_13),
                           ],
@@ -230,6 +222,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         Row(
                           children: [
                             Radio<String>(
+                              fillColor: MaterialStatePropertyAll(AppColors.orange),
                               activeColor: AppColors.orange,
                               value: 'Female',
                               groupValue: profileController.userGender.value,
@@ -240,7 +233,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             CustomText(
                                 text: 'Female',
-                                color1: AppColors.greyColor,
+                                color1: AppColors.textWhite,
                                 fontWeight: fontWeight400,
                                 fontSize: font_13),
                           ],

@@ -1,3 +1,4 @@
+import 'package:courier_app/src/components/custom_divider.dart';
 import 'package:courier_app/src/components/custom_headcard.dart';
 import 'package:courier_app/src/components/custom_items.dart';
 import 'package:courier_app/src/components/custom_shipping_chip.dart';
@@ -53,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     print('built');
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       body: SafeArea(
           child: ListView(
         padding: EdgeInsets.symmetric(horizontal: margin_10),
@@ -87,11 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
             }),
             title: CustomText(
                 text: prefs.getString(UserContants.userName) ?? 'Hey!',
-                color1: AppColors.greyColor,
+                color1: AppColors.textWhite,
                 fontWeight: fontWeight400,
                 fontSize: font_13),
             subtitle:
-                CustomText(text: strWelcomeBack, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_16),
+                CustomText(text: strWelcomeBack, color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_16),
+          ),
+          CustomDivider(
+            height: height_20,
           ),
           CustomHeadCard(
             controller: orderSearchController,
@@ -100,7 +105,13 @@ class _HomeScreenState extends State<HomeScreen> {
               orderSearchController.clear();
             },
           ),
-          CustomText(text: strService, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_19),
+          CustomDivider(
+            height: height_30,
+          ),
+          CustomText(text: strService, color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_19),
+          CustomDivider(
+            height: height_10,
+          ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -139,13 +150,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          CustomDivider(
+            height: height_20,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomText(text: 'Recent Orders', color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_19),
+              CustomText(text: 'Recent Orders', color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_19),
               CustomTextButton(
                 text: strViewAll,
-                color: AppColors.orange,
+                color: AppColors.white,
                 fontWeight: fontWeight600,
                 font: font_15,
                 onPress: () {
@@ -221,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 time: dateAndTime,
                                 buttonColor: buttonColor,
                                 buttonName: status,
-                                bgColor: bgColor,
+                              //  bgColor: bgColor,
                                 productImageUrl: productImageUrl,
                               ),
                             ),

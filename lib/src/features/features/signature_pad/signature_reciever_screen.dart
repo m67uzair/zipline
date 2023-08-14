@@ -33,6 +33,7 @@ class SignatureRecieverScreen extends GetView<SignaturePadController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       //appBar: CustomAppBar(appBar: AppBar()),
       appBar: CustomAppbar(
         appBar: AppBar(),
@@ -53,9 +54,11 @@ class SignatureRecieverScreen extends GetView<SignaturePadController> {
               height: height_500,
               width: width_340,
               decoration: BoxDecoration(
+                  color: AppColors.white.withOpacity(.1),
                   borderRadius: BorderRadius.circular(radius_10),
-                  border: Border.all(color: AppColors.black, width: 1.2, strokeAlign: BorderSide.strokeAlignOutside)),
+                  border: Border.all(color: AppColors.white, width: 1.2, strokeAlign: BorderSide.strokeAlignOutside)),
               child: SfSignaturePad(
+                strokeColor: AppColors.white,
                 key: controller.signaturePadKey,
                 backgroundColor: Colors.transparent,
                 minimumStrokeWidth: width_3,
@@ -66,7 +69,7 @@ class SignatureRecieverScreen extends GetView<SignaturePadController> {
               padding: EdgeInsets.symmetric(horizontal: margin_140),
               child: CustomTextButton(
                   text: strClear,
-                  color: AppColors.orange,
+                  color: AppColors.white,
                   fontWeight: fontWeight600,
                   font: font_13,
                   onPress: () {

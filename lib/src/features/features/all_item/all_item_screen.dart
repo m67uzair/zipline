@@ -62,6 +62,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         dontShowBackButton: widget.navigatedFromNavBar,
@@ -83,7 +84,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
                   backgroundColor: AppColors.orange,
                   borderColor: AppColors.orange,
                   borderWidth: 2,
-                  unselectedBackgroundColor: AppColors.white,
+                  unselectedBackgroundColor: AppColors.transparent,
                   unselectedBorderColor: AppColors.orange,
                   unselectedLabelStyle: const TextStyle(color: AppColors.orange),
                   labelStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -118,7 +119,8 @@ class _AllItemScreenState extends State<AllItemScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 65,
+                        alignment: Alignment.center,
+                        height: height_45,
                         width: width_200,
                         decoration: BoxDecoration(
                             border: Border.all(
@@ -134,7 +136,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
                             }),
                       ),
                       Container(
-                        height: 70,
+                        height: height_45,
                         width: width_130,
                         decoration: BoxDecoration(
                             border: Border.all(
@@ -144,7 +146,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
                         child: CustomDropdown(
                           name: 'item type',
                           // labelText: strSelectItemType,
-                          labelColor: AppColors.greyColor,
+                          labelColor: AppColors.textWhite,
                           fontSize: font_13,
                           fontWeight: fontWeight400,
                           radius: radius_10,
@@ -252,7 +254,6 @@ class _AllItemScreenState extends State<AllItemScreen> {
                                             time: dateAndTime,
                                             buttonColor: buttonColor,
                                             buttonName: status,
-                                            bgColor: bgColor,
                                             productImageUrl: productImageUrl,
                                           ),
                                         ),
@@ -287,7 +288,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
     final config = CalendarDatePicker2WithActionButtonsConfig(
       dayTextStyle: dayTextStyle,
       calendarType: CalendarDatePicker2Type.range,
-      selectedDayHighlightColor: Colors.purple[800],
+      selectedDayHighlightColor: AppColors.orange,
       closeDialogOnCancelTapped: true,
       firstDayOfWeek: 1,
       weekdayLabelTextStyle: const TextStyle(

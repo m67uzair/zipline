@@ -32,7 +32,7 @@ class CustomSenderDetails extends StatelessWidget {
           alignment: Alignment.topLeft,
           child: CustomText(
           text: heading,
-          color1: AppColors.black,
+          color1: AppColors.white,
           fontWeight: fontWeight600,
           fontSize: font_15),
         ),
@@ -41,11 +41,12 @@ class CustomSenderDetails extends StatelessWidget {
           //height: height_200,
           //width: width_60,
           decoration: BoxDecoration(
-              color: AppColors.white,
+              color: AppColors.white.withOpacity(.1),
               borderRadius: BorderRadius.circular(radius_20),
               border: Border.all(color: AppColors.greyColor.withOpacity(.3))
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               line(text: strName, text2: name),

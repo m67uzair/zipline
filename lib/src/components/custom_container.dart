@@ -32,9 +32,9 @@ class CustomContainer extends StatelessWidget {
         Container(
           height: height_45,
           decoration: BoxDecoration(
-              color: AppColors.transparent,
+              color: AppColors.white.withOpacity(.1),
               borderRadius: BorderRadius.circular(radius_10),
-              border: Border.all(color: AppColors.greyColor.withOpacity(.5))
+              border: Border.all(color: AppColors.white)
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +52,7 @@ class CustomContainer extends StatelessWidget {
                   ),
                   CustomText(
                       text: title,
-                      color1: AppColors.greyColor,
+                      color1: AppColors.textWhite,
                       fontWeight: fontWeight400,
                       fontSize: font_13),
                 ],

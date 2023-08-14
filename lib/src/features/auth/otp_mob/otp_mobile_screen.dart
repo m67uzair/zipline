@@ -25,6 +25,7 @@ class OTPMobScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
         body: SafeArea(
             child: ListView(
       padding: EdgeInsets.symmetric(horizontal: margin_15),
@@ -36,13 +37,13 @@ class OTPMobScreen extends GetView<AuthController> {
         Align(
           alignment: Alignment.topLeft,
           child:
-              CustomText(text: strEnterPhoneOtp, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+              CustomText(text: strEnterPhoneOtp, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
         ),
         Align(
           alignment: Alignment.topLeft,
           child: CustomText(
               text: '$strOtpMo ${Get.parameters['phone']}',
-              color1: AppColors.greyColor,
+              color1: AppColors.textWhite,
               fontWeight: fontWeight400,
               fontSize: font_13),
         ),
@@ -52,10 +53,18 @@ class OTPMobScreen extends GetView<AuthController> {
         ),
         Image.asset(ImgAssets.otpArt, height: height_250),
         CustomDivider(
-          height: height_30,
+          height: height_60,
           isDivider: false,
         ),
         Pinput(
+          submittedPinTheme: PinTheme(
+            textStyle: TextStyle(color: AppColors.white, fontSize: font_25),
+            height: height_50,
+            width: width_60,
+            decoration: BoxDecoration(
+              color: AppColors.white.withOpacity(.3),
+                borderRadius: BorderRadius.circular(radius_10),
+                border: Border.all(color: AppColors.textWhite)),),
           length: 6,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           defaultPinTheme: PinTheme(
@@ -63,13 +72,14 @@ class OTPMobScreen extends GetView<AuthController> {
               width: width_60,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(radius_10),
-                  border: Border.all(color: AppColors.greyColor.withOpacity(.4))),
+                  border: Border.all(color: AppColors.textWhite)),
               textStyle: TextStyle(fontSize: font_20, fontWeight: fontWeight600)),
           focusedPinTheme: PinTheme(
             height: height_50,
             width: width_60,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(radius_10), border: Border.all(color: AppColors.orange)),
+              color: AppColors.white.withOpacity(.3),
+                borderRadius: BorderRadius.circular(radius_10), border: Border.all(color: AppColors.white)),
             textStyle: TextStyle(fontSize: font_20, fontWeight: fontWeight600),
           ),
           controller: otpController,
@@ -106,7 +116,7 @@ class OTPMobScreen extends GetView<AuthController> {
           ),
         ),
         CustomDivider(
-          height: height_100,
+          height: height_80,
           isDivider: false,
         ),
         Obx(

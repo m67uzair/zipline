@@ -53,6 +53,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
     pincodeController.text = addOrderController.receiverPincode;
 
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       // appBar: CustomAppbar(
       //   appBar: AppBar(),
       //   title: strItemDetail,
@@ -109,12 +110,12 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strReceiverDetails, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                    text: strReceiverDetails, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strEnterDetBelow, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                    text: strEnterDetBelow, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
               ),
 
               CustomDivider(
@@ -123,9 +124,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
               ),
               CustomTextField(
                 labelText: strEnterName,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.userIcon),
-                ),
+                prefixIcon: ImgAssets.userIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -135,15 +134,20 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
 
               IntlPhoneField(
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: AppColors.white.withOpacity(.1),
                   labelText: "Enter Phone Number",
-                  labelStyle: TextStyle(fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                  labelStyle: TextStyle(color:AppColors.white,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                      borderSide: BorderSide(color: AppColors.white)),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.3))),
+                      borderSide: BorderSide(color: AppColors.white)),
                 ),
+                dropdownIcon: Icon(Icons.arrow_drop_down,color: AppColors.white,),
+                dropdownTextStyle: TextStyle(color: AppColors.white),
+                style: TextStyle(color: AppColors.orange),
                 initialCountryCode:
                     addOrderController.receiverPhoneCode.isEmpty ? 'IN' : addOrderController.receiverPhoneCode,
                 initialValue: addOrderController.receiverPhoneNum,
@@ -164,9 +168,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
 
               CustomTextField(
                 labelText: strEnterEmail,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.emailIcon),
-                ),
+                prefixIcon: ImgAssets.emailIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -178,7 +180,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
               ), //email text-field
 
               CustomText(
-                  text: strDeliveryAddress, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                  text: strDeliveryAddress, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
 
               CustomDivider(
                 height: height_10,
@@ -187,9 +189,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
 
               CustomTextField(
                 labelText: strDoorFlat,
-                prefixIcon: const Image(
-                  image: AssetImage(ImgAssets.locationIcon),
-                ),
+                prefixIcon:ImgAssets.locationIcon,
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
@@ -202,7 +202,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
-                prefixIcon: null,
+                prefixIcon: ImgAssets.locationIcon,
                 controller: streetAreaController,
                 validator: ValidationBuilder().required().build(),
               ),
@@ -211,7 +211,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.text,
-                prefixIcon: null,
+                prefixIcon: ImgAssets.locationIcon,
                 controller: cityTownController,
                 validator: ValidationBuilder().required().build(),
               ),
@@ -220,7 +220,7 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
                 obscure: false,
                 height: height_15,
                 textInputType: TextInputType.number,
-                prefixIcon: null,
+                prefixIcon: ImgAssets.locationIcon,
                 controller: pincodeController,
                 validator: ValidationBuilder().required().build(),
               ),

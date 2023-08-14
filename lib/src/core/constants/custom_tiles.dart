@@ -39,12 +39,12 @@ class CustomListTile extends StatelessWidget {
       ),
       title: CustomText(
           text: title,
-          color1: AppColors.greyColor,
+          color1: AppColors.white,
           fontWeight: fontWeight400,
           fontSize: font_13),
       subtitle: CustomText(
           text: subtitle,
-          color1: AppColors.black,
+          color1: AppColors.textWhite.withOpacity(.6),
           fontWeight: fontWeight600,
           fontSize: font_16),
     );

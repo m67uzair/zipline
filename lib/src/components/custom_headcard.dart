@@ -20,7 +20,7 @@ class CustomHeadCard extends StatelessWidget {
     return Container(
       height: height_140,
       width: width_340,
-      decoration: BoxDecoration(color: AppColors.lightOrange, borderRadius: BorderRadius.circular(radius_15)),
+      decoration: BoxDecoration(color: AppColors.white.withOpacity(.1), borderRadius: BorderRadius.circular(radius_15)),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: margin_15),
         child: Column(
@@ -29,11 +29,19 @@ class CustomHeadCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                CustomText(text: strTrackPack, color1: AppColors.black, fontWeight: fontWeight600, fontSize: font_19),
-                Image(image: AssetImage(ImgAssets.boxTrack))
+                CustomText(text: strTrackPack, color1: AppColors.white, fontWeight: fontWeight600, fontSize: font_19),
+                Container(
+                  alignment: Alignment.center,
+                  height: 25, // Change this to your desired image height
+                  width: 25,
+                  child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.spaceAround,
+                      children: [Image.asset(ImgAssets.boxTrack, height: 25,)]), // Replace with your image path
+                ),
               ],
             ),
-            CustomText(text: strTrackId, color1: AppColors.greyColor, fontWeight: fontWeight500, fontSize: font_12),
+            CustomText(text: strTrackId, color1: AppColors.textWhite, fontWeight: fontWeight500, fontSize: font_12),
             CustomDivider(
               height: height_10,
               isDivider: false,

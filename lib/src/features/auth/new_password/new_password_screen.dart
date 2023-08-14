@@ -28,6 +28,7 @@ class NewPasswordScreen extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -41,12 +42,12 @@ class NewPasswordScreen extends GetView<AuthController> {
               Align(
                 alignment: Alignment.topLeft,
                 child:
-                    CustomText(text: strLetName, color1: AppColors.black, fontWeight: fontWeight700, fontSize: font_20),
+                    CustomText(text: strLetName, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strInfoBelow, color1: AppColors.greyColor, fontWeight: fontWeight400, fontSize: font_13),
+                    text: strInfoBelow, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
               ),
               CustomDivider(
                 height: height_30,
@@ -56,9 +57,7 @@ class NewPasswordScreen extends GetView<AuthController> {
               Obx(
                 () => CustomTextField(
                   labelText: strEnterPass,
-                  prefixIcon: const Image(
-                    image: AssetImage(ImgAssets.passIcon),
-                  ),
+                  prefixIcon: ImgAssets.passIcon,
                   suffixIcon: IconButton(
                     icon: newPasswordController.isPassVisible.value
                         ? const Icon(Icons.visibility)
@@ -79,9 +78,7 @@ class NewPasswordScreen extends GetView<AuthController> {
               Obx(
                 () => CustomTextField(
                   labelText: strConfirmPass,
-                  prefixIcon: const Image(
-                    image: AssetImage(ImgAssets.passIcon),
-                  ),
+                  prefixIcon: ImgAssets.passIcon,
                   suffixIcon: IconButton(
                     icon: newPasswordController.isPassVisible.value
                         ? const Icon(Icons.visibility)
