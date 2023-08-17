@@ -7,6 +7,7 @@ import 'package:courier_app/src/features/auth/auth/login_user_model.dart';
 import 'package:courier_app/src/features/auth/auth/preferences_service.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -40,6 +41,7 @@ class AuthController extends GetxController {
   String userIdBack = '';
   String userProfilePhoto = '';
   RxString userGender = ''.obs;
+  String phoneOtpId = '';
 
   RxString registerStatus = ''.obs;
 
@@ -229,59 +231,105 @@ class AuthController extends GetxController {
   }
 
   Future<void> sendPhoneOTP(String phoneNumber) async {
-    print('pppppp$phoneNumber');
     isLoading.value = true;
+    isPhoneVerified.value = false;
+    phoneOtpId = '';
     try {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        timeout: const Duration(seconds: 60),
-        verificationCompleted: _verificationCompleted,
-        verificationFailed: _verificationFailed,
-        codeSent: _codeSent,
-        codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
-      );
+      final url = Uri.parse('https://courier.hnktrecruitment.in/send-otp');
+      final response = await http.post(url,
+          body: jsonEncode({
+            'mobile_number': phoneNumber,
+          }),
+          headers: {'Content-Type': 'application/json'});
+      final jsonData = jsonDecode(response.body.toString());
       startOtpResendTimer();
-    } on FirebaseAuthException catch (e) {
-      Fluttertoast.showToast(msg: e.message.toString(), timeInSecForIosWeb: 30);
-    }
-  }
-
-  Future<void> resendPhoneOTP(String phoneNumber) async {
-    if (resendToken != null) {
-      try {
-        await FirebaseAuth.instance.verifyPhoneNumber(
-          phoneNumber: phoneNumber,
-          timeout: const Duration(seconds: 60),
-          verificationCompleted: _verificationCompleted,
-          verificationFailed: _verificationFailed,
-          codeSent: _codeSent,
-          codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
-          forceResendingToken: resendToken,
-        );
-        startOtpResendTimer();
-        Fluttertoast.showToast(msg: "Phone OTP resent successfully", timeInSecForIosWeb: 10);
-      } catch (e) {
-        print("Resending OTP Failed: $e");
+      if (response.statusCode == 200) {
+        phoneOtpId = jsonData['otp_id'].toString();
+        Fluttertoast.showToast(msg: "Phone OTP sent Successfully", toastLength: Toast.LENGTH_LONG);
+        Get.to('${AppRoutes.otpMob}?phone=$userPhone');
+      } else {
+        Fluttertoast.showToast(msg: "An error occurred while sending phone OTP", toastLength: Toast.LENGTH_LONG);
       }
-    } else {
-      Fluttertoast.showToast(msg: "Resend token not available.", timeInSecForIosWeb: 10);
+    } on Exception catch (e) {
+      Fluttertoast.showToast(msg: "An error occurred while sending phone OTP", toastLength: Toast.LENGTH_LONG);
     }
+
+    isLoading.value = false;
   }
 
   Future<void> verifyPhoneOTP(String otp) async {
     isLoading.value = true;
     try {
-      AuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId.value,
-        smsCode: otp,
+      final url = Uri.parse('https://courier.hnktrecruitment.in/verify-otp');
+      final response = await http.post(
+        url,
+        body: jsonEncode({
+          'otp_id': phoneOtpId,
+          'user_otp': otp,
+        }),
+        headers: {'Content-Type': 'application/json'},
       );
-      await _signInWithCredential(credential);
-    } catch (e) {
-      isLoading.value = false;
-      Fluttertoast.showToast(msg: "Phone OTP verification failed", timeInSecForIosWeb: 10);
-      print("Verification Failed: $e");
+      final jsonData = jsonDecode(response.body.toString());
+      if (response.statusCode == 200) {
+        String status = jsonData['status'];
+        String msg = jsonData['message'];
+
+        if (status == 'success') {
+          Fluttertoast.showToast(msg: 'Phone OTP Verified Successfully', toastLength: Toast.LENGTH_LONG);
+          isPhoneVerified.value = true;
+          startOtpResendTimer();
+          Get.offNamed('${AppRoutes.otpEmail}?email=$userEmail');
+          setEmailOTPConfig(userEmail);
+        } else if (status == 'error') {
+          Fluttertoast.showToast(msg: 'Could\'nt verify OTP, please try again', toastLength: Toast.LENGTH_LONG);
+        }
+      } else {
+        Fluttertoast.showToast(
+            msg: 'An error occurred, check you\'r internet and try again', toastLength: Toast.LENGTH_LONG);
+      }
+    } on Exception catch (e) {
+      Fluttertoast.showToast(
+          msg: 'An error occurred, check you\'r internet and try again', toastLength: Toast.LENGTH_LONG);
     }
+    isLoading.value = false;
   }
+
+  // Future<void> sendPhoneOTP(String phoneNumber) async {
+  //   print('pppppp$phoneNumber');
+  //   isLoading.value = true;
+  //   try {
+  //     await _auth.verifyPhoneNumber(
+  //       phoneNumber: phoneNumber,
+  //       timeout: const Duration(seconds: 60),
+  //       verificationCompleted: _verificationCompleted,
+  //       verificationFailed: _verificationFailed,
+  //       codeSent: _codeSent,
+  //       codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
+  //     );
+  //     startOtpResendTimer();
+  //   } on FirebaseAuthException catch (e) {
+  //     Fluttertoast.showToast(msg: e.message.toString(), timeInSecForIosWeb: 30);
+  //   }
+  // }
+
+  Future<void> resendPhoneOTP(String phoneNumber) async {
+    await sendPhoneOTP(phoneNumber);
+  }
+
+  // Future<void> verifyPhoneOTP(String otp) async {
+  //   isLoading.value = true;
+  //   try {
+  //     AuthCredential credential = PhoneAuthProvider.credential(
+  //       verificationId: verificationId.value,
+  //       smsCode: otp,
+  //     );
+  //     await _signInWithCredential(credential);
+  //   } catch (e) {
+  //     isLoading.value = false;
+  //     Fluttertoast.showToast(msg: "Phone OTP verification failed", timeInSecForIosWeb: 10);
+  //     print("Verification Failed: $e");
+  //   }
+  // }
 
   void _codeAutoRetrievalTimeout(String verificationId) {
     isLoading.value = false;

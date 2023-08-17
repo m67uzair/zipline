@@ -20,7 +20,7 @@ class CustomTextField extends StatelessWidget {
     this.onTap,
     this.validator,
     this.readOnly = false,
-    this.showCursor,
+    this.showCursor, this.color,
   }) : super(key: key);
 
   final String labelText;
@@ -35,6 +35,7 @@ class CustomTextField extends StatelessWidget {
   final bool obscure;
   final bool readOnly;
   final bool? showCursor;
+  final Color? color;
 
   TextEditingController? controller = TextEditingController();
 
@@ -55,7 +56,7 @@ class CustomTextField extends StatelessWidget {
           style: TextStyle(color: AppColors.orange, fontSize: font_13, fontWeight: fontWeight400),
           decoration: InputDecoration(
             filled: true,
-            fillColor: AppColors.white.withOpacity(.1),
+            fillColor: color ?? AppColors.white.withOpacity(.1),
             labelText: labelText,
             labelStyle: TextStyle(color: AppColors.textWhite,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
             prefixIcon: Container(

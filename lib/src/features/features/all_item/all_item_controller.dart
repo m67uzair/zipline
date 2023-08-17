@@ -75,7 +75,7 @@ class AllItemController extends GetxController {
   }
 
   bool _validateOrderToken(String value) {
-    return RegExp(r'^CRC\d+$').hasMatch(value);
+    return RegExp(r'^CRC\d+$', caseSensitive: false).hasMatch(value);
   }
 
   void showProgressDialog() {

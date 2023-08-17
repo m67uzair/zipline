@@ -82,7 +82,11 @@ class _AddOrderFourScreenState extends State<AddOrderFourScreen> {
               decoration: BoxDecoration(
                 color: AppColors.transparent,
               ),
-              child: Stepper(
+              child: Theme(
+                data: ThemeData(
+                    colorScheme: ColorScheme.light(primary: AppColors.orange,),
+                    canvasColor: AppColors.darkBlue
+                ), child: Stepper(
                 currentStep: _currentStep,
                 type: StepperType.horizontal,
                 steps: [
@@ -109,14 +113,11 @@ class _AddOrderFourScreenState extends State<AddOrderFourScreen> {
                 ],
                 elevation: 0,
                 onStepTapped: (index) {
-                  setState(() {
-                    _currentStep = index;
-                    if (_currentStep >= 1) {
-                      Get.to(AddOrderTwoScreen());
-                    }
-                  });
+                  // setState(() {
+                  //   _currentStep = index;
+                  // });
                 },
-              ),
+              ),)
             ),
             Align(
               alignment: Alignment.topLeft,

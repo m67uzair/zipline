@@ -6,6 +6,7 @@ import 'package:courier_app/src/core/constants/user_constants.dart';
 import 'package:courier_app/src/features/auth/auth/preferences_service.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +23,7 @@ class ForgotPassword2Controller extends GetxController {
   RxBool isEmailCodeSent = false.obs;
   RxBool isEmailVerified = false.obs;
   RxBool isTimerRunning = false.obs;
+  String phoneOtpId = '';
   RxInt otpResendTimer = 0.obs;
   int? resendToken;
 
@@ -46,10 +48,8 @@ class ForgotPassword2Controller extends GetxController {
     try {
       final response = await http.post(url,
           body: jsonEncode({
-            // 'email': prefs.getString(UserContants.userEmail),
-            // 'mobile_number': prefs.getString(UserContants.userPhone),
-            'email': 'user223@gmail.com',
-            'mobile_number': '1234567891',
+            'email': userEmail.isNotEmpty ? userEmail : null,
+            'mobile_number': userPhone.isNotEmpty ? userPhone : null,
             'password': password,
             'confirm_password': password,
           }),
@@ -86,6 +86,7 @@ class ForgotPassword2Controller extends GetxController {
 
   Future<void> setEmailOTPConfig(String email) async {
     isLoading.value = true;
+    showProgressDialog();
     try {
       emailAuth2.setConfig(
           appEmail: "ziplinez53@gmail.com",
@@ -97,11 +98,14 @@ class ForgotPassword2Controller extends GetxController {
       if (await emailAuth2.sendOTP() == true) {
         isEmailCodeSent.value = true;
         Fluttertoast.showToast(msg: "email OTP sent successfully", timeInSecForIosWeb: 10);
-        Get.offNamed(AppRoutes.forgotOtpEmail);
+        Get.back();
+        Get.offNamed('${AppRoutes.forgotOtpEmail}?email=$userEmail&route=forgot');
       } else {
+        Get.back();
         Fluttertoast.showToast(msg: "Email OTP Failed to send", timeInSecForIosWeb: 10);
       }
     } on Exception catch (e) {
+      Get.back();
       print(e);
       Fluttertoast.showToast(msg: "Cant send email otp", timeInSecForIosWeb: 10);
     }
@@ -120,7 +124,6 @@ class ForgotPassword2Controller extends GetxController {
       }
     } on Exception catch (e) {
       isLoading.value = false;
-      print('double u');
       Fluttertoast.showToast(msg: "Cant verify email otp");
     }
     isLoading.value = false;
@@ -128,58 +131,113 @@ class ForgotPassword2Controller extends GetxController {
 
   Future<void> sendPhoneOTP(String phoneNumber) async {
     isLoading.value = true;
+    showProgressDialog();
     try {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        timeout: const Duration(seconds: 60),
-        verificationCompleted: _verificationCompleted,
-        verificationFailed: _verificationFailed,
-        codeSent: _codeSent,
-        codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
-      );
-      startOtpResendTimer();
-    } on FirebaseAuthException catch (e) {
-      Fluttertoast.showToast(msg: e.message.toString(), timeInSecForIosWeb: 30);
+      final url = Uri.parse('https://courier.hnktrecruitment.in/send-otp');
+      final response = await http.post(url,
+          body: jsonEncode({
+            'mobile_number': phoneNumber,
+          }),
+          headers: {'Content-Type': 'application/json'});
+      final jsonData = jsonDecode(response.body.toString());
+
+      if (response.statusCode == 200) {
+        phoneOtpId = jsonData['otp_id'].toString();
+        Get.back();
+        Fluttertoast.showToast(msg: "Phone OTP sent Successfully", toastLength: Toast.LENGTH_LONG);
+        Get.to('${AppRoutes.otpMob}?phone=$phoneNumber');
+      } else {
+        Get.back();
+        Fluttertoast.showToast(msg: "An error occurred while sending phone OTP", toastLength: Toast.LENGTH_LONG);
+      }
+    } on Exception catch (e) {
+      Get.back();
+      Fluttertoast.showToast(msg: "An error occurred while sending phone OTP", toastLength: Toast.LENGTH_LONG);
     }
+
+    isLoading.value = false;
   }
 
+
   Future<void> resendPhoneOTP(String phoneNumber) async {
-    if (resendToken != null) {
-      try {
-        await FirebaseAuth.instance.verifyPhoneNumber(
-          phoneNumber: phoneNumber,
-          timeout: const Duration(seconds: 60),
-          verificationCompleted: _verificationCompleted,
-          verificationFailed: _verificationFailed,
-          codeSent: _codeSent,
-          codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
-          forceResendingToken: resendToken,
-        );
-        startOtpResendTimer();
-        Fluttertoast.showToast(msg: "Phone OTP resent successfully", timeInSecForIosWeb: 10);
-      } catch (e) {
-        print("Resending OTP Failed: $e");
-      }
-    } else {
-      Fluttertoast.showToast(msg: "Resend token not available.", timeInSecForIosWeb: 10);
-    }
+    startOtpResendTimer();
+    sendPhoneOTP(phoneNumber);
   }
 
   Future<void> verifyPhoneOTP(String otp) async {
     isLoading.value = true;
     try {
-      AuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId.value,
-        smsCode: otp,
+      final url = Uri.parse('https://courier.hnktrecruitment.in/verify-otp');
+      final response = await http.post(
+        url,
+        body: jsonEncode({
+          'otp_id': phoneOtpId,
+          'user_otp': otp,
+        }),
+        headers: {'Content-Type': 'application/json'},
       );
-      await _signInWithCredential(credential);
-    } catch (e) {
-      isLoading.value = false;
-      Fluttertoast.showToast(msg: "Phone OTP verification failed", timeInSecForIosWeb: 10);
-      print("Verification Failed: $e");
+      final jsonData = jsonDecode(response.body.toString());
+      if (response.statusCode == 200) {
+        String status = jsonData['status'];
+        String msg = jsonData['message'];
+
+        if (status == 'success') {
+          Fluttertoast.showToast(msg: 'Phone OTP Verified Successfully', toastLength: Toast.LENGTH_LONG);
+          isPhoneVerified.value = true;
+          Get.offNamed(AppRoutes.newPass);
+        } else if (status == 'error') {
+          Fluttertoast.showToast(msg: 'Could\'nt verify OTP, please try again', toastLength: Toast.LENGTH_LONG);
+        }
+      } else {
+        Fluttertoast.showToast(
+            msg: 'An error occurred, check you\'r internet and try again', toastLength: Toast.LENGTH_LONG);
+      }
+    } on Exception catch (e) {
+      Fluttertoast.showToast(
+          msg: 'An error occurred, check you\'r internet and try again', toastLength: Toast.LENGTH_LONG);
     }
+    isLoading.value = false;
   }
 
+
+  void showProgressDialog() {
+    Get.dialog(
+      WillPopScope(
+        onWillPop: () async => false,
+        child: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
+      barrierDismissible: false,
+    );
+  }
+
+  // try {
+  // await _auth.verifyPhoneNumber(
+  // phoneNumber: phoneNumber,
+  // timeout: const Duration(seconds: 60),
+  // verificationCompleted: _verificationCompleted,
+  // verificationFailed: _verificationFailed,
+  // codeSent: _codeSent,
+  // codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
+  // );
+  // startOtpResendTimer();
+  // } on FirebaseAuthException catch (e) {
+  // Fluttertoast.showToast(msg: e.message.toString(), timeInSecForIosWeb: 30);
+  // }
+
+
+  // try {
+  // AuthCredential credential = PhoneAuthProvider.credential(
+  // verificationId: verificationId.value,
+  // smsCode: otp,
+  // );
+  // await _signInWithCredential(credential);
+  // } catch (e) {
+  // isLoading.value = false;
+  // Fluttertoast.showToast(msg: "Phone OTP verification failed", timeInSecForIosWeb: 10);
+  // print("Verification Failed: $e");
+  // }
   void _codeAutoRetrievalTimeout(String verificationId) {
     isLoading.value = false;
     this.verificationId.value = verificationId;
@@ -218,8 +276,7 @@ class ForgotPassword2Controller extends GetxController {
         Fluttertoast.showToast(msg: "Phone OTP verified successfully", timeInSecForIosWeb: 10);
         isPhoneVerified.value = true;
         startOtpResendTimer();
-        Get.toNamed('${AppRoutes.forgotOtpEmail}?email=$userEmail&route=forgot');
-        setEmailOTPConfig(userEmail);
+        Get.offNamed(AppRoutes.newPass);
       }
     } catch (e) {
       isLoading.value = false;

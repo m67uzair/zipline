@@ -209,6 +209,7 @@ double height_330 = 330.0.h;
 double height_350 = 350.0.h;
 double height_400 = 400.0.h;
 double height_450 = 450.0.h;
+double height_470 = 470.0.h;
 double height_500 = 500.0.h;
 double height_550 = 550.0.h;
 double height_520 = 520.0.h;

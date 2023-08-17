@@ -158,10 +158,7 @@ class ShippingChip extends StatelessWidget {
                       ),
                     ],
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.arrow_forward_ios_outlined, size: height_20, color: AppColors.white,),
-                  ),
+                  Icon(Icons.arrow_forward_ios_outlined, size: height_20, color: AppColors.white,),
                 ],
               ),
             ],

@@ -4,9 +4,9 @@ com.mastertipsy.flutter_localization-core-1.6.0-2 C:\Users\m67uz\.gradle\caches\
 com.mastertipsy.flutter_localization-jetified-window-java-1.0.0-beta04-3 C:\Users\m67uz\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\res
 com.mastertipsy.flutter_localization-main-4 C:\Users\m67uz\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_localization-0.1.13\android\src\main\res
 com.mastertipsy.flutter_localization-release-5 C:\Users\m67uz\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_localization-0.1.13\android\src\release\res
-com.mastertipsy.flutter_localization-pngs-6 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\flutter_localization\generated\res\pngs\release
-com.mastertipsy.flutter_localization-resValues-7 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\flutter_localization\generated\res\resValues\release
-com.mastertipsy.flutter_localization-rs-8 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\flutter_localization\generated\res\rs\release
-com.mastertipsy.flutter_localization-mergeReleaseResources-9 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\flutter_localization\intermediates\incremental\release\mergeReleaseResources\merged.dir
-com.mastertipsy.flutter_localization-mergeReleaseResources-10 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\flutter_localization\intermediates\incremental\release\mergeReleaseResources\stripped.dir
-com.mastertipsy.flutter_localization-merged_res-11 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\flutter_localization\intermediates\merged_res\release
+com.mastertipsy.flutter_localization-pngs-6 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\flutter_localization\generated\res\pngs\release
+com.mastertipsy.flutter_localization-resValues-7 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\flutter_localization\generated\res\resValues\release
+com.mastertipsy.flutter_localization-rs-8 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\flutter_localization\generated\res\rs\release
+com.mastertipsy.flutter_localization-mergeReleaseResources-9 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\flutter_localization\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.mastertipsy.flutter_localization-mergeReleaseResources-10 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\flutter_localization\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.mastertipsy.flutter_localization-merged_res-11 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\flutter_localization\intermediates\merged_res\release

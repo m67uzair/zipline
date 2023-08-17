@@ -1,5 +1,6 @@
 import 'package:courier_app/src/components/custom_textfield.dart';
 import 'package:courier_app/src/core/config/routes.dart';
+import 'package:courier_app/src/features/auth/forgot_password2/forgot_password_2_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ class ForgotPasswordScreen extends GetView<AuthController> {
   String number = '';
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final ForgotPassword2Controller _forgotPassword2Controller = Get.put(ForgotPassword2Controller());
 
   @override
   Widget build(BuildContext context) {
@@ -67,20 +69,40 @@ class ForgotPasswordScreen extends GetView<AuthController> {
                 textInputType: TextInputType.text,
                 validator: ValidationBuilder().required().email().build(),
               ),
+              const Row(
+                children: [
+                  Expanded(
+                    child: Divider(),
+                  ),
+                  Text(
+                    'OR',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  Expanded(
+                    child: Divider(),
+                  ),
+                ],
+              ),
+              CustomDivider(
+                height: height_40,
+                isDivider: false,
+              ),
               IntlPhoneField(
                 decoration: InputDecoration(
                   fillColor: AppColors.white.withOpacity(.1),
                   filled: true,
                   labelText: "Enter Phone Number",
-                  labelStyle: TextStyle(color:AppColors.white,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                  labelStyle: TextStyle(
+                      color: AppColors.white, fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
                   enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.white)),
+                      borderRadius: BorderRadius.circular(radius_10), borderSide: BorderSide(color: AppColors.white)),
                   focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.white)),
+                      borderRadius: BorderRadius.circular(radius_10), borderSide: BorderSide(color: AppColors.white)),
                 ),
-                dropdownIcon: Icon(Icons.arrow_drop_down,color: AppColors.white,),
+                dropdownIcon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: AppColors.white,
+                ),
                 dropdownTextStyle: TextStyle(color: AppColors.white),
                 style: TextStyle(color: AppColors.orange),
                 initialCountryCode: 'IN',
@@ -92,27 +114,38 @@ class ForgotPasswordScreen extends GetView<AuthController> {
                   print('+$countryCode$number');
                 },
                 validator: (phone) {
-                  if (phone == null || phone.number.isEmpty) {
-                    return 'Please enter a phone number.';
-                  }
-                  return null;
+                  print('number ${phone!.number}');
+                  return ' ';
                 },
               ),
               CustomDivider(
-                height: height_60,
+                height: height_15,
                 isDivider: false,
               ),
-              CustomButton(
-                text: strContinue,
-                color: AppColors.white,
-                fontWeight: fontWeight800,
-                font: font_16,
-                onPress: () {
-                  if (formKey.currentState!.validate()) {
-                    Get.toNamed('${AppRoutes.forgotPass2}?email=${emailController.text}&phone=+$countryCode$number');
-                  }
-                },
-              ),
+              Obx(() => _forgotPassword2Controller.isLoading.isTrue
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.orange,
+                      ),
+                    )
+                  : CustomButton(
+                      text: strContinue,
+                      color: AppColors.white,
+                      fontWeight: fontWeight800,
+                      font: font_16,
+                      onPress: () async {
+                        if (emailController.text.isNotEmpty || number.isNotEmpty) {
+                          _forgotPassword2Controller.setUserPhoneAndEmail('$countryCode$number', emailController.text);
+                          if (emailController.text.isNotEmpty) {
+                            String email = emailController.text;
+                            await _forgotPassword2Controller.setEmailOTPConfig(email);
+                            // await _forgotPassword2Controller.setUserPhoneAndEmail(phone, email);
+                          } else if (number.isNotEmpty) {
+                            await _forgotPassword2Controller.sendPhoneOTP('$countryCode$number');
+                          }
+                        }
+                      },
+                    )),
             ],
           ),
         ),

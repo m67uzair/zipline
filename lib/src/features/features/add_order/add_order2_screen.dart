@@ -73,7 +73,11 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
                 decoration: BoxDecoration(
                   color: AppColors.transparent,
                 ),
-                child: Stepper(
+                child: Theme(
+                  data: ThemeData(
+                      colorScheme: ColorScheme.light(primary: AppColors.orange,),
+                      canvasColor: AppColors.darkBlue
+                  ), child: Stepper(
                   currentStep: _currentStep,
                   type: StepperType.horizontal,
                   steps: [
@@ -100,11 +104,11 @@ class _AddOrderTwoScreenState extends State<AddOrderTwoScreen> {
                   ],
                   elevation: 0,
                   onStepTapped: (index) {
-                    setState(() {
-                      _currentStep = index;
-                    });
+                    // setState(() {
+                    //   _currentStep = index;
+                    // });
                   },
-                ),
+                ),)
               ),
 
               Align(

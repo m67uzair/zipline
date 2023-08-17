@@ -41,6 +41,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
   Widget build(BuildContext context) {
     String status = widget.order.status.toString().toLowerCase();
     return Scaffold(
+      backgroundColor: AppColors.darkBlue,
       appBar: CustomAppbar(
         appBar: AppBar(),
         title: strItemDetail,
@@ -115,7 +116,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                     alignment: Alignment.topLeft,
                     child: CustomText(
                         text: strTakeRecSign,
-                        color1: AppColors.black,
+                        color1: AppColors.textWhite,
                         fontWeight: fontWeight600,
                         fontSize: font_15),
                   )

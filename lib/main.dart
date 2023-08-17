@@ -71,14 +71,14 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             smartManagement: SmartManagement.full,
             initialRoute: !isFirstLogin
-                ? AppRoutes.getSplashOneRoute()
+                ? AppRoutes.getSplashRoute()
                 : userId == null
-                    ? AppRoutes.getLoginRoute()
+                    ? AppRoutes.getSplashRoute()
                     : AppRoutes.getNavBarRoute(),
             initialBinding: !isFirstLogin
                 ? SplashBinding()
                 : userId != null
-                    ? LoginBinding()
+                    ? SplashBinding()
                     : NavBarBinding(),
             // initialRoute: AppRoutes.getAddOrderOneRoute(),
             // initialBinding: AddOrderBinding(),

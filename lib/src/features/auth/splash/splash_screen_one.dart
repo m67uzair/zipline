@@ -28,12 +28,19 @@ class _SplashOneScreenState extends State<SplashOneScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.orange,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: margin_15),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Image(image: AssetImage(ImgAssets.splashOne)),
-        ]),
+      backgroundColor: AppColors.darkBlue,
+      body: Stack(
+        children: [
+         // Image(image: AssetImage(ImgAssets.splashbackone)),
+          SizedBox(
+              height: MediaQuery.of(context).size.height*1,
+              width: MediaQuery.of(context).size.width*1,
+              child: Image(image: AssetImage(ImgAssets.splashbackone),)),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: margin_15),
+            child: Center(child: Image(image: AssetImage(ImgAssets.splashOne), )),
+          ),
+        ],
       ),
     );
   }

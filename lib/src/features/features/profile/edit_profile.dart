@@ -188,6 +188,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     controller: companyController,
                     height: height_15,
                     textInputType: TextInputType.text,
+                    color: AppColors.transparent,
+
                   ),
                   CustomTextField(
                     labelText: 'Lucknow, Uttar Pradesh',
@@ -196,6 +198,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     height: height_15,
                     controller: addressController,
                     textInputType: TextInputType.text,
+                    color: AppColors.transparent,
                   ),
                   Obx(
                     () => Row(

@@ -34,6 +34,7 @@ import 'package:courier_app/src/features/features/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../features/auth/splash/splash_screen.dart';
 import '../../features/auth/splash/splash_screen_two.dart';
 import '../../features/features/add_order/add_order2_screen.dart';
 import '../../features/features/add_order/add_order3_screen.dart';
@@ -70,6 +71,7 @@ class AppRoutes {
   static const String navBar = "/navbar";
   static const String splashOne = "/splashone";
   static const String splashTwo = "/splashtwo";
+  static const String splash = "/splash";
 
   static String getLoginRoute() => login;
 
@@ -117,11 +119,15 @@ class AppRoutes {
   static String getNavBarRoute() => navBar;
   static String getSplashOneRoute() => splashOne;
   static String getSplashTwoRoute() => splashTwo;
+  static String getSplashRoute() => splash;
 
   static generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case login:
-        return GetPageRoute(settings: settings, routeName: getLoginRoute(), page: () => LoginScreen());
+        return GetPageRoute(
+            settings: settings,
+            routeName: getLoginRoute(),
+            page: () => LoginScreen());
 
       case register:
         return GetPageRoute(
@@ -130,7 +136,10 @@ class AppRoutes {
           page: () => RegisterScreen(),
         );
       case otpMob:
-        return GetPageRoute(settings: settings, routeName: getOtpMobRoute(), page: () => OTPMobScreen());
+        return GetPageRoute(
+            settings: settings,
+            routeName: getOtpMobRoute(),
+            page: () => OTPMobScreen());
       case otpEmail:
         return GetPageRoute(
           settings: settings,
@@ -150,7 +159,10 @@ class AppRoutes {
           page: () => ForgotOTPEmailScreen(),
         );
       case newPass:
-        return GetPageRoute(settings: settings, routeName: getNewPasswordRoute(), page: () => NewPasswordScreen());
+        return GetPageRoute(
+            settings: settings,
+            routeName: getNewPasswordRoute(),
+            page: () => NewPasswordScreen());
       case forgotPass:
         return GetPageRoute(
           settings: settings,
@@ -171,7 +183,10 @@ class AppRoutes {
           page: () => SignaturePadScreen(),
         );
       case home:
-        return GetPageRoute(settings: settings, routeName: getHomeRoute(), page: () => HomeScreen());
+        return GetPageRoute(
+            settings: settings,
+            routeName: getHomeRoute(),
+            page: () => HomeScreen());
       case main:
       // return GetPageRoute(settings: settings, routeName: getMainRoute(), page: () => MainScreen());
       case addOrderOne:
@@ -198,24 +213,24 @@ class AppRoutes {
           routeName: getAddOrderFourRoute(),
           page: () => AddOrderFourScreen(),
         );
-    // case completeOrders:
-    //   return GetPageRoute(
-    //     settings: settings,
-    //     routeName: getCompleteOrderRoute(),
-    //     page: () => CompleteOrdersScreen(),
-    //   );
-    // case pendingOrders:
-    //   return GetPageRoute(
-    //     settings: settings,
-    //     routeName: getPendingOrdersRoute(),
-    //     page: () => PendingDetailsScreen(),
-    //   );
-    // case recieverSign:
-    //   return GetPageRoute(
-    //     settings: settings,
-    //     routeName: getRecieverSignRoute(),
-    //     page: () => SignatureRecieverScreen(),
-    //   );
+      // case completeOrders:
+      //   return GetPageRoute(
+      //     settings: settings,
+      //     routeName: getCompleteOrderRoute(),
+      //     page: () => CompleteOrdersScreen(),
+      //   );
+      // case pendingOrders:
+      //   return GetPageRoute(
+      //     settings: settings,
+      //     routeName: getPendingOrdersRoute(),
+      //     page: () => PendingDetailsScreen(),
+      //   );
+      // case recieverSign:
+      //   return GetPageRoute(
+      //     settings: settings,
+      //     routeName: getRecieverSignRoute(),
+      //     page: () => SignatureRecieverScreen(),
+      //   );
       case allItem:
         return GetPageRoute(
           settings: settings,
@@ -252,120 +267,143 @@ class AppRoutes {
           routeName: getSplashTwoRoute(),
           page: () => SplashTwoScreen(),
         );
+      case splash:
+        return GetPageRoute(
+          settings: settings,
+          routeName: getSplashRoute(),
+          page: () => SplashScreen(),
+        );
       default:
         return null;
     }
   }
 
   static getPages() => [
-    GetPage(
-      name: login,
-      page: () => LoginScreen(),
-      binding: LoginBinding(),
-    ),
-    GetPage(
-      name: register,
-      page: () => RegisterScreen(),
-      binding: RegisterBinding(),
-    ),
-    GetPage(
-      name: otpMob,
-      page: () => OTPMobScreen(),
-      binding: OtpMobBinding(),
-    ),
-    GetPage(
-      name: otpEmail,
-      page: () => OTPEmailScreen(),
-      binding: OtpEmailBinding(),
-    ),
-    GetPage(
-      name: forgotOtpMob,
-      page: () => ForgotOTPMobScreen(),
-      binding: ForgotOtpMobBinding(),
-    ),
-    GetPage(
-      name: forgotOtpEmail,
-      page: () => ForgotOTPEmailScreen(),
-      binding: ForgotOtpEmailBinding(),
-    ),
-    GetPage(
-      name: newPass,
-      page: () => NewPasswordScreen(),
-      binding: NewPasswordBinding(),
-    ),
-    GetPage(
-      name: forgotPass,
-      page: () => ForgotPasswordScreen(),
-      binding: ForgotPasswordBinding(),
-    ),
-    GetPage(
-      name: forgotPass2,
-      page: () => ForgotPassword2Screen(),
-      binding: ForgotPassword2Binding(),
-    ),
-    GetPage(
-      name: signature,
-      page: () => SignaturePadScreen(),
-      binding: SignaturePadBinding(),
-    ),
-    GetPage(
-      name: home,
-      page: () => HomeScreen(),
-      binding: HomeBinding(),
-    ),
-    // GetPage(
-    //   name: main,
-    //   page: () => MainScreen(),
-    //   binding: MainBinding(),
-    // ),
-    GetPage(name: addOrderOne, page: () => AddOrderOneScreen(), binding: AddOrderBinding()),
-    GetPage(name: addOrderTwo, page: () => AddOrderTwoScreen(), binding: AddOrderBinding()),
-    GetPage(name: addOrderThree, page: () => AddOrderThreeScreen(), binding: AddOrderBinding()),
-    GetPage(name: addOrderFour, page: () => AddOrderFourScreen(), binding: AddOrderBinding()),
-    // GetPage(
-    //   name: completeOrders,
-    //   page: () => CompleteOrdersScreen(),
-    //   binding: DetailsBinding(),
-    // ),
-    // GetPage(
-    //   name: pendingOrders,
-    //   page: () => PendingDetailsScreen(),
-    //   binding: DetailsBinding(),
-    // ),
-    // GetPage(
-    //   name: recieverSign,
-    //   page: () => SignatureRecieverScreen(),
-    //   binding: SignaturePadBinding(),
-    // ),
-    GetPage(
-      name: allItem,
-      page: () => AllItemScreen(),
-      binding: AllItemBinding(),
-    ),
-    GetPage(
-      name: profile,
-      page: () => ProfileScreen(),
-      binding: ProfileBinding(),
-    ),
-    GetPage(
-      name: editProfile,
-      page: () => EditProfileScreen(),
-      binding: ProfileBinding(),
-    ),
-    GetPage(
-      name: navBar,
-      page: () => CustomNavBar(),
-      binding: NavBarBinding(),
-    ),
-    GetPage(
-      name: splashOne,
-      page: () => SplashOneScreen(),
-      binding: SplashBinding(),
-    ),
-    GetPage(
-      name: splashTwo,
-      page: () => SplashTwoScreen(),
-      binding: SplashBinding(),
-    ),
-  ];
+        GetPage(
+          name: login,
+          page: () => LoginScreen(),
+          binding: LoginBinding(),
+        ),
+        GetPage(
+          name: register,
+          page: () => RegisterScreen(),
+          binding: RegisterBinding(),
+        ),
+        GetPage(
+          name: otpMob,
+          page: () => OTPMobScreen(),
+          binding: OtpMobBinding(),
+        ),
+        GetPage(
+          name: otpEmail,
+          page: () => OTPEmailScreen(),
+          binding: OtpEmailBinding(),
+        ),
+        GetPage(
+          name: forgotOtpMob,
+          page: () => ForgotOTPMobScreen(),
+          binding: ForgotOtpMobBinding(),
+        ),
+        GetPage(
+          name: forgotOtpEmail,
+          page: () => ForgotOTPEmailScreen(),
+          binding: ForgotOtpEmailBinding(),
+        ),
+        GetPage(
+          name: newPass,
+          page: () => NewPasswordScreen(),
+          binding: NewPasswordBinding(),
+        ),
+        GetPage(
+          name: forgotPass,
+          page: () => ForgotPasswordScreen(),
+          binding: ForgotPasswordBinding(),
+        ),
+        GetPage(
+          name: forgotPass2,
+          page: () => ForgotPassword2Screen(),
+          binding: ForgotPassword2Binding(),
+        ),
+        GetPage(
+          name: signature,
+          page: () => SignaturePadScreen(),
+          binding: SignaturePadBinding(),
+        ),
+        GetPage(
+          name: home,
+          page: () => HomeScreen(),
+          binding: HomeBinding(),
+        ),
+        // GetPage(
+        //   name: main,
+        //   page: () => MainScreen(),
+        //   binding: MainBinding(),
+        // ),
+        GetPage(
+            name: addOrderOne,
+            page: () => AddOrderOneScreen(),
+            binding: AddOrderBinding()),
+        GetPage(
+            name: addOrderTwo,
+            page: () => AddOrderTwoScreen(),
+            binding: AddOrderBinding()),
+        GetPage(
+            name: addOrderThree,
+            page: () => AddOrderThreeScreen(),
+            binding: AddOrderBinding()),
+        GetPage(
+            name: addOrderFour,
+            page: () => AddOrderFourScreen(),
+            binding: AddOrderBinding()),
+        // GetPage(
+        //   name: completeOrders,
+        //   page: () => CompleteOrdersScreen(),
+        //   binding: DetailsBinding(),
+        // ),
+        // GetPage(
+        //   name: pendingOrders,
+        //   page: () => PendingDetailsScreen(),
+        //   binding: DetailsBinding(),
+        // ),
+        // GetPage(
+        //   name: recieverSign,
+        //   page: () => SignatureRecieverScreen(),
+        //   binding: SignaturePadBinding(),
+        // ),
+        GetPage(
+          name: allItem,
+          page: () => AllItemScreen(),
+          binding: AllItemBinding(),
+        ),
+        GetPage(
+          name: profile,
+          page: () => ProfileScreen(),
+          binding: ProfileBinding(),
+        ),
+        GetPage(
+          name: editProfile,
+          page: () => EditProfileScreen(),
+          binding: ProfileBinding(),
+        ),
+        GetPage(
+          name: navBar,
+          page: () => CustomNavBar(),
+          binding: NavBarBinding(),
+        ),
+        GetPage(
+          name: splashOne,
+          page: () => SplashOneScreen(),
+          binding: SplashBinding(),
+        ),
+        GetPage(
+          name: splashTwo,
+          page: () => SplashTwoScreen(),
+          binding: SplashBinding(),
+        ),
+        GetPage(
+          name: splash,
+          page: () => SplashScreen(),
+          binding: SplashBinding(),
+        ),
+      ];
 }

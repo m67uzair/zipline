@@ -136,7 +136,7 @@ class _AllItemScreen2State extends State<AllItemScreen2> {
                             }),
                       ),
                       Container(
-                        height: height_45,
+                        //height: height_45,
                         width: width_130,
                         decoration: BoxDecoration(
                             border: Border.all(
@@ -183,7 +183,7 @@ class _AllItemScreen2State extends State<AllItemScreen2> {
                   ),
                 ),
                 SizedBox(
-                  height: height_520,
+                  height: height_470,
                   width: width_340,
                   child: TabBarView(
                     children: <Widget>[

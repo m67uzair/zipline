@@ -141,21 +141,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: height_20,
                   ),
                   Row(
-                    textBaseline: TextBaseline.alphabetic,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image(
-                        image: AssetImage(ImgAssets.logOut),
-                        width: width_30,
+                      InkWell(
+                        onTap: (){
+                          prefs.remove(UserContants.userId);
+                          Get.offAll(LoginScreen());
+                        },
+                        child: SizedBox(
+                          width: width_120,
+                          child: Row(
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              Image(
+                                image: AssetImage(ImgAssets.logOut),
+                                width: width_30,
+                              ),
+                              CustomTextButton(
+                                  text: strLogout,
+                                  color: AppColors.orange,
+                                  fontWeight: fontWeight700,
+                                  font: font_16,
+                                  onPress: () {
+
+                                  })
+                            ],
+                          ),
+                        ),
                       ),
-                      CustomTextButton(
-                          text: strLogout,
-                          color: AppColors.orange,
-                          fontWeight: fontWeight700,
-                          font: font_16,
-                          onPress: () {
-                            prefs.remove(UserContants.userId);
-                            Get.offAll(LoginScreen());
-                          })
+                      SizedBox(
+                        width: width_150,
+                        //color: Colors.amber,
+                        height: height_20,
+                      )
                     ],
                   )
                 ],

@@ -71,7 +71,11 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                 decoration: BoxDecoration(
                   color: AppColors.transparent,
                 ),
-                child: Stepper(
+                child: Theme(
+                  data: ThemeData(
+                   colorScheme: ColorScheme.light(primary: AppColors.orange,),
+                  canvasColor: AppColors.darkBlue
+                ), child: Stepper(
                   currentStep: _currentStep,
                   type: StepperType.horizontal,
                   steps: [
@@ -102,7 +106,7 @@ class _AddOrderOneScreenState extends State<AddOrderOneScreen> {
                     //   _currentStep = index;
                     // });
                   },
-                ),
+                ),)
               ),
 
               Align(

@@ -18,9 +18,9 @@ com.crazecoder.openfile.open_file-jetified-emoji2-1.2.0-16 C:\Users\m67uz\.gradl
 com.crazecoder.openfile.open_file-jetified-emoji2-views-helper-1.2.0-17 C:\Users\m67uz\.gradle\caches\transforms-3\f9a8fa7e10b7dfd0852911823d607994\transformed\jetified-emoji2-views-helper-1.2.0\res
 com.crazecoder.openfile.open_file-main-18 C:\Users\m67uz\AppData\Local\Pub\Cache\hosted\pub.dev\open_file-3.3.2\android\src\main\res
 com.crazecoder.openfile.open_file-release-19 C:\Users\m67uz\AppData\Local\Pub\Cache\hosted\pub.dev\open_file-3.3.2\android\src\release\res
-com.crazecoder.openfile.open_file-pngs-20 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\open_file\generated\res\pngs\release
-com.crazecoder.openfile.open_file-resValues-21 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\open_file\generated\res\resValues\release
-com.crazecoder.openfile.open_file-rs-22 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\open_file\generated\res\rs\release
-com.crazecoder.openfile.open_file-mergeReleaseResources-23 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\open_file\intermediates\incremental\release\mergeReleaseResources\merged.dir
-com.crazecoder.openfile.open_file-mergeReleaseResources-24 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\open_file\intermediates\incremental\release\mergeReleaseResources\stripped.dir
-com.crazecoder.openfile.open_file-merged_res-25 C:\Users\m67uz\Downloads\Compressed\zipline-flutter (2)\zipline-flutter\build\open_file\intermediates\merged_res\release
+com.crazecoder.openfile.open_file-pngs-20 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\open_file\generated\res\pngs\release
+com.crazecoder.openfile.open_file-resValues-21 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\open_file\generated\res\resValues\release
+com.crazecoder.openfile.open_file-rs-22 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\open_file\generated\res\rs\release
+com.crazecoder.openfile.open_file-mergeReleaseResources-23 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\open_file\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.crazecoder.openfile.open_file-mergeReleaseResources-24 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\open_file\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.crazecoder.openfile.open_file-merged_res-25 C:\Users\m67uz\Downloads\Compressed\zipline\zipline\build\open_file\intermediates\merged_res\release

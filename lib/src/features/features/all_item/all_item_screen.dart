@@ -136,7 +136,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
                             }),
                       ),
                       Container(
-                        height: height_45,
+                        //height: height_60,
                         width: width_130,
                         decoration: BoxDecoration(
                             border: Border.all(
@@ -183,7 +183,7 @@ class _AllItemScreenState extends State<AllItemScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: height_520,
+                  height: height_470,
                   width: width_340,
                   child: TabBarView(
                     physics: const NeverScrollableScrollPhysics(),

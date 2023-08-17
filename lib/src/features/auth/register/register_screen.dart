@@ -96,15 +96,17 @@ class RegisterScreen extends GetView<AuthController> {
                   filled: true,
                   fillColor: AppColors.white.withOpacity(.1),
                   labelText: "Enter Phone Number",
-                  labelStyle: TextStyle(color:AppColors.white,fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                  labelStyle: TextStyle(
+                      color: AppColors.white, fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
                   enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.white)),
+                      borderRadius: BorderRadius.circular(radius_10), borderSide: BorderSide(color: AppColors.white)),
                   focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(radius_10),
-                      borderSide: BorderSide(color: AppColors.white)),
+                      borderRadius: BorderRadius.circular(radius_10), borderSide: BorderSide(color: AppColors.white)),
                 ),
-                dropdownIcon: Icon(Icons.arrow_drop_down,color: AppColors.white,),
+                dropdownIcon: Icon(
+                  Icons.arrow_drop_down,
+                  color: AppColors.white,
+                ),
                 dropdownTextStyle: TextStyle(color: AppColors.white),
                 style: TextStyle(color: AppColors.orange),
                 initialCountryCode: 'IN',
@@ -282,7 +284,7 @@ class RegisterScreen extends GetView<AuthController> {
                         font: font_16,
                         onPress: () async {
                           if (formKey.currentState!.validate()) {
-                            authController.setUserInformation(
+                            await authController.setUserInformation(
                                 name: nameController.text,
                                 email: emailAddressController.text,
                                 company: companyNameController.text,

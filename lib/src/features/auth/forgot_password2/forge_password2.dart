@@ -51,22 +51,37 @@ class ForgotPassword2Screen extends GetView<AuthController> {
               isDivider: false,
             ),
             CustomListTile(
-                colorBackCircle: AppColors.orange,
-                border: AppColors.orange,
-                icon: ImgAssets.msgIcon,
-                title: strSendCodeSmS,
-                subtitle: '+${Get.parameters['phone'].toString().trim()}',
+              colorBackCircle: AppColors.orange,
+              border: AppColors.orange,
+              icon: ImgAssets.msgIcon,
+              title: strSendCodeSmS,
+              subtitle: '+${Get.parameters['phone'].toString().trim()}',
+              onTap: () async {
+                String phone = Get.parameters['phone'].toString().trim();
+                String email = Get.parameters['email'].toString().trim();
+                await _forgotPassword2Controller.setUserPhoneAndEmail(phone, email);
+                await _forgotPassword2Controller.sendPhoneOTP('+$phone');
+              },
+              // onTap: ,
             ),
             CustomDivider(
               height: height_16,
               isDivider: false,
             ),
             CustomListTile(
-                colorBackCircle: AppColors.greyColor.withOpacity(.2),
-                border: AppColors.white,
-                icon: ImgAssets.emailIcon,
-                title: strSendCodeEmail,
-                subtitle: Get.parameters['email'].toString().trim()),
+              colorBackCircle: AppColors.orange.withOpacity(.2),
+              border: AppColors.white,
+              icon: ImgAssets.emailIcon,
+              title: strSendCodeEmail,
+              subtitle: Get.parameters['email'].toString().trim(),
+              onTap: () async {
+                String phone = Get.parameters['phone'].toString().trim();
+                String email = Get.parameters['email'].toString().trim();
+                await _forgotPassword2Controller.setEmailOTPConfig(email);
+                // await _forgotPassword2Controller.sendPhoneOTP('+$phone');
+                // Get.toNamed('${AppRoutes.forgotOtpEmail}?email=$userEmail&route=forgot');
+              },
+            ),
             CustomDivider(
               height: height_60,
               isDivider: false,
@@ -79,10 +94,10 @@ class ForgotPassword2Screen extends GetView<AuthController> {
                     fontWeight: fontWeight800,
                     font: font_16,
                     onPress: () async {
-                      String phone = Get.parameters['phone'].toString().trim();
-                      String email = Get.parameters['email'].toString().trim();
-                      await _forgotPassword2Controller.setUserPhoneAndEmail(phone, email);
-                      await _forgotPassword2Controller.sendPhoneOTP('+$phone');
+                      // String phone = Get.parameters['phone'].toString().trim();
+                      // String email = Get.parameters['email'].toString().trim();
+                      // await _forgotPassword2Controller.setUserPhoneAndEmail(phone, email);
+                      // await _forgotPassword2Controller.sendPhoneOTP('+$phone');
                     },
                   )),
           ],

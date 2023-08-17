@@ -45,4 +45,7 @@ class ImgAssets {
   static const String splashOne = '${assets}splashone.png';
   static const String splashTwo = '${assets}splashtwo.png';
   static const String skip = '${assets}skip.png';
+  static const String splashbackone = '${assets}splashback1.png';
+  static const String splashbacktwo = '${assets}splashback2.png';
+  static const String scooter = '${assets}scooter.png';
 }
