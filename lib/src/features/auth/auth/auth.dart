@@ -99,9 +99,12 @@ class AuthController extends GetxController {
       request.fields['address'] = userAddress;
       request.fields['gender'] = userGender.value;
 
-      request.files.add(await http.MultipartFile.fromPath('govt_id_front', userIdFront));
-      request.files.add(await http.MultipartFile.fromPath('govt_id_back', userIdBack));
-      request.files.add(await http.MultipartFile.fromPath('profile_photo', userProfilePhoto));
+      request.files
+          .add(await http.MultipartFile.fromPath('govt_id_front', userIdFront));
+      request.files
+          .add(await http.MultipartFile.fromPath('govt_id_back', userIdBack));
+      request.files.add(
+          await http.MultipartFile.fromPath('profile_photo', userProfilePhoto));
 
       final response = await request.send();
       var data = await response.stream.bytesToString();
@@ -112,17 +115,22 @@ class AuthController extends GetxController {
         await prefs.setInt(UserContants.userId, userId);
         await prefs.setString(UserContants.userProfilePhoto, userProfilePhoto);
         await prefs.setString(UserContants.userName, userName);
-        Fluttertoast.showToast(msg: "Registration Successful", timeInSecForIosWeb: 20);
+        Fluttertoast.showToast(
+            msg: "Registration Successful", timeInSecForIosWeb: 20);
         registerStatus.value = 'success';
         Get.offAllNamed(AppRoutes.navBar);
       } else if (response.statusCode == 500) {
         String error = jsonData['error'];
-        Fluttertoast.showToast(msg: '$error Try Again', timeInSecForIosWeb: 20, toastLength: Toast.LENGTH_LONG);
+        Fluttertoast.showToast(
+            msg: '$error Try Again',
+            timeInSecForIosWeb: 20,
+            toastLength: Toast.LENGTH_LONG);
         registerStatus.value = 'error';
         Get.offAllNamed(AppRoutes.register);
       } else {
         String error = jsonData['error'];
-        Fluttertoast.showToast(msg: "Registration Failed, $error", timeInSecForIosWeb: 20);
+        Fluttertoast.showToast(
+            msg: "Registration Failed, $error", timeInSecForIosWeb: 20);
         registerStatus.value = 'error';
         Get.offAllNamed(AppRoutes.register);
       }
@@ -200,14 +208,21 @@ class AuthController extends GetxController {
 
       if (await emailAuth2.sendOTP() == true) {
         isEmailCodeSent.value = true;
-        Fluttertoast.showToast(msg: "email OTP sent successfully", timeInSecForIosWeb: 10);
+        Fluttertoast.showToast(
+            msg: "email OTP sent successfully", timeInSecForIosWeb: 10);
+
+        Get.toNamed(
+            '${AppRoutes.otpEmail}?email=$userEmail'); // comment this line when phone otp is available.
+
         // await registerUser();
       } else {
-        Fluttertoast.showToast(msg: "Email OTP Failed to send", timeInSecForIosWeb: 10);
+        Fluttertoast.showToast(
+            msg: "Email OTP Failed to send", timeInSecForIosWeb: 10);
       }
     } on Exception catch (e) {
       print(e);
-      Fluttertoast.showToast(msg: "Cant send email otp", timeInSecForIosWeb: 10);
+      Fluttertoast.showToast(
+          msg: "Cant send email otp", timeInSecForIosWeb: 10);
     }
     isLoading.value = false;
   }
@@ -217,11 +232,13 @@ class AuthController extends GetxController {
     try {
       if (await emailAuth2.verifyOTP(otp: otp)) {
         isEmailVerified.value = true;
-        Fluttertoast.showToast(msg: "Email OTP verified successfully", timeInSecForIosWeb: 10);
-        registerUser();
+        Fluttertoast.showToast(
+            msg: "Email OTP verified successfully", timeInSecForIosWeb: 10);
+        await registerUser();
       } else {
         print('aaaaauth');
-        Fluttertoast.showToast(msg: "Can't verify email OTP", timeInSecForIosWeb: 10);
+        Fluttertoast.showToast(
+            msg: "Can't verify email OTP", timeInSecForIosWeb: 10);
       }
     } on Exception catch (e) {
       isLoading.value = false;
@@ -245,13 +262,19 @@ class AuthController extends GetxController {
       startOtpResendTimer();
       if (response.statusCode == 200) {
         phoneOtpId = jsonData['otp_id'].toString();
-        Fluttertoast.showToast(msg: "Phone OTP sent Successfully", toastLength: Toast.LENGTH_LONG);
-        Get.to('${AppRoutes.otpMob}?phone=$userPhone');
+        Fluttertoast.showToast(
+            msg: "Phone OTP sent Successfully", toastLength: Toast.LENGTH_LONG);
+        Get.toNamed('${AppRoutes.otpMob}?phone=$userPhone');
       } else {
-        Fluttertoast.showToast(msg: "An error occurred while sending phone OTP", toastLength: Toast.LENGTH_LONG);
+        Fluttertoast.showToast(
+            msg: "An error occurred while sending phone OTP",
+            toastLength: Toast.LENGTH_LONG);
       }
     } on Exception catch (e) {
-      Fluttertoast.showToast(msg: "An error occurred while sending phone OTP", toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(
+          msg: "An error occurred while sending phone OTP",
+          toastLength: Toast.LENGTH_LONG);
+      isLoading.value = false;
     }
 
     isLoading.value = false;
@@ -275,21 +298,27 @@ class AuthController extends GetxController {
         String msg = jsonData['message'];
 
         if (status == 'success') {
-          Fluttertoast.showToast(msg: 'Phone OTP Verified Successfully', toastLength: Toast.LENGTH_LONG);
+          Fluttertoast.showToast(
+              msg: 'Phone OTP Verified Successfully',
+              toastLength: Toast.LENGTH_LONG);
           isPhoneVerified.value = true;
           startOtpResendTimer();
           Get.offNamed('${AppRoutes.otpEmail}?email=$userEmail');
           setEmailOTPConfig(userEmail);
         } else if (status == 'error') {
-          Fluttertoast.showToast(msg: 'Could\'nt verify OTP, please try again', toastLength: Toast.LENGTH_LONG);
+          Fluttertoast.showToast(
+              msg: 'Could\'nt verify OTP, please try again',
+              toastLength: Toast.LENGTH_LONG);
         }
       } else {
         Fluttertoast.showToast(
-            msg: 'An error occurred, check you\'r internet and try again', toastLength: Toast.LENGTH_LONG);
+            msg: 'An error occurred, check you\'r internet and try again',
+            toastLength: Toast.LENGTH_LONG);
       }
     } on Exception catch (e) {
       Fluttertoast.showToast(
-          msg: 'An error occurred, check you\'r internet and try again', toastLength: Toast.LENGTH_LONG);
+          msg: 'An error occurred, check you\'r internet and try again',
+          toastLength: Toast.LENGTH_LONG);
     }
     isLoading.value = false;
   }
@@ -340,7 +369,8 @@ class AuthController extends GetxController {
   void _verificationCompleted(PhoneAuthCredential credential) async {
     isPhoneCodeSent.value = true;
     await _signInWithCredential(credential);
-    Fluttertoast.showToast(msg: "Phone OTP verified successfully", timeInSecForIosWeb: 10);
+    Fluttertoast.showToast(
+        msg: "Phone OTP verified successfully", timeInSecForIosWeb: 10);
     // Get.toNamed('${AppRoutes.otpEmail}?email=$userEmail');
     // setEmailOTPConfig(userEmail);
     print('verification complete called ${isPhoneCodeSent.value}');
@@ -357,19 +387,22 @@ class AuthController extends GetxController {
     this.verificationId.value = verificationId;
     isPhoneCodeSent.value = true;
     this.resendToken = resendToken; // Store the resendToken
-    Fluttertoast.showToast(msg: "Phone OTP sent successfully", timeInSecForIosWeb: 10);
+    Fluttertoast.showToast(
+        msg: "Phone OTP sent successfully", timeInSecForIosWeb: 10);
     Get.toNamed('${AppRoutes.otpMob}?phone=$userPhone');
     print('code sent called ${isPhoneCodeSent.value}');
   }
 
   Future<void> _signInWithCredential(AuthCredential credential) async {
     try {
-      UserCredential userCredential = await _auth.signInWithCredential(credential);
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
       isLoading.value = false;
       print("User Verified: ${userCredential.user?.uid}");
 
       if (userCredential.user?.uid != null) {
-        Fluttertoast.showToast(msg: "Phone OTP verified successfully", timeInSecForIosWeb: 10);
+        Fluttertoast.showToast(
+            msg: "Phone OTP verified successfully", timeInSecForIosWeb: 10);
         isPhoneVerified.value = true;
         startOtpResendTimer();
         Get.offNamed('${AppRoutes.otpEmail}?email=$userEmail');

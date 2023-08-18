@@ -145,7 +145,7 @@ class ForgotPassword2Controller extends GetxController {
         phoneOtpId = jsonData['otp_id'].toString();
         Get.back();
         Fluttertoast.showToast(msg: "Phone OTP sent Successfully", toastLength: Toast.LENGTH_LONG);
-        Get.to('${AppRoutes.otpMob}?phone=$phoneNumber');
+        Get.toNamed('${AppRoutes.otpMob}?phone=$phoneNumber');
       } else {
         Get.back();
         Fluttertoast.showToast(msg: "An error occurred while sending phone OTP", toastLength: Toast.LENGTH_LONG);

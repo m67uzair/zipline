@@ -1,6 +1,7 @@
 import 'package:courier_app/src/components/custom_radio.dart';
 import 'package:courier_app/src/core/config/routes.dart';
 import 'package:courier_app/src/features/auth/register/register_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
@@ -54,12 +55,18 @@ class RegisterScreen extends GetView<AuthController> {
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strRegisterNewAc, color1: AppColors.white, fontWeight: fontWeight700, fontSize: font_20),
+                    text: strRegisterNewAc,
+                    color1: AppColors.white,
+                    fontWeight: fontWeight700,
+                    fontSize: font_20),
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomText(
-                    text: strInfoBelow, color1: AppColors.textWhite, fontWeight: fontWeight400, fontSize: font_13),
+                    text: strInfoBelow,
+                    color1: AppColors.textWhite,
+                    fontWeight: fontWeight400,
+                    fontSize: font_13),
               ),
               CustomDivider(
                 height: height_30,
@@ -72,7 +79,8 @@ class RegisterScreen extends GetView<AuthController> {
                 height: height_15,
                 textInputType: TextInputType.text,
                 controller: nameController,
-                validator: ValidationBuilder().required('Name is Required').build(),
+                validator:
+                    ValidationBuilder().required('Name is Required').build(),
               ), //email text-field
               CustomTextField(
                 labelText: strEnterEmail,
@@ -81,7 +89,10 @@ class RegisterScreen extends GetView<AuthController> {
                 height: height_15,
                 textInputType: TextInputType.text,
                 controller: emailAddressController,
-                validator: ValidationBuilder().email().required('Email is Required').build(),
+                validator: ValidationBuilder()
+                    .email()
+                    .required('Email is Required')
+                    .build(),
               ), //
               CustomTextField(
                   labelText: strEnterCompany,
@@ -90,18 +101,25 @@ class RegisterScreen extends GetView<AuthController> {
                   height: height_15,
                   textInputType: TextInputType.text,
                   controller: companyNameController,
-                  validator: ValidationBuilder().required('Company Name is Required').build()), //
+                  validator: ValidationBuilder()
+                      .required('Company Name is Required')
+                      .build()), //
               IntlPhoneField(
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: AppColors.white.withOpacity(.1),
                   labelText: "Enter Phone Number",
                   labelStyle: TextStyle(
-                      color: AppColors.white, fontSize: font_14, fontFamily: 'Mukta', fontWeight: fontWeight400),
+                      color: AppColors.white,
+                      fontSize: font_14,
+                      fontFamily: 'Mukta',
+                      fontWeight: fontWeight400),
                   enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(radius_10), borderSide: BorderSide(color: AppColors.white)),
+                      borderRadius: BorderRadius.circular(radius_10),
+                      borderSide: BorderSide(color: AppColors.white)),
                   focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(radius_10), borderSide: BorderSide(color: AppColors.white)),
+                      borderRadius: BorderRadius.circular(radius_10),
+                      borderSide: BorderSide(color: AppColors.white)),
                 ),
                 dropdownIcon: Icon(
                   Icons.arrow_drop_down,
@@ -137,11 +155,14 @@ class RegisterScreen extends GetView<AuthController> {
                         : const Icon(Icons.visibility_off),
                     color: AppColors.greyColor,
                     onPressed: () {
-                      registerController.isPasswordVisible.value = !registerController.isPasswordVisible.value;
+                      registerController.isPasswordVisible.value =
+                          !registerController.isPasswordVisible.value;
                     },
                   ),
                   obscure: registerController.isPasswordVisible.value,
-                  validator: ValidationBuilder().required('Password is required').build(),
+                  validator: ValidationBuilder()
+                      .required('Password is required')
+                      .build(),
                 ), //
               ),
               Obx(
@@ -182,7 +203,8 @@ class RegisterScreen extends GetView<AuthController> {
                 height: height_15,
                 textInputType: TextInputType.text,
                 controller: addressController,
-                validator: ValidationBuilder().required('Address is required').build(),
+                validator:
+                    ValidationBuilder().required('Address is required').build(),
               ), //
 
               CustomRadioButton(),
@@ -199,7 +221,8 @@ class RegisterScreen extends GetView<AuthController> {
                 textInputType: TextInputType.text,
                 controller: idFrontController,
                 readOnly: true,
-                validator: ValidationBuilder().required('Field is required').build(),
+                validator:
+                    ValidationBuilder().required('Field is required').build(),
                 onTap: () async {
                   await registerController.getImage();
                   idFrontController.text = registerController.imagePath.value;
@@ -252,10 +275,12 @@ class RegisterScreen extends GetView<AuthController> {
                 textInputType: TextInputType.text,
                 controller: profilePicController,
                 readOnly: true,
-                validator: ValidationBuilder().required('Field is required').build(),
+                validator:
+                    ValidationBuilder().required('Field is required').build(),
                 onTap: () async {
                   await registerController.getImage();
-                  profilePicController.text = registerController.imagePath.value;
+                  profilePicController.text =
+                      registerController.imagePath.value;
                 },
                 suffixIcon: Obx(() {
                   final imagePath = registerController.imagePath.value;
@@ -294,10 +319,18 @@ class RegisterScreen extends GetView<AuthController> {
                                 idFront: idFrontController.text,
                                 idBack: idBackController.text,
                                 profilePhoto: profilePicController.text);
-                            if (authController.isEmailVerified.isTrue && authController.isPhoneVerified.isTrue) {
+                            if (authController.isEmailVerified.isTrue &&
+                                authController.isPhoneVerified.isTrue) {
+                              print('bhaaagooooooo!');
+                              print(authController.isEmailVerified.isTrue);
+                              print(authController.isPhoneVerified.isTrue);
                               await authController.registerUser();
                             } else {
-                              await authController.sendPhoneOTP('+$countryCode$number');
+                              await authController.setEmailOTPConfig(
+                                  emailAddressController
+                                      .text); // comment this line when phone otp is available.
+
+                              // await authController.sendPhoneOTP('+$countryCode$number'); //uncomment this line when phone otp is available
                             }
                           }
                         },
