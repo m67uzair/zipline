@@ -326,11 +326,12 @@ class RegisterScreen extends GetView<AuthController> {
                               print(authController.isPhoneVerified.isTrue);
                               await authController.registerUser();
                             } else {
-                              await authController.setEmailOTPConfig(
-                                  emailAddressController
-                                      .text); // comment this line when phone otp is available.
+                              // await authController.setEmailOTPConfig(
+                              //     emailAddressController
+                              //         .text); // comment this line when phone otp is available.
 
-                              // await authController.sendPhoneOTP('+$countryCode$number'); //uncomment this line when phone otp is available
+                              await authController.sendPhoneOTP(
+                                  '+$countryCode$number'); //uncomment this line when phone otp is available
                             }
                           }
                         },

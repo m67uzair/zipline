@@ -211,8 +211,8 @@ class AuthController extends GetxController {
         Fluttertoast.showToast(
             msg: "email OTP sent successfully", timeInSecForIosWeb: 10);
 
-        Get.toNamed(
-            '${AppRoutes.otpEmail}?email=$userEmail'); // comment this line when phone otp is available.
+        // Get.toNamed(
+        //     '${AppRoutes.otpEmail}?email=$userEmail'); // comment this line when phone otp is available.
 
         // await registerUser();
       } else {

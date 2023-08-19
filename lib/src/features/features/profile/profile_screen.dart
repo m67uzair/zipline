@@ -146,6 +146,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       InkWell(
                         onTap: (){
                           prefs.remove(UserContants.userId);
+                          setState(() {
+                          });
                           Get.offAll(LoginScreen());
                         },
                         child: SizedBox(
